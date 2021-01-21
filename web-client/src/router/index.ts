@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
+
+import { environment } from '@/configs/environment'
+import Home from '../pages/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,8 +12,10 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(environment.appUrl),
   routes,
 })
+
+document.title = environment.appTitle
 
 export default router

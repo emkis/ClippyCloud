@@ -1,7 +1,6 @@
 import { createWakeUpApiService } from './index'
-import { ApiService } from '@/services/api'
 
-describe('WakeUpApiService', () => {
+describe('WakeUpApi', () => {
   it('should create the service without error', () => {
     createWakeUpApiService()
   })

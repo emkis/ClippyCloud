@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { createWakeUpApiService } from './index'
 
 describe('WakeUpApi', () => {
@@ -5,17 +6,21 @@ describe('WakeUpApi', () => {
     createWakeUpApiService()
   })
 
-  it('should execute "init" function and return a promise', () => {
-    const httpClientMock = {
-      get: jest.fn().mockImplementation(() => Promise.resolve()),
-    }
-
-    // @ts-ignore
-    const service = createWakeUpApiService(httpClientMock)
-    const response = service.init()
+  it('service should return a object with expected properties', () => {
+    const service = createWakeUpApiService()
 
     expect(service).toHaveProperty('init')
+    expect(typeof service.init).toBe('function')
+  })
+
+  it('should execute "init" and return a promise', () => {
+    const axiosMock = axios.create()
+    axiosMock.get = jest.fn().mockImplementation(() => Promise.resolve())
+
+    const service = createWakeUpApiService(axiosMock)
+    const response = service.init()
+
     expect(response).toBeInstanceOf(Promise)
-    expect(httpClientMock.get).toBeCalledTimes(1)
+    expect(axiosMock.get).toBeCalledTimes(1)
   })
 })

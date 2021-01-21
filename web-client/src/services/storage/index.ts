@@ -7,18 +7,29 @@ function isValidJSON(targetText: string): boolean {
   }
 }
 
-export function getFromStorage(key: string): any {
-  const rawData = localStorage.getItem(key) || ''
-  const dataExists = !!rawData
+function validateStorageItem(key: string): boolean {
+  const isItemParsable = isValidJSON(key)
+  if (isItemParsable) return true
 
-  if (dataExists && !isValidJSON(rawData)) {
-    return rawData
-  }
+  localStorage.removeItem(key)
+  return false
+}
 
-  return JSON.parse(rawData)
+export function getFromStorage(key: string): any | null {
+  const isValidData = validateStorageItem(key)
+  if (!isValidData) return null
+
+  const rawData = localStorage.getItem(key)
+  const dataExists = Boolean(rawData)
+
+  // @ts-ignore
+  if (dataExists) return JSON.parse(rawData)
 }
 
 export function saveInStorage(key: string, data: any): void {
-  const stringifiedData = JSON.stringify(data)
-  localStorage.setItem(key, stringifiedData)
+  try {
+    localStorage.setItem(key, JSON.stringify(data))
+  } catch (error) {
+    throw new Error(error)
+  }
 }

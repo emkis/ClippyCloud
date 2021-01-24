@@ -57,5 +57,3 @@ describe('validateStorageItem()', () => {
     expect(itemResponse).toBe(true)
   })
 })
-
-beforeEach(jest.clearAllMocks)

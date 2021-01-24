@@ -1,7 +1,9 @@
-const storagePrefix = '@clippycloud:'
+import { validateStorageItem } from './helpers'
+
+export const STORAGE_PREFIX = '@clippycloud:'
 
 export function getFromStorage(key: string): any | null {
-  const customKey = `${storagePrefix}${key}`
+  const customKey = `${STORAGE_PREFIX}${key}`
 
   const isValidData = validateStorageItem(customKey)
   if (!isValidData) return null
@@ -11,30 +13,11 @@ export function getFromStorage(key: string): any | null {
 }
 
 export function saveInStorage(key: string, data: any): void {
-  const customKey = `${storagePrefix}${key}`
+  const customKey = `${STORAGE_PREFIX}${key}`
 
   try {
     localStorage.setItem(customKey, JSON.stringify(data))
   } catch (error) {
     throw new Error(error)
-  }
-}
-
-function validateStorageItem(key: string): boolean {
-  const rawData = localStorage.getItem(key) || ''
-  const isItemParsable = isValidJSON(rawData)
-
-  if (isItemParsable) return true
-
-  localStorage.removeItem(key)
-  return false
-}
-
-function isValidJSON(targetText: string): boolean {
-  try {
-    JSON.parse(targetText)
-    return true
-  } catch {
-    return false
   }
 }

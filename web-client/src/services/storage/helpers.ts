@@ -1,3 +1,5 @@
+import { STORAGE_PREFIX } from './index'
+
 export function isValidJSON(stringToTest: string): boolean {
   try {
     JSON.parse(stringToTest)
@@ -15,4 +17,8 @@ export function validateStorageItem(key: string): boolean {
 
   localStorage.removeItem(key)
   return false
+}
+
+export function makeCustomKey(key: string): string {
+  return `${STORAGE_PREFIX}${key}`
 }

@@ -14,12 +14,7 @@ export function getFromStorage(key: string): any | null {
 
 export function saveInStorage(key: string, data: any): void {
   const customKey = makeCustomKey(key)
-
-  try {
-    localStorage.setItem(customKey, JSON.stringify(data))
-  } catch (error) {
-    throw new Error(error)
-  }
+  localStorage.setItem(customKey, JSON.stringify(data))
 }
 
 export function removeFromStorage(key: string): void {

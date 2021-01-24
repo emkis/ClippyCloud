@@ -8,7 +8,9 @@ function isValidJSON(targetText: string): boolean {
 }
 
 function validateStorageItem(key: string): boolean {
-  const isItemParsable = isValidJSON(key)
+  const rawData = localStorage.getItem(key) || ''
+  const isItemParsable = isValidJSON(rawData)
+
   if (isItemParsable) return true
 
   localStorage.removeItem(key)
@@ -19,10 +21,9 @@ export function getFromStorage(key: string): any | null {
   const isValidData = validateStorageItem(key)
   if (!isValidData) return null
 
-  const rawData = localStorage.getItem(key)
+  const rawData = localStorage.getItem(key) || ''
   const dataExists = Boolean(rawData)
 
-  // @ts-ignore
   if (dataExists) return JSON.parse(rawData)
 }
 

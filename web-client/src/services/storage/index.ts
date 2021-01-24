@@ -1,9 +1,22 @@
-function isValidJSON(targetText: string): boolean {
+const storagePrefix = '@clippycloud:'
+
+export function getFromStorage(key: string): any | null {
+  const customKey = `${storagePrefix}${key}`
+
+  const isValidData = validateStorageItem(customKey)
+  if (!isValidData) return null
+
+  const rawData = localStorage.getItem(customKey) || '{}'
+  return JSON.parse(rawData)
+}
+
+export function saveInStorage(key: string, data: any): void {
+  const customKey = `${storagePrefix}${key}`
+
   try {
-    JSON.parse(targetText)
-    return true
-  } catch {
-    return false
+    localStorage.setItem(customKey, JSON.stringify(data))
+  } catch (error) {
+    throw new Error(error)
   }
 }
 
@@ -17,20 +30,11 @@ function validateStorageItem(key: string): boolean {
   return false
 }
 
-export function getFromStorage(key: string): any | null {
-  const isValidData = validateStorageItem(key)
-  if (!isValidData) return null
-
-  const rawData = localStorage.getItem(key) || ''
-  const dataExists = Boolean(rawData)
-
-  if (dataExists) return JSON.parse(rawData)
-}
-
-export function saveInStorage(key: string, data: any): void {
+function isValidJSON(targetText: string): boolean {
   try {
-    localStorage.setItem(key, JSON.stringify(data))
-  } catch (error) {
-    throw new Error(error)
+    JSON.parse(targetText)
+    return true
+  } catch {
+    return false
   }
 }

@@ -1,0 +1,33 @@
+{
+  "name": "dropbox-clone-api",
+  "version": "1.0.3",
+  "main": "src/server.js",
+  "repository": "https://github.com/emkis/dropbox-clone-api.git",
+  "author": "Nicolas Jardim <nicolasemkis@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon src/server.js",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "debug": "node --inspect-brk -r sucrase/register src/server.js",
+    "postinstall": "yarn build"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.7",
+    "sucrase": "^3.17.0"
+  },
+  "dependencies": {
+    "archiver": "^5.2.0",
+    "cors": "^2.8.5",
+    "date-fns": "^2.16.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.11",
+    "multer": "^1.4.2",
+    "socket.io": "^2.4.1"
+  }
+}

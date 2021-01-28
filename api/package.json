@@ -1,10 +1,7 @@
 {
-  "name": "dropbox-clone-api",
-  "version": "1.0.3",
+  "name": "clippy-cloud-api",
+  "version": "0.1.0",
   "main": "src/server.js",
-  "repository": "https://github.com/emkis/dropbox-clone-api.git",
-  "author": "Nicolas Jardim <nicolasemkis@gmail.com>",
-  "license": "MIT",
   "scripts": {
     "start": "node dist/server.js",
     "dev": "cross-env NODE_ENV=development nodemon src/server.js",

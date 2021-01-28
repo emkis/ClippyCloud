@@ -4,9 +4,11 @@ import multerConfig from './config/multer'
 
 import { FileController } from './controllers/FileController'
 import { FolderController } from './controllers/FolderController'
+import { WakeUpController } from './controllers/WakeUpController'
 
 const routes = express.Router()
 
+routes.get('/wake-up', WakeUpController.index)
 routes.get('/folder/:id', FolderController.show)
 routes.get('/folders', FolderController.index)
 routes.get('/file/:id', FileController.show)

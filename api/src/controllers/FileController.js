@@ -21,19 +21,4 @@ export const FileController = {
 
     return response.status(200).json(file)
   },
-
-  async show(request, response) {
-    try {
-      const { id } = request.params
-      const file = await File.findById(id)
-
-      if (!file) {
-        return response.status(404).json()
-      }
-
-      return response.status(200).json(file)
-    } catch {
-      return response.status(404).json()
-    }
-  },
 }

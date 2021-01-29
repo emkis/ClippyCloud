@@ -14,8 +14,6 @@ routes.get('/user/:id', UserController.show)
 routes.get('/users', UserController.index)
 routes.post('/user', UserController.store)
 
-routes.get('/file/:id', FileController.show)
-
 routes.post(
   '/user/:id/files',
   multer(multerConfig).single('file'), FileController.store,

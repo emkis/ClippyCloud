@@ -6,9 +6,8 @@
     "start": "node dist/server.js",
     "watch": "tsc -w",
     "dev": "cross-env NODE_ENV=development nodemon dist/server.js",
-    "build": "sucrase ./src -d ./dist --transforms imports",
-    "debug": "node --inspect-brk -r sucrase/register src/server.js",
-    "__postinstall": "yarn build"
+    "build": "tsc",
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "@types/cors": "^2.8.9",
@@ -23,7 +22,6 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "nodemon": "^2.0.7",
-    "sucrase": "^3.17.0",
     "typescript": "^4.1.3"
   },
   "dependencies": {

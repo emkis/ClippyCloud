@@ -3,10 +3,13 @@ import File from '../models/File'
 
 export const FileController = {
   async store(request, response) {
-    const user = await User
-      .findById(request.params.id)
-      .select('files')
-      .populate('files', 'title path')
+    let user = await User.findById(request.params.id)
+    const userNotExists = !user
+
+    if (userNotExists) {
+      const userId = request.params.id
+      user = await User.create({ _id: userId })
+    }
 
     const file = await File.create({
       path: request.file.key,
@@ -15,8 +18,6 @@ export const FileController = {
 
     user.files.push(file)
     await user.save()
-
-    request.io.sockets.in(user.id).emit('@file/CREATED', file)
 
     return response.status(200).json(file)
   },

@@ -1,12 +1,13 @@
+import { Request, Response } from 'express'
 import User from '../models/User'
 
 export const UserController = {
-  async index(_, response) {
+  async index (_: Request, response: Response) {
     const users = await User.find()
     response.status(200).json(users)
   },
 
-  async store(request, response) {
+  async store (request: Request, response: Response) {
     const { _id } = request.body
     const userAlreadyExists = !!await User.findById(_id)
 
@@ -16,12 +17,10 @@ export const UserController = {
 
     const user = await User.create({ _id })
 
-    request.io.sockets.emit('@user/CREATED', user)
-
     return response.status(200).json(user)
   },
 
-  async show(request, response) {
+  async show (request: Request, response: Response) {
     const user = await User
       .findById(request.params.id)
       .populate({

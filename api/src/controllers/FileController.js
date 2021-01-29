@@ -1,9 +1,9 @@
-import Folder from '../models/Folder'
+import User from '../models/User'
 import File from '../models/File'
 
 export const FileController = {
   async store(request, response) {
-    const folder = await Folder
+    const user = await User
       .findById(request.params.id)
       .select('files')
       .populate('files', 'title path')
@@ -13,10 +13,10 @@ export const FileController = {
       title: request.file.originalname,
     })
 
-    folder.files.push(file)
-    await folder.save()
+    user.files.push(file)
+    await user.save()
 
-    request.io.sockets.in(folder._id).emit('@file/CREATED', file)
+    request.io.sockets.in(user.id).emit('@file/CREATED', file)
 
     return response.status(200).json(file)
   },

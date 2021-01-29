@@ -1,5 +1,5 @@
 {
-  "name": "web-client",
+  "name": "clippy-cloud-web-client",
   "version": "0.1.0",
   "scripts": {
     "start": "vue-cli-service serve",
@@ -13,7 +13,8 @@
     "core-js": "^3.8.3",
     "uuid": "^8.3.2",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "vue3-dropzone": "^0.0.4"
   },
   "devDependencies": {
     "@testing-library/vue": "^6.3.4",
@@ -37,6 +38,7 @@
     "prettier": "^2.2.1",
     "sass-loader": "^10.1.1",
     "typescript": "^3.9.7",
-    "vue-jest": "^5.0.0-0"
+    "vue-jest": "^5.0.0-0",
+    "webpack-dashboard": "^3.3.0"
   }
 }

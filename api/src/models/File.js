@@ -1,31 +1,23 @@
-import mongoose from 'mongoose'
+import { Schema, model } from 'mongoose'
 import env from '../config/env'
 
-const File = new mongoose.Schema(
+const File = new Schema(
   {
-    title: {
-      type: String,
-      required: true,
-    },
-    path: {
-      type: String,
-      required: true,
-    },
+    title: { type: String, required: true },
+    path: { type: String, required: true },
   },
   {
     timestamps: true,
-    toObject: {
-      virtuals: true,
-    },
-    toJSON: {
-      virtuals: true,
-    },
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
   },
 )
 
-File.virtual('url').get(function () {
+function FileURLGetter() {
   const url = env.appUrl
   return `${url}/files/${encodeURIComponent(this.path)}`
-})
+}
 
-export default mongoose.model('File', File)
+File.virtual('url').get(FileURLGetter)
+
+export default model('File', File)

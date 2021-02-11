@@ -5,7 +5,7 @@ import File from '../models/File'
 
 export const FileController = {
   async store (request: Request, response: Response) {
-    // @ts-ignore
+    // @ts-expect-error
     let user: IUser = await User.findById(request.params.id)
     const userNotExists = !user
 

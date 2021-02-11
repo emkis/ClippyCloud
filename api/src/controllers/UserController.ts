@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import User from '../models/User'
 
 export const UserController = {
-  async index (_: Request, response: Response) {
+  async index (_request: Request, response: Response) {
     const users = await User.find()
     response.status(200).json(users)
   },

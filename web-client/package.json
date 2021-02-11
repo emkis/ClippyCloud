@@ -13,7 +13,8 @@
     "core-js": "^3.8.3",
     "uuid": "^8.3.2",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "vue3-dropzone": "^0.0.4"
   },
   "devDependencies": {
     "@testing-library/vue": "^6.3.4",

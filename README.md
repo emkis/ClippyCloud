@@ -4,7 +4,7 @@
     <img
       width="333"
       alt="Clippy Cloud"
-      src="https://raw.githubusercontent.com/emkis/ClippyCloud/main/web-client/.github/clyppy-cloud-logo.png"
+      src="https://raw.githubusercontent.com/emkis/ClippyCloud/main/.github/clippy-cloud-logo.png"
     >
     <br>
   </a>

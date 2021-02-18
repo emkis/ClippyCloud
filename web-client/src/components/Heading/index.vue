@@ -11,6 +11,7 @@ import type { HeadingLevel } from './types'
 import { defineComponent, computed } from 'vue'
 
 export default defineComponent({
+  name: 'Heading',
   props: {
     level: { type: String as PropType<HeadingLevel>, required: true },
   },

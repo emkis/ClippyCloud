@@ -9,6 +9,7 @@ import type { Text } from './types'
 import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
+  name: 'Text',
   props: {
     as: { type: String as PropType<Text>, required: true },
   },

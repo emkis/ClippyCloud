@@ -11,6 +11,8 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--color-shark);
+  color: var(--color-cadet-blue);
 }
 
 h1,
@@ -22,4 +24,5 @@ h5 {
   font-weight: 700;
   line-height: $line-height-title;
   letter-spacing: -0.64px;
+  color: var(--color-white);
 }

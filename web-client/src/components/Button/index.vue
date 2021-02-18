@@ -13,13 +13,9 @@ export default defineComponent({
   props: {
     theme: { type: String as PropType<Theme>, default: Themes.Default },
   },
-  emits: {
-    onClick: (payload: string) => payload,
-  },
-  setup(_props, { emit }) {
-    function handleClick() {
-      emit('onClick', 'clicados')
-    }
+  emits: ['onClick'],
+  setup(props, { emit }) {
+    const handleClick = () => emit('onClick')
 
     return { handleClick }
   },
@@ -29,7 +25,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .Button {
   padding: 18px 38px;
-  font-size: 16px;
+  font-size: rem(16px);
   border: 1px solid transparent;
   border-radius: $border-radius-s;
   color: var(--color-white);
@@ -44,7 +40,8 @@ export default defineComponent({
   }
 
   &--outlined {
-    border-color: var(--color-white);
+    color: var(--color-white);
+    border-color: currentColor;
     background: none;
   }
 

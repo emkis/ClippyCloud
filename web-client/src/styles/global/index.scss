@@ -1,2 +1,6 @@
 @import 'reset';
 @import 'default';
+
+:root {
+  @include colors;
+}

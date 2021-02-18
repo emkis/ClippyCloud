@@ -1,5 +1,9 @@
 <template>
-  <button :class="['Button', `Button--${theme}`]" @click="handleClick">
+  <button
+    :class="['Button', `Button--${theme}`]"
+    :disabled="disabled"
+    @click="handleClick"
+  >
     <slot />
   </button>
 </template>
@@ -12,10 +16,11 @@ export default defineComponent({
   name: 'Button',
   props: {
     theme: { type: String as PropType<Theme>, default: Themes.Default },
+    disabled: { type: Boolean, default: false },
   },
   emits: ['onClick'],
   setup(props, { emit }) {
-    const handleClick = () => emit('onClick')
+    const handleClick = () => !props.disabled && emit('onClick')
 
     return { handleClick }
   },
@@ -25,11 +30,17 @@ export default defineComponent({
 <style lang="scss" scoped>
 .Button {
   padding: 18px 38px;
-  font-size: rem(16px);
+  font-size: rem(18px);
+  font-weight: 600;
   border: 1px solid transparent;
   border-radius: $border-radius-s;
   color: var(--color-white);
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 
   &--default {
     background: var(--color-bright-gray);
@@ -47,6 +58,10 @@ export default defineComponent({
 
   &--error {
     background: var(--color-geraldine);
+  }
+
+  @media (min-width: 43.75em) {
+    font-size: rem(20px);
   }
 }
 </style>

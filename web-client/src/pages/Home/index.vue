@@ -1,14 +1,16 @@
 <template>
   <div class="Home">
-    <h1>Clippy Cloud</h1>
+    <SectionHero />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
+import SectionHero from './SectionHero.vue'
+
 export default defineComponent({
   name: 'Home',
-  components: {},
+  components: { SectionHero },
 })
 </script>

@@ -2,7 +2,7 @@
   <section class="SectionHowItWorks" v-once>
     <Container>
       <Heading level="2">How it works</Heading>
-      <Text as="p" class="SectionHowItWorks__description">
+      <Text class="SectionHowItWorks__description">
         Clippy Cloud is just simple, it was built to make everything easy for
         you.
       </Text>

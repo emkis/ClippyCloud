@@ -6,7 +6,7 @@
 
     <Heading class="CardInfo__title" level="3">{{ title }}</Heading>
 
-    <Text class="CardInfo__description" as="p">
+    <Text class="CardInfo__description">
       <slot />
     </Text>
   </div>

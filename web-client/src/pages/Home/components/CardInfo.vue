@@ -1,16 +1,33 @@
 <template>
   <div class="CardInfo">
-    <slot />
+    <div class="CardInfo__circle" :style="computedBackground">
+      <slot name="icon" />
+    </div>
+
+    <Heading class="CardInfo__title" level="3">{{ title }}</Heading>
+
+    <Text class="CardInfo__description" as="p">
+      <slot />
+    </Text>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent } from 'vue'
+
+import Heading from '@/components/Heading/index.vue'
+import Text from '@/components/Text/index.vue'
 
 export default defineComponent({
   name: 'CardInfo',
-  setup() {
-    return {}
+  components: { Heading, Text },
+  props: {
+    title: { type: String, required: true },
+    color: { type: String, default: 'var(--color-bright-gray)' },
+  },
+  setup(props) {
+    const computedBackground = computed(() => ({ background: props.color }))
+    return { computedBackground }
   },
 })
 </script>
@@ -18,8 +35,28 @@ export default defineComponent({
 <style lang="scss" scoped>
 .CardInfo {
   padding: rem(60px 20px);
+  display: grid;
+  place-content: center;
   text-align: center;
   border-radius: $border-radius-m;
   background: var(--color-charade);
+
+  &__circle {
+    $circleSize: 150px;
+    justify-self: center;
+    width: $circleSize;
+    height: $circleSize;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+  }
+
+  &__title {
+    margin: rem(28px 0 14px);
+  }
+
+  &__description {
+    max-width: 50ch;
+  }
 }
 </style>

@@ -8,8 +8,8 @@
       </Text>
 
       <div class="SectionHero__actions">
-        <Button theme="primary">Upload Files</Button>
-        <Button>My Uploads</Button>
+        <Button theme="primary" @click="navigateToUpload">Upload Files</Button>
+        <Button @click="navigateToMyUploads">My Uploads</Button>
       </div>
     </Container>
   </section>
@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
 
 import Container from '@/components/Container/index.vue'
 import Heading from '@/components/Heading/index.vue'
@@ -27,7 +28,12 @@ export default defineComponent({
   name: 'SectionHero',
   components: { Container, Heading, Text, Button },
   setup() {
-    return {}
+    const { push } = useRouter()
+
+    const navigateToUpload = () => push({ name: 'Upload' })
+    const navigateToMyUploads = () => push({ name: 'MyUploads' })
+
+    return { navigateToUpload, navigateToMyUploads }
   },
 })
 </script>

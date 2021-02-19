@@ -5,13 +5,13 @@
 </template>
 
 <script lang="ts">
-import type { Text } from './types'
+import { TextType, ETextTypes } from './types'
 import { defineComponent, PropType } from 'vue'
 
 export default defineComponent({
   name: 'Text',
   props: {
-    as: { type: String as PropType<Text>, required: true },
+    as: { type: String as PropType<TextType>, default: ETextTypes.P },
   },
 })
 </script>

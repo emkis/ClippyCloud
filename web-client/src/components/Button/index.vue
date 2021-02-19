@@ -10,12 +10,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { Theme, Themes } from './types'
+import { ThemeType, EThemes } from './types'
 
 export default defineComponent({
   name: 'Button',
   props: {
-    theme: { type: String as PropType<Theme>, default: Themes.Default },
+    theme: { type: String as PropType<ThemeType>, default: EThemes.Default },
     disabled: { type: Boolean, default: false },
   },
   emits: ['onClick'],

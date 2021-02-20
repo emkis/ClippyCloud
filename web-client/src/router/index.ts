@@ -2,15 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import { environment } from '@/configs/environment'
 
 import Home from '../pages/Home/index.vue'
-const Upload = () => {
-  return import(/* webpackChunkName: "Upload" */ '../pages/Upload/index.vue')
-}
-
-const MyUploads = () => {
-  return import(
-    /* webpackChunkName: "MyUploads" */ '../pages/MyUploads/index.vue'
-  )
-}
+import { Upload, MyUploads } from './lazyRoutes'
 
 const routes: Array<RouteRecordRaw> = [
   {

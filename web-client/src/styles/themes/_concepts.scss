@@ -1,2 +1,15 @@
 @mixin concepts {
+  --concept-primary-color: var(--color-dodger-blue);
+  --concept-primary-color-rgb: var(--color-dodger-blue-rgb);
+
+  --concept-over-background: var(--color-charade);
+  --concept-over-background-element: var(--color-bright-gray);
+
+  --concept-text-primary: var(--color-white);
+  --concept-text-secondary: var(--color-cadet-blue);
+  --concept-text-faded: var(--color-shuttle-gray);
+
+  --concept-success-color: var(--color-granny-smith-apple);
+  --concept-attention-color: var(--color-kournikova);
+  --concept-error-color: var(--color-geraldine);
 }

@@ -3,22 +3,20 @@
   --color-shark: #181a20;
   --color-charade: #262a33;
   --color-bright-gray: #3c4250;
-  --color-shuttle-gray: #5e6271;
   --color-cadet-blue: #a8a9c2;
 
   --color-kournikova: #ffdd72;
-  --color-kournikova-25: #{transparentize(#ffdd72, 0.75)};
+  --color-kournikova-rgb: 255, 221, 114;
 
   --color-dodger-blue: #246bf7;
-  --color-dodger-blue-15: #{transparentize(#246bf7, 0.85)};
-  --color-dodger-blue-25: #{transparentize(#246bf7, 0.75)};
+  --color-dodger-blue-rgb: 36, 107, 247;
 
   --color-granny-smith-apple: #a4e98b;
-  --color-granny-smith-apple-25: #{transparentize(#a4e98b, 0.75)};
+  --color-granny-smith-apple-rgb: 164, 233, 139;
 
   --color-geraldine: #fb8f8a;
-  --color-geraldine-25: #{transparentize(#fb8f8a, 0.75)};
+  --color-geraldine-rgb: 251, 143, 138;
 
   --color-heliotrope: #c160fa;
-  --color-heliotrope-25: #{transparentize(#c160fa, 0.75)};
+  --color-heliotrope-rgb: 193, 96, 250;
 }

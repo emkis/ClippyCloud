@@ -20,7 +20,7 @@ export default defineComponent({
 .Text {
   font-size: rem(18px);
   font-weight: 400;
-  color: var(--color-cadet-blue);
+  color: var(--concept-text-secondary);
 
   @media (min-width: 43.75em) {
     font-size: rem(20px);

@@ -34,7 +34,7 @@ export default defineComponent({
   font-weight: 600;
   border: 1px solid transparent;
   border-radius: $border-radius-s;
-  color: var(--color-white);
+  color: var(--concept-text-primary);
   cursor: pointer;
 
   &:disabled {
@@ -43,21 +43,20 @@ export default defineComponent({
   }
 
   &--default {
-    background: var(--color-bright-gray);
+    background: var(--concept-over-background-element);
   }
 
   &--primary {
-    background: var(--color-dodger-blue);
+    background: var(--concept-primary-color);
   }
 
   &--outlined {
-    color: var(--color-white);
     border-color: currentColor;
     background: none;
   }
 
   &--error {
-    background: var(--color-geraldine);
+    background: var(--concept-error-color);
   }
 
   @media (min-width: 43.75em) {

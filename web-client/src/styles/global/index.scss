@@ -1,7 +1,11 @@
 @import '~normalize.css';
+
 @import 'reset';
 @import 'default';
+@import '../themes/index.scss';
 
 :root {
   @include colors;
+  @include concepts;
+  @include elements;
 }

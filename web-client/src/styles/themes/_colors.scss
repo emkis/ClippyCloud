@@ -1,11 +1,12 @@
 @mixin colors {
-  --color-white: #fff;
-  --color-white-rga: 255, 255, 255;
   --color-shark: #181a20;
   --color-charade: #262a33;
   --color-bright-gray: #3c4250;
   --color-cadet-blue: #a8a9c2;
   --color-shuttle-gray: #5e6271;
+
+  --color-white: #fff;
+  --color-white-rga: 255, 255, 255;
 
   --color-kournikova: #ffdd72;
   --color-kournikova-rgb: 255, 221, 114;

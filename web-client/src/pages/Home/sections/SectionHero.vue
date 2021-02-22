@@ -19,10 +19,10 @@
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 
-import Container from '@/components/Container/index.vue'
-import Heading from '@/components/Heading/index.vue'
-import Text from '@/components/Text/index.vue'
-import Button from '@/components/Button/index.vue'
+import { Container } from '@/components/Container'
+import { Heading } from '@/components/Heading'
+import { Text } from '@/components/Text'
+import { Button } from '@/components/Button'
 
 export default defineComponent({
   name: 'SectionHero',

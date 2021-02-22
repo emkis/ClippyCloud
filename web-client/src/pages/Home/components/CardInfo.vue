@@ -16,8 +16,8 @@
 import { computed, defineComponent } from 'vue'
 import { EThemeConcepts } from '@/services/theme'
 
-import Heading from '@/components/Heading/index.vue'
-import Text from '@/components/Text/index.vue'
+import { Heading } from '@/components/Heading'
+import { Text } from '@/components/Text'
 
 export default defineComponent({
   name: 'CardInfo',

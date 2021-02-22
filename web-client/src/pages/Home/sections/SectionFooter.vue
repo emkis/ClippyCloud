@@ -25,9 +25,9 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-import Container from '@/components/Container/index.vue'
-import Heading from '@/components/Heading/index.vue'
-import Text from '@/components/Text/index.vue'
+import { Container } from '@/components/Container'
+import { Heading } from '@/components/Heading'
+import { Text } from '@/components/Text'
 import { IconHeart } from '@/components/Icons'
 
 export default defineComponent({

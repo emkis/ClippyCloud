@@ -1,0 +1,76 @@
+<template>
+  <nav class="Navbar">
+    <div class="Navbar__container">
+      <a class="Navbar__back" @click="handleBackNavigation">
+        <IconArrowLeft size="44" />
+      </a>
+
+      <RouterLink class="Navbar__link" :to="targetRouteName">
+        {{ linkName }}
+      </RouterLink>
+    </div>
+  </nav>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router'
+
+import { IconArrowLeft } from '@/components/Icons'
+
+export default defineComponent({
+  name: 'Navbar',
+  components: { IconArrowLeft },
+  props: {
+    linkName: { type: String, required: true },
+    routeName: { type: String, required: true },
+  },
+  setup(props) {
+    const { back } = useRouter()
+    const targetRouteName = { name: props.routeName }
+
+    const handleBackNavigation = back
+
+    return { targetRouteName, handleBackNavigation }
+  },
+})
+</script>
+
+<style lang="scss" scoped>
+.Navbar {
+  padding: rem(0 24px);
+  background: var(--concept-over-background);
+
+  &__container {
+    margin: 0 auto;
+    max-width: rem(1000px);
+    min-height: rem(68px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__link,
+  &__back {
+    color: var(--concept-text-secondary);
+    transition: 200ms color ease;
+
+    &:hover {
+      color: var(--concept-text-primary);
+    }
+  }
+
+  &__back {
+    cursor: pointer;
+    font-size: 0;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: rem(18px);
+    font-family: $font-title;
+    letter-spacing: -0.64px;
+    font-weight: 600;
+  }
+}
+</style>

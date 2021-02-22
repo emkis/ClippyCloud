@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
+import { EThemeConcepts } from '@/services/theme'
 
 import Heading from '@/components/Heading/index.vue'
 import Text from '@/components/Text/index.vue'
@@ -23,7 +24,7 @@ export default defineComponent({
   components: { Heading, Text },
   props: {
     title: { type: String, required: true },
-    color: { type: String, default: 'var(--color-bright-gray)' },
+    color: { type: String, default: EThemeConcepts.overBackgroundElement },
   },
   setup(props) {
     const computedBackground = computed(() => ({ background: props.color }))
@@ -39,7 +40,7 @@ export default defineComponent({
   place-content: center;
   text-align: center;
   border-radius: $border-radius-m;
-  background: var(--color-charade);
+  background: var(--concept-over-background);
 
   &__circle {
     $circleSize: 150px;

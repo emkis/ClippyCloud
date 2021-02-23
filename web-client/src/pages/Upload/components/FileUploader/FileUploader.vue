@@ -1,14 +1,26 @@
 <template>
   <div class="FileUploader">
-    <div class="FileUploader__drop-area">
+    <div
+      :class="[
+        'FileUploader__drop-area',
+        { 'FileUploader__drop-area--active': isDragActive },
+      ]"
+      v-bind="getRootProps()"
+    >
+      <input v-bind="getInputProps()" />
+
       <Text>Drag & Drop files here to upload</Text>
-      <Button theme="outlined">Browse files</Button>
+      <Button theme="outlined" @click="openFilePicker">Browse files</Button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useDropzone } from 'vue3-dropzone'
+
+import type { FileUploadOptions } from 'vue3-dropzone/dist/useDropzone'
+import type { onDropFile } from './types'
 
 import { Text } from '@/components/Text'
 import { Button } from '@/components/Button'
@@ -16,8 +28,32 @@ import { Button } from '@/components/Button'
 export default defineComponent({
   name: 'FileUploader',
   components: { Text, Button },
-  setup() {
-    return {}
+  emits: {
+    onFileDrop: (payload: onDropFile) => payload,
+  },
+  setup(props, { emit }) {
+    const dropzoneOptions: Partial<FileUploadOptions> = {
+      // @ts-expect-error missing matching types
+      onDrop,
+    }
+
+    const {
+      getRootProps,
+      getInputProps,
+      open: openFilePicker,
+      isDragActive,
+    } = useDropzone(dropzoneOptions)
+
+    function onDrop(acceptedFiles: File[], rejectedFiles: File[]) {
+      emit('onFileDrop', { acceptedFiles, rejectedFiles })
+    }
+
+    return {
+      getRootProps,
+      getInputProps,
+      openFilePicker,
+      isDragActive,
+    }
   },
 })
 </script>
@@ -27,7 +63,6 @@ export default defineComponent({
   padding: rem(24px);
   border-radius: $border-radius-m;
   text-align: center;
-  color: var(--concept-text-secondary);
   background: var(--concept-over-background);
 
   &__drop-area {
@@ -36,25 +71,20 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
     gap: 14px;
-    padding: rem(80px 22px);
+    padding: rem(80px 24px);
     border: 2px dashed var(--concept-text-faded);
     border-radius: $border-radius-m;
     transition: border-color 200ms ease, background-color 200ms ease;
     cursor: pointer;
 
-    &:hover {
+    &:hover,
+    &--active {
       border-color: var(--concept-primary-color);
       background: rgba(var(--concept-primary-color-rgb), 0.15);
     }
 
     > button {
       color: var(--concept-text-secondary);
-    }
-  }
-
-  @media (min-width: 43.75em) {
-    &__drop-area {
-      padding: rem(80px 24px);
     }
   }
 }

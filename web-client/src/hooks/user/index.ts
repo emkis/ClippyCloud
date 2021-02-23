@@ -4,9 +4,9 @@ import { v4 as uuid } from 'uuid'
 import { IUserHook, IUserState } from './types'
 import { getFromStorage, saveInStorage } from '@/services/storage'
 
-const state = reactive({
+const state = reactive<IUserState>({
   id: '',
-}) as IUserState
+})
 
 export function useUser(): IUserHook {
   return { user: readonly(state) }

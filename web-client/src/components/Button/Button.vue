@@ -32,9 +32,11 @@ export default defineComponent({
   padding: 18px 38px;
   font-size: rem(18px);
   font-weight: 600;
+  line-height: 1;
   border: 1px solid transparent;
   border-radius: $border-radius-s;
   color: var(--concept-text-primary);
+  user-select: none;
   cursor: pointer;
 
   &:disabled {

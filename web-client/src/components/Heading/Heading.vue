@@ -28,7 +28,7 @@ export default defineComponent({
   color: var(--concept-text-primary);
 
   &--level-1 {
-    font-size: rem(38px);
+    font-size: rem(37px);
   }
 
   &--level-2 {

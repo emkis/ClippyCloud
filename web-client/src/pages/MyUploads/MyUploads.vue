@@ -10,7 +10,11 @@
       <Button theme="primary" @click="handleNavigate">Share now</Button>
     </Container>
 
-    <img class="MyUploads__background" src="@/assets/cards-mansory.svg" />
+    <img
+      class="MyUploads__background"
+      src="@/assets/cards-mansory.svg"
+      alt="A grid of cards"
+    />
   </div>
 </template>
 

@@ -29,7 +29,7 @@ export default defineComponent({
   name: 'FileUploader',
   components: { Text, Button },
   emits: {
-    onFileDrop: (payload: onDropFile) => payload,
+    onDrop: (payload: onDropFile) => payload,
   },
   setup(props, { emit }) {
     const dropzoneOptions: Partial<FileUploadOptions> = {
@@ -45,7 +45,7 @@ export default defineComponent({
     } = useDropzone(dropzoneOptions)
 
     function onDrop(acceptedFiles: File[], rejectedFiles: File[]) {
-      emit('onFileDrop', { acceptedFiles, rejectedFiles })
+      emit('onDrop', { acceptedFiles, rejectedFiles })
     }
 
     return {

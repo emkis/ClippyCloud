@@ -1,7 +1,5 @@
 import { makeCustomKey, validateStorageItem } from './helpers'
 
-export const STORAGE_PREFIX = '@clippycloud:'
-
 export function getFromStorage(key: string): any | null {
   const customKey = makeCustomKey(key)
 

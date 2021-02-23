@@ -1,4 +1,4 @@
-import { STORAGE_PREFIX } from './index'
+export const STORAGE_PREFIX = '@clippycloud:'
 
 export function isValidJSON(stringToTest: string): boolean {
   try {

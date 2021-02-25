@@ -18,24 +18,22 @@
       Choose file status
     </Heading>
 
-    <TabContainer>
-      <TabLayout name="Available">
-        <h4>Im a tab content in tab 1</h4>
-      </TabLayout>
+    <TabContext :activeTab="activeTab">
+      <TabList @onTabChange="handleSelectTab">
+        <Tab name="Available" disabled />
+        <Tab name="Expired" />
+        <Tab name="Tabinha" :total="4" />
+      </TabList>
 
-      <TabLayout name="Expired">
-        <h4>Im a tab content in tab 2</h4>
-      </TabLayout>
-
-      <TabLayout name="Availables">
-        <h4>Im a tab content in tab 3</h4>
-      </TabLayout>
-    </TabContainer>
+      <TabLayout name="Available"> <h3>Sou a tabinha 1</h3> </TabLayout>
+      <TabLayout name="Expired"> <h3>Sou a tabinha 2</h3> </TabLayout>
+      <TabLayout name="Tabinha"> <h3>Sou a tabinha 3</h3> </TabLayout>
+    </TabContext>
   </Container>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, readonly, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { usePageTitle } from '@/hooks/page-title'
@@ -45,7 +43,7 @@ import { Heading } from '@/components/Heading'
 import { Text } from '@/components/Text'
 import { Container } from '@/components/Container'
 import { FileUploader } from './components/FileUploader'
-import { TabContainer, TabLayout, useTab } from '@/components/Tab'
+import { TabContext, TabLayout, TabList, Tab } from '@/components/Tab'
 
 export default defineComponent({
   name: 'Upload',
@@ -55,20 +53,33 @@ export default defineComponent({
     Heading,
     Text,
     FileUploader,
-    TabContainer,
+    TabContext,
     TabLayout,
+    TabList,
+    Tab,
   },
   setup() {
     const { meta } = useRoute()
     const { setTitle } = usePageTitle()
-    const { setActiveTab } = useTab()
 
-    setTitle(meta.title as string)
-    setActiveTab('Available')
+    setTitle(String(meta.title))
+
+    const TabNames = readonly({ Available: 'Available', Expired: 'Expired' })
 
     const handleDropFiles = (files: File[]) => console.log({ files })
 
-    return { handleDropFiles }
+    const activeTab = ref({ name: TabNames.Expired })
+
+    const handleSelectTab = (tabName: string) => {
+      activeTab.value.name = tabName
+    }
+
+    return {
+      handleDropFiles,
+      TabNames,
+      activeTab,
+      handleSelectTab,
+    }
   },
 })
 </script>

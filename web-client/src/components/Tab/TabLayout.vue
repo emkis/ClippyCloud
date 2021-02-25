@@ -1,11 +1,11 @@
 <template>
-  <div class="TabLayout">
+  <div class="TabLayout" v-if="isTabActive">
     <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useTab } from './hook'
 
 export default defineComponent({
@@ -13,9 +13,12 @@ export default defineComponent({
   props: {
     name: { type: String, required: true },
   },
-  setup() {
-    useTab()
-    return {}
+  setup(props) {
+    const { tab } = useTab()
+
+    const isTabActive = computed(() => props.name === tab.activeTabName)
+
+    return { isTabActive }
   },
 })
 </script>

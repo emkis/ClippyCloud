@@ -8,7 +8,7 @@
     ]"
     @click="handleSelectTab"
   >
-    {{ label }}
+    {{ name }}
 
     <span class="TabItem__badge">{{ items }}</span>
   </button>
@@ -20,17 +20,17 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   name: 'TabItem',
   props: {
-    label: { type: String, required: true },
+    name: { type: String, required: true },
     items: { type: Number, default: 0 },
     active: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
   },
   emits: {
-    onSelected: (tabLabel: string) => tabLabel,
+    onSelected: (tabName: string) => tabName,
   },
   setup(props, { emit }) {
     const handleSelectTab = () => {
-      if (!props.disabled) emit('onSelected', props.label)
+      if (!props.disabled) emit('onSelected', props.name)
     }
 
     return { handleSelectTab }

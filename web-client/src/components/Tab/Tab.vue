@@ -2,45 +2,47 @@
   <button
     type="button"
     :class="[
-      'TabItem',
-      { 'TabItem--active': active },
-      { 'TabItem--disabled': disabled },
+      'Tab',
+      { 'Tab--active': active || isTabActive },
+      { 'Tab--disabled': disabled },
     ]"
     :disabled="disabled"
     @click="handleSelectTab"
   >
     {{ name }}
 
-    <span class="TabItem__badge">{{ items }}</span>
+    <span class="Tab__badge">{{ total }}</span>
   </button>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, inject, Ref } from 'vue'
 
 export default defineComponent({
-  name: 'TabItem',
+  name: 'Tab',
   props: {
     name: { type: String, required: true },
-    items: { type: Number, default: 0 },
+    total: { type: Number, default: 0 },
     active: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
   },
-  emits: {
-    onSelected: (tabName: string) => tabName,
-  },
-  setup(props, { emit }) {
+  setup(props) {
+    const activeTab: Ref<string> | undefined = inject('activeTab')
+    const tabChangeEmitter = inject('tabChangeEmitter') as (a: string) => void
+
+    const isTabActive = computed(() => props.name === activeTab?.value)
+
     const handleSelectTab = () => {
-      if (!props.disabled) emit('onSelected', props.name)
+      if (!props.disabled) tabChangeEmitter(props.name)
     }
 
-    return { handleSelectTab }
+    return { handleSelectTab, isTabActive }
   },
 })
 </script>
 
 <style lang="scss" scoped>
-.TabItem {
+.Tab {
   width: 100%;
   display: flex;
   gap: 8px;

@@ -1,4 +1,4 @@
-export { useTab } from './hook'
-export { default as TabContainer } from './TabContainer.vue'
-export { default as TabItem } from './TabItem.vue'
+export { default as TabContext } from './TabContext.vue'
+export { default as TabList } from './TabList.vue'
+export { default as Tab } from './Tab.vue'
 export { default as TabLayout } from './TabLayout.vue'

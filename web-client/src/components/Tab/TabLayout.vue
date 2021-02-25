@@ -5,20 +5,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { useTab } from './hook'
+import { defineComponent, computed, inject, Ref } from 'vue'
 
 export default defineComponent({
   name: 'TabLayout',
   props: {
     name: { type: String, required: true },
-    active: { type: Boolean, default: false },
-    disabled: { type: Boolean, default: false },
   },
   setup(props) {
-    const { tab } = useTab()
+    const activeTab: Ref<string> | undefined = inject('activeTab')
 
-    const isTabActive = computed(() => props.name === tab.activeTabName)
+    const isTabActive = computed(() => props.name === activeTab?.value)
 
     return { isTabActive }
   },

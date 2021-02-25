@@ -6,6 +6,7 @@
       { 'TabItem--active': active },
       { 'TabItem--disabled': disabled },
     ]"
+    :disabled="disabled"
     @click="handleSelectTab"
   >
     {{ name }}

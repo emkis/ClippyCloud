@@ -3,15 +3,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, provide, toRef } from 'vue'
+import { defineComponent, provide, computed } from 'vue'
 
 export default defineComponent({
   name: 'TabContext',
   props: {
-    activeTab: { type: Object as PropType<{ name: string }>, required: true },
+    activeTab: { type: String, required: true },
   },
   setup(props) {
-    provide('activeTab', toRef(props.activeTab, 'name'))
+    const reactiveActiveTab = computed(() => props.activeTab)
+
+    provide('activeTab', reactiveActiveTab)
   },
 })
 </script>

@@ -68,10 +68,10 @@ export default defineComponent({
 
     const handleDropFiles = (files: File[]) => console.log({ files })
 
-    const activeTab = ref({ name: TabNames.Expired })
+    const activeTab = ref(TabNames.Expired)
 
     const handleSelectTab = (tabName: string) => {
-      activeTab.value.name = tabName
+      activeTab.value = tabName
     }
 
     return {

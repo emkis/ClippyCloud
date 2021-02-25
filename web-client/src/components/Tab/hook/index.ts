@@ -9,6 +9,6 @@ export function useTab() {
   return { tab: readonly(state), setActiveTab }
 }
 
-export function setActiveTab(tabName: string) {
+function setActiveTab(tabName: string) {
   state.activeTabName = tabName
 }

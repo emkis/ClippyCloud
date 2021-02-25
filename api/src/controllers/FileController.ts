@@ -5,8 +5,7 @@ import File from '../models/File'
 
 export const FileController = {
   async store (request: Request, response: Response) {
-    // @ts-expect-error
-    let user: IUser = await User.findById(request.params.id)
+    let user: IUser | null = await User.findById(request.params.id)
     const userNotExists = !user
 
     if (userNotExists) {
@@ -19,8 +18,8 @@ export const FileController = {
       title: request.file.originalname,
     })
 
-    user.files.push(file)
-    await user.save()
+    user!.files.push(file)
+    await user!.save()
 
     return response.status(200).json(file)
   },

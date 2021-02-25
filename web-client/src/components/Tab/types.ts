@@ -8,3 +8,7 @@ export const enum ETabComponents {
   TabItem = 'TabItem',
   TabLayout = 'TabLayout',
 }
+
+export interface ITabHookState {
+  activeTabName: string
+}

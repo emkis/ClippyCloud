@@ -2,9 +2,11 @@
   <div class="TabContainer">
     <nav class="TabContainer__tabs">
       <TabItem
-        :name="tab.props.name"
         :key="tabIndex"
         v-for="(tab, tabIndex) in tabs"
+        :name="tab.props.name"
+        :active="tab.props.active"
+        :disabled="tab.props.disabled"
         @onSelected="handleTabChange"
       />
     </nav>
@@ -39,13 +41,13 @@ export default defineComponent({
     function getTabChildren() {
       if (!slots.default) return
 
-      const childrenProps = slots
-        .default()
-        .filter(
-          (child: any) => child.type!.name! === ETabComponents.TabLayout
-        ) as any[]
+      const getTabChildren = (child: any) => {
+        return child?.type?.name === ETabComponents.TabLayout
+      }
 
-      tabs.value = childrenProps
+      const tabsChildren: any[] = slots.default().filter(getTabChildren)
+
+      tabs.value = tabsChildren
     }
 
     return { tabs, handleTabChange }

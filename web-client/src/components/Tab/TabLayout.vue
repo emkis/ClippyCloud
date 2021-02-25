@@ -12,6 +12,8 @@ export default defineComponent({
   name: 'TabLayout',
   props: {
     name: { type: String, required: true },
+    active: { type: Boolean, default: false },
+    disabled: { type: Boolean, default: false },
   },
   setup(props) {
     const { tab } = useTab()

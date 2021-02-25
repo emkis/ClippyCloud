@@ -6,7 +6,7 @@ const state = reactive<ITabHookState>({
 })
 
 export function useTab() {
-  return readonly(state)
+  return { tab: readonly(state), setActiveTab }
 }
 
 export function setActiveTab(tabName: string) {

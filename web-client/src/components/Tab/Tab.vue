@@ -3,7 +3,7 @@
     type="button"
     :class="[
       'Tab',
-      { 'Tab--active': active || isTabActive },
+      { 'Tab--active': isTabActive },
       { 'Tab--disabled': disabled },
     ]"
     :disabled="disabled"
@@ -23,7 +23,6 @@ export default defineComponent({
   props: {
     name: { type: String, required: true },
     total: { type: Number, default: 0 },
-    active: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
   },
   setup(props) {

@@ -20,8 +20,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { usePageTitle } from '@/hooks/page-title'
+import { useRouter } from 'vue-router'
 
 import { Container } from '@/components/Container'
 import { Navbar } from '@/components/Navbar'
@@ -32,12 +31,7 @@ export default defineComponent({
   name: 'MyUploads',
   components: { Navbar, Container, Heading, Button },
   setup() {
-    const { meta } = useRoute()
     const { push } = useRouter()
-    const { setTitle } = usePageTitle()
-
-    setTitle(meta.title as string)
-
     const handleNavigate = () => push({ name: 'Upload' })
 
     return { handleNavigate }

@@ -16,12 +16,22 @@ describe('usePageTitle', () => {
   })
 
   it('should not append page title when called', () => {
-    const { setTitle } = usePageTitle({ appendTitle: false })
+    const { setTitle } = usePageTitle()
 
-    setTitle('My cool page')
+    setTitle('My cool page', { appendTitle: false })
     expect(document.title).toBe('My cool page')
 
-    setTitle('Just a page')
+    setTitle('Just a page', { appendTitle: false })
     expect(document.title).toBe('Just a page')
+  })
+
+  it('should reset page title when called', () => {
+    const { resetTitle, setTitle } = usePageTitle()
+
+    setTitle('Lorem ipsum')
+    expect(document.title).toBe('Lorem ipsum | Jest App')
+
+    resetTitle()
+    expect(document.title).toBe('Jest App')
   })
 })

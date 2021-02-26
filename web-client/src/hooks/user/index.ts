@@ -9,19 +9,19 @@ const state = reactive<IUserState>({
 })
 
 export function useUser(): IUserHook {
-  return { user: readonly(state) }
+  return { user: readonly(state), initializeUser }
 }
 
 function generateId(): string {
   return uuid()
 }
 
-export function setUserId(targetId: string): void {
+function setUserId(targetId: string): void {
   state.id = targetId
   saveInStorage('user', state)
 }
 
-export async function initializeUser(): Promise<void> {
+async function initializeUser(): Promise<void> {
   const user: IUserState = getFromStorage('user')
 
   if (user) setUserId(user.id)

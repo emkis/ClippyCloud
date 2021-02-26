@@ -33,11 +33,7 @@ const routes: Array<RouteRecordRaw> = [
   },
 ]
 
-const router = createRouter({
+export const router = createRouter({
   history: createWebHistory(environment.appUrl),
   routes,
 })
-
-document.title = environment.appTitle
-
-export default router

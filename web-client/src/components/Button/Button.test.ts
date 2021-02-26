@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue'
 
-import Button from '@/components/Button/index.vue'
+import { Button } from '@/components/Button'
 import { EThemes } from '@/components/Button/types'
 
 jest.mock('./types', () => ({

@@ -19,23 +19,24 @@
     </Heading>
 
     <TabContext :activeTab="activeTab">
-      <TabList @onTabChange="handleSelectTab">
-        <Tab name="Available" disabled />
-        <Tab name="Expired" />
-        <Tab name="Tabinha" :total="4" />
+      <TabList @onTabChange="setActiveTab">
+        <Tab :name="TabNames.Available" />
+        <Tab :name="TabNames.Expired" />
       </TabList>
 
-      <TabLayout name="Available"> <h3>Sou a tabinha 1</h3> </TabLayout>
-      <TabLayout name="Expired"> <h3>Sou a tabinha 2</h3> </TabLayout>
-      <TabLayout name="Tabinha"> <h3>Sou a tabinha 3</h3> </TabLayout>
+      <TabLayout :name="TabNames.Available">
+        <h3>{{ TabNames.Available }} tab content</h3>
+      </TabLayout>
+      <TabLayout :name="TabNames.Expired">
+        <h3>{{ TabNames.Expired }} tab content</h3>
+      </TabLayout>
     </TabContext>
   </Container>
 </template>
 
 <script lang="ts">
-import { defineComponent, readonly, ref } from 'vue'
+import { defineComponent, readonly } from 'vue'
 import { useRoute } from 'vue-router'
-
 import { usePageTitle } from '@/hooks/page-title'
 
 import { Navbar } from '@/components/Navbar'
@@ -43,7 +44,7 @@ import { Heading } from '@/components/Heading'
 import { Text } from '@/components/Text'
 import { Container } from '@/components/Container'
 import { FileUploader } from './components/FileUploader'
-import { TabContext, TabLayout, TabList, Tab } from '@/components/Tab'
+import { TabContext, TabLayout, TabList, Tab, useTabs } from '@/components/Tab'
 
 export default defineComponent({
   name: 'Upload',
@@ -65,20 +66,15 @@ export default defineComponent({
     setTitle(String(meta.title))
 
     const TabNames = readonly({ Available: 'Available', Expired: 'Expired' })
+    const { activeTab, setActiveTab } = useTabs(TabNames.Available)
 
     const handleDropFiles = (files: File[]) => console.log({ files })
 
-    const activeTab = ref(TabNames.Expired)
-
-    const handleSelectTab = (tabName: string) => {
-      activeTab.value = tabName
-    }
-
     return {
-      handleDropFiles,
       TabNames,
       activeTab,
-      handleSelectTab,
+      setActiveTab,
+      handleDropFiles,
     }
   },
 })

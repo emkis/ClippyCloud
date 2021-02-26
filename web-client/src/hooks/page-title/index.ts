@@ -4,10 +4,10 @@ interface IOptions {
   appendTitle?: boolean
 }
 
-export function usePageTitle({ appendTitle = true }: IOptions = {}) {
-  function setTitle(pageName: string) {
-    const { appTitle } = environment
+export function usePageTitle() {
+  const { appTitle } = environment
 
+  function setTitle(pageName: string, { appendTitle = true }: IOptions = {}) {
     if (appendTitle) {
       document.title = `${pageName} | ${appTitle}`
     } else {
@@ -15,5 +15,7 @@ export function usePageTitle({ appendTitle = true }: IOptions = {}) {
     }
   }
 
-  return { setTitle }
+  const resetTitle = () => setTitle(appTitle, { appendTitle: false })
+
+  return { setTitle, resetTitle }
 }

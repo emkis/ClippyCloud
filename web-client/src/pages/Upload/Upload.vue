@@ -101,6 +101,8 @@ export default defineComponent({
 
 .FilesContainer {
   padding-top: 0;
+  max-width: rem(876px);
+  margin: 0 auto;
 
   &__title {
     margin-bottom: rem(24px);

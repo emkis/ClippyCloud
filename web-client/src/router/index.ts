@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+
 import { environment } from '@/configs/environment'
+import { handlePageTitle } from './helpers'
 
 import { Home } from '../pages/Home'
 import { Upload, MyUploads } from './lazyRoutes'
@@ -37,3 +39,5 @@ export const router = createRouter({
   history: createWebHistory(environment.appUrl),
   routes,
 })
+
+router.beforeEach(handlePageTitle)

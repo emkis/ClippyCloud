@@ -1,31 +1,41 @@
 <template>
   <div class="BaseCard">
     <div class="BaseCard__head">
-      <slot />
+      <slot name="top" />
     </div>
 
     <div class="BaseCard__content">
       <div class="BaseCard__file-info">
-        <h4 class="BaseCard__filename">Family Photos.zip</h4>
+        <h4 class="BaseCard__filename">{{ fileName }}</h4>
 
-        <div class="BaseCard__upload-details">
-          <span>51 MB</span>
-          <span>2min to expire</span>
+        <div class="BaseCard__upload-details" v-if="hasMessage">
+          <span>{{ leftMessage }}</span>
+          <span>{{ rightMessage }}</span>
         </div>
       </div>
 
-      <Button theme="primary">Copy link</Button>
+      <slot name="bottom" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { Button } from '../Button'
+import { computed, defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'BaseCard',
-  components: { Button },
+  props: {
+    fileName: { type: String, required: true },
+    leftMessage: { type: String },
+    rightMessage: { type: String },
+  },
+  setup(props) {
+    const hasMessage = computed(() =>
+      Boolean(props.leftMessage || props.rightMessage)
+    )
+
+    return { hasMessage }
+  },
 })
 </script>
 
@@ -33,6 +43,7 @@ export default defineComponent({
 .BaseCard {
   border-radius: $border-radius-m;
   background: var(--concept-over-background);
+  overflow: auto;
 
   &__content {
     padding: rem(28px);
@@ -50,6 +61,7 @@ export default defineComponent({
   &__upload-details {
     display: flex;
     justify-content: space-between;
+    gap: rem(12px);
   }
 }
 </style>

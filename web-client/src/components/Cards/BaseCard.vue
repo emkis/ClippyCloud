@@ -21,12 +21,12 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
-import { defaultCardProps } from './defaultProps'
+import { defaultBaseCardProps } from './defaultBaseCardProps'
 
 export default defineComponent({
   name: 'BaseCard',
   props: {
-    ...defaultCardProps,
+    ...defaultBaseCardProps,
     leftMessage: { type: String },
     rightMessage: { type: String },
   },

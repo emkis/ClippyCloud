@@ -32,6 +32,7 @@ export default defineComponent({
 .BaseCard {
   border-radius: $border-radius-m;
   background: var(--concept-over-background);
+  text-align: left;
   user-select: none;
   overflow: auto;
 

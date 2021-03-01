@@ -43,14 +43,29 @@ function getRandomColor() {
 export default defineComponent({
   name: 'FileCardHead',
   components: { IconFile },
-  props: defaultFileCardProps,
-  setup() {
+  props: {
+    ...defaultFileCardProps,
+    isExpired: { type: Boolean, default: false },
+  },
+  setup(props) {
     const { rgb: colorRgb, solid: solidColor } = getRandomColor()
 
-    const iconColor = solidColor
-    const backgroundColor = `background-color: ${makeRgba(colorRgb, 0.25)};`
+    const colors = {
+      icon: solidColor,
+      background: `background: ${makeRgba(colorRgb, 0.25)}`,
+    }
 
-    return { iconColor, backgroundColor }
+    const expiredColors = {
+      icon: EThemeColors.white,
+      background: `background: ${makeRgba(EThemeColors.whiteRGB, 0.25)}`,
+    }
+
+    const targetColor = props.isExpired ? expiredColors : colors
+
+    return {
+      iconColor: targetColor.icon,
+      backgroundColor: targetColor.background,
+    }
   },
 })
 </script>

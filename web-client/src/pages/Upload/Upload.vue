@@ -12,39 +12,16 @@
       @onDrop="handleDropFiles"
     />
   </Container>
-
-  <Container class="FilesContainer">
-    <Heading class="FilesContainer__title" level="3">
-      Choose file status
-    </Heading>
-
-    <TabContext :activeTab="activeTab">
-      <TabList @onTabChange="setActiveTab">
-        <Tab :name="TabNames.Available" />
-        <Tab :name="TabNames.Expired" />
-      </TabList>
-
-      <TabLayout :name="TabNames.Available">
-        <h3>{{ TabNames.Available }} tab content</h3>
-      </TabLayout>
-      <TabLayout :name="TabNames.Expired">
-        <h3>{{ TabNames.Expired }} tab content</h3>
-      </TabLayout>
-    </TabContext>
-  </Container>
 </template>
 
 <script lang="ts">
-import { defineComponent, readonly } from 'vue'
-import { useRoute } from 'vue-router'
-import { usePageTitle } from '@/hooks/page-title'
+import { defineComponent } from 'vue'
 
 import { Navbar } from '@/components/Navbar'
 import { Heading } from '@/components/Heading'
 import { Text } from '@/components/Text'
 import { Container } from '@/components/Container'
 import { FileUploader } from './components/FileUploader'
-import { TabContext, TabLayout, TabList, Tab, useTabs } from '@/components/Tab'
 
 export default defineComponent({
   name: 'Upload',
@@ -54,28 +31,11 @@ export default defineComponent({
     Heading,
     Text,
     FileUploader,
-    TabContext,
-    TabLayout,
-    TabList,
-    Tab,
   },
   setup() {
-    const { meta } = useRoute()
-    const { setTitle } = usePageTitle()
+    const handleDropFiles = (files: File[]) => console.log(files)
 
-    setTitle(String(meta.title))
-
-    const TabNames = readonly({ Available: 'Available', Expired: 'Expired' })
-    const { activeTab, setActiveTab } = useTabs(TabNames.Available)
-
-    const handleDropFiles = (files: File[]) => console.log({ files })
-
-    return {
-      TabNames,
-      activeTab,
-      setActiveTab,
-      handleDropFiles,
-    }
+    return { handleDropFiles }
   },
 })
 </script>
@@ -96,16 +56,6 @@ export default defineComponent({
     width: 100%;
     max-width: rem(600px);
     margin-top: rem(72px);
-  }
-}
-
-.FilesContainer {
-  padding-top: 0;
-  max-width: rem(876px);
-  margin: 0 auto;
-
-  &__title {
-    margin-bottom: rem(24px);
   }
 }
 </style>

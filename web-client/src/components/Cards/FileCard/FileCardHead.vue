@@ -12,6 +12,11 @@ import { defaultFileCardProps } from './defaultFileCardProps'
 
 import IconFile from '@/components/Icons/IconFile.vue'
 
+interface HeadColors {
+  icon: string
+  background: string
+}
+
 function getRandomColor() {
   const colors = [
     {
@@ -40,6 +45,26 @@ function getRandomColor() {
   return randomColor
 }
 
+function makeBackground(color: string) {
+  return `background: ${makeRgba(color, 0.25)}`
+}
+
+function useHeadColors(isExpired: boolean): HeadColors {
+  const { rgb: colorRgb, solid: solidColor } = getRandomColor()
+
+  const randomColors = {
+    icon: solidColor,
+    background: makeBackground(colorRgb),
+  }
+
+  const expiredColors = {
+    icon: EThemeColors.white,
+    background: makeBackground(EThemeColors.whiteRGB),
+  }
+
+  return isExpired ? expiredColors : randomColors
+}
+
 export default defineComponent({
   name: 'FileCardHead',
   components: { IconFile },
@@ -48,23 +73,11 @@ export default defineComponent({
     isExpired: { type: Boolean, default: false },
   },
   setup(props) {
-    const { rgb: colorRgb, solid: solidColor } = getRandomColor()
-
-    const colors = {
-      icon: solidColor,
-      background: `background: ${makeRgba(colorRgb, 0.25)}`,
-    }
-
-    const expiredColors = {
-      icon: EThemeColors.white,
-      background: `background: ${makeRgba(EThemeColors.whiteRGB, 0.25)}`,
-    }
-
-    const targetColor = props.isExpired ? expiredColors : colors
+    const { icon, background } = useHeadColors(props.isExpired)
 
     return {
-      iconColor: targetColor.icon,
-      backgroundColor: targetColor.background,
+      iconColor: icon,
+      backgroundColor: background,
     }
   },
 })

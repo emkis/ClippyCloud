@@ -8,9 +8,8 @@
       <div class="BaseCard__file-info">
         <h4 class="BaseCard__filename">{{ fileName }}</h4>
 
-        <div class="BaseCard__upload-details" v-if="hasMessage">
-          <span>{{ leftMessage }}</span>
-          <span>{{ rightMessage }}</span>
+        <div class="BaseCard__upload-details">
+          <slot name="details" />
         </div>
       </div>
 
@@ -20,23 +19,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 import { defaultBaseCardProps } from './defaultBaseCardProps'
 
 export default defineComponent({
   name: 'BaseCard',
-  props: {
-    ...defaultBaseCardProps,
-    leftMessage: { type: String },
-    rightMessage: { type: String },
-  },
-  setup(props) {
-    const hasMessage = computed(() =>
-      Boolean(props.leftMessage || props.rightMessage)
-    )
-
-    return { hasMessage }
-  },
+  props: defaultBaseCardProps,
 })
 </script>
 

@@ -2,39 +2,75 @@
   <div class="MyUploads">
     <Navbar linkName="Upload Files" routeName="Upload" />
 
-    <Container class="MyUploads__container">
-      <Heading class="MyUploads__title" level="1">
-        You don't have any files uploaded yet
-      </Heading>
+    <EmptyState v-if="!hasUploadedFiles" />
 
-      <Button theme="primary" @click="handleNavigate">Share now</Button>
-    </Container>
+    <template v-else>
+      <Container class="MyUploads__container">
+        <Heading class="MyUploads__title" level="1">Your uploads</Heading>
+        <Text>Here you can see all your uploaded files, expired or not.</Text>
+      </Container>
 
-    <img
-      class="MyUploads__background"
-      src="@/assets/cards-mansory.svg"
-      alt="A grid of cards"
-    />
+      <Container class="MyUploads__tabs-container">
+        <Heading class="MyUploads__tabs-title" level="3">
+          Choose file status
+        </Heading>
+
+        <TabContext :activeTab="activeTab">
+          <TabList @onTabChange="setActiveTab">
+            <Tab :name="TabNames.Available" />
+            <Tab :name="TabNames.Expired" />
+          </TabList>
+
+          <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Available">
+            <FileCard
+              :key="cardIndex"
+              v-for="cardIndex in 4"
+              fileName="HelloWord.ts"
+              fileExtension="ts"
+              :fileSize="34298373"
+              createdAt="2021-03-01T00:57:55.875Z"
+            />
+          </TabLayout>
+
+          <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Expired" />
+        </TabContext>
+      </Container>
+    </template>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { useRouter } from 'vue-router'
+import { defineComponent, computed, readonly } from 'vue'
 
+import EmptyState from './components/EmptyState.vue'
 import { Container } from '@/components/Container'
 import { Navbar } from '@/components/Navbar'
 import { Heading } from '@/components/Heading'
-import { Button } from '@/components/Button'
+import { Text } from '@/components/Text'
+import { TabContext, TabLayout, TabList, Tab, useTabs } from '@/components/Tab'
+import { FileCard } from '@/components/Cards/FileCard'
 
 export default defineComponent({
   name: 'MyUploads',
-  components: { Navbar, Container, Heading, Button },
+  components: {
+    Navbar,
+    Container,
+    Heading,
+    Text,
+    EmptyState,
+    TabContext,
+    TabLayout,
+    TabList,
+    Tab,
+    FileCard,
+  },
   setup() {
-    const { push } = useRouter()
-    const handleNavigate = () => push({ name: 'Upload' })
+    const TabNames = readonly({ Available: 'Available', Expired: 'Expired' })
+    const { activeTab, setActiveTab } = useTabs(TabNames.Available)
 
-    return { handleNavigate }
+    const hasUploadedFiles = computed(() => true)
+
+    return { hasUploadedFiles, TabNames, activeTab, setActiveTab }
   },
 })
 </script>
@@ -56,11 +92,30 @@ export default defineComponent({
     margin-bottom: rem(40px);
   }
 
-  &__background {
-    max-width: unset;
-    width: 125vw;
-    transform: translateX(-10%);
-    object-fit: cover;
+  &__tabs-container {
+    width: 100%;
+    max-width: rem(876px);
+    margin: 0 auto;
+    padding-top: 0;
+    text-align: left;
+  }
+
+  &__tabs-title {
+    margin-bottom: rem(24px);
+  }
+
+  &__tabs-grid {
+    display: grid;
+    gap: rem(24px);
+    grid-template-columns: 1fr;
+
+    @media (min-width: 37.5em) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: 53.125em) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 }
 </style>

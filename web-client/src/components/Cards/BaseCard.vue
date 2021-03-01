@@ -8,7 +8,7 @@
       <div class="BaseCard__file-info">
         <h4 class="BaseCard__filename">{{ fileName }}</h4>
 
-        <div class="BaseCard__upload-details">
+        <div class="BaseCard__file-details">
           <slot name="details" />
         </div>
       </div>
@@ -32,6 +32,7 @@ export default defineComponent({
 .BaseCard {
   border-radius: $border-radius-m;
   background: var(--concept-over-background);
+  user-select: none;
   overflow: auto;
 
   &__content {
@@ -47,7 +48,7 @@ export default defineComponent({
     color: var(--concept-text-primary);
   }
 
-  &__upload-details {
+  &__file-details {
     display: flex;
     justify-content: space-between;
     gap: rem(12px);

@@ -1,7 +1,10 @@
 <template>
-  <BaseCard class="FileCard" :fileName="fileName">
+  <BaseCard :fileName="fileName">
     <template #top>
-      <FileCardHead :fileExtension="fileExtension" />
+      <FileCardHead
+        :fileExtension="fileExtension"
+        :isExpired="isFileAlreadyExpired"
+      />
     </template>
 
     <template #details>
@@ -69,10 +72,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss" scoped>
-.FileCard {
-  user-select: none;
-  flex: 1;
-}
-</style>

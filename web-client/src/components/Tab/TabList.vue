@@ -28,6 +28,7 @@ export default defineComponent({
   justify-content: center;
   margin-bottom: rem(72px);
   border-radius: $border-radius-s;
+  user-select: none;
   overflow: auto;
 }
 </style>

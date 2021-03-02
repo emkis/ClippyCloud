@@ -23,7 +23,7 @@ export default defineComponent({
   name: 'UploadCardHead',
   components: { ProgressCircle },
   props: {
-    uploadProgress: { type: [String, Number], default: 0 },
+    uploadProgress: { type: Number, default: 0 },
   },
   setup() {
     const isUploadComplete = computed(() => false)

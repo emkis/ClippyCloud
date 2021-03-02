@@ -31,7 +31,7 @@ export default defineComponent({
   components: { BaseCard, Button, UploadCardHead },
   props: {
     fileSize: { type: Number, required: true },
-    uploadProgress: { type: [String, Number], required: true },
+    uploadProgress: { type: Number, required: true },
   },
   emits: ['onActionClick'],
   setup(props, { emit }) {

@@ -17,9 +17,9 @@
     <Heading class="Files__title" level="3">Uploading {{ 5 }} files</Heading>
 
     <div class="Files__container">
-      <UploadCard :fileSize="23423" uploadProgress="35" />
-      <UploadCard :fileSize="345345" uploadProgress="48" />
-      <UploadCard :fileSize="12312365" uploadProgress="83" />
+      <UploadCard :fileSize="23423" :uploadProgress="35" />
+      <UploadCard :fileSize="345345" :uploadProgress="48" />
+      <UploadCard :fileSize="12312365" :uploadProgress="83" />
     </div>
   </Container>
 </template>

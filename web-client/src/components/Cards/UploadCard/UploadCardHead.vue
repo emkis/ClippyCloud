@@ -3,17 +3,18 @@
     <div class="UploadCardHead__container">
       <ProgressCircle
         size="144"
-        :backgroundColor="circleBackgroundColor"
-        :foregroundColor="circleForegroundColor"
+        :progress="uploadProgress"
+        :backgroundColor="circleColors.background"
+        :foregroundColor="circleColors.foreground"
       />
 
-      <h4>{{ uploadPercentage }}%</h4>
+      <h4>{{ uploadProgress }}%</h4>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed, reactive } from 'vue'
 import { EThemeConcepts, EThemeColors } from '@/services/theme'
 
 import ProgressCircle from './ProgressCircle.vue'
@@ -22,13 +23,19 @@ export default defineComponent({
   name: 'UploadCardHead',
   components: { ProgressCircle },
   props: {
-    uploadPercentage: { type: [String, Number], default: 0 },
+    uploadProgress: { type: [String, Number], default: 0 },
   },
   setup() {
-    const circleBackgroundColor = EThemeConcepts.primaryColor
-    const circleForegroundColor = EThemeColors.shark
+    const isUploadComplete = computed(() => false)
 
-    return { circleBackgroundColor, circleForegroundColor }
+    const circleColors = reactive({
+      background: isUploadComplete.value
+        ? EThemeConcepts.successColor
+        : EThemeConcepts.primaryColor,
+      foreground: EThemeColors.shark,
+    })
+
+    return { circleColors, isUploadComplete }
   },
 })
 </script>

@@ -12,6 +12,16 @@
       @onDrop="handleDropFiles"
     />
   </Container>
+
+  <Container class="Files">
+    <Heading class="Files__title" level="3">Uploading {{ 5 }} files</Heading>
+
+    <div class="Files__container">
+      <UploadCard />
+      <UploadCard />
+      <UploadCard />
+    </div>
+  </Container>
 </template>
 
 <script lang="ts">
@@ -22,6 +32,15 @@ import { Heading } from '@/components/Heading'
 import { Text } from '@/components/Text'
 import { Container } from '@/components/Container'
 import { FileUploader } from './components/FileUploader'
+import { UploadCard } from '@/components/Cards/UploadCard'
+
+/*
+  const config = {
+    onUploadProgress: event => console.log(event.loaded)
+  };
+
+  axios.post("/api", data, config);
+*/
 
 export default defineComponent({
   name: 'Upload',
@@ -31,6 +50,7 @@ export default defineComponent({
     Heading,
     Text,
     FileUploader,
+    UploadCard,
   },
   setup() {
     const handleDropFiles = (files: File[]) => console.log(files)
@@ -48,14 +68,35 @@ export default defineComponent({
   align-items: center;
   text-align: center;
 
-  &__title {
-    margin-bottom: rem(24px);
-  }
-
   &__file-uploader {
     width: 100%;
     max-width: rem(600px);
     margin-top: rem(72px);
+  }
+}
+
+[class$='__title'] {
+  margin-bottom: rem(24px);
+}
+
+.Files {
+  max-width: rem(876px);
+  margin: 0 auto;
+  padding-top: 0;
+  text-align: left;
+
+  &__container {
+    display: grid;
+    gap: rem(24px);
+    grid-template-columns: 1fr;
+
+    @media (min-width: 37.5em) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: 53.125em) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 }
 </style>

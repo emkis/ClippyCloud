@@ -29,9 +29,9 @@ import { defineComponent, computed } from 'vue'
 export default defineComponent({
   name: 'ProgressCircle',
   props: {
-    size: { type: [String, Number], default: 100 },
-    stroke: { type: [String, Number], default: 3 },
-    progress: { type: [String, Number], default: 0 },
+    size: { type: String, default: '100' },
+    stroke: { type: Number, default: 3 },
+    progress: { type: Number, default: 0 },
     backgroundColor: { type: String, required: true },
     foregroundColor: { type: String, required: true },
   },

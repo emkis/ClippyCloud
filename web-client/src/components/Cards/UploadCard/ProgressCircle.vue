@@ -57,7 +57,7 @@ export default defineComponent({
   > svg {
     width: 100%;
     height: 100%;
-    transition: stroke-dashoffset 350ms;
+    transition: stroke 350ms, stroke-dashoffset 350ms;
     transform: rotate(-90deg);
   }
 }

@@ -19,22 +19,17 @@
 </template>
 
 <script lang="ts">
-import filesize from 'filesize'
 import { computed, defineComponent } from 'vue'
 
 import { EThemeColors } from '@/services/theme'
 import { defaultBaseCardProps } from '../defaultBaseCardProps'
 import { defaultFileCardProps } from './defaultFileCardProps'
 import { getTimeToExpire, isFileExpired } from './timeHelpers'
+import { getReadableSize } from '../helpers'
 
 import { Button } from '@/components/Button'
 import BaseCard from '../BaseCard.vue'
 import FileCardHead from './FileCardHead.vue'
-
-function getReadableSize(size: number) {
-  const sizeFormatter = filesize.partial({ round: 0 })
-  return sizeFormatter(size)
-}
 
 export default defineComponent({
   name: 'FileCard',

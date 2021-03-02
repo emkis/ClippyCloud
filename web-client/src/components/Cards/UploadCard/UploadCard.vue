@@ -1,11 +1,7 @@
 <template>
   <BaseCard class="UploadCard" fileName="HelloWorld.ts">
     <template #top>
-      <div class="UploadCard__head">
-        <div class="UploadCard__circle">
-          <h4>74%</h4>
-        </div>
-      </div>
+      <UploadCardHead />
     </template>
 
     <template #details>
@@ -27,11 +23,12 @@ import { computed, defineComponent } from 'vue'
 import { getReadableSize } from '../helpers'
 
 import BaseCard from '../BaseCard.vue'
+import UploadCardHead from './UploadCardHead.vue'
 import { Button } from '@/components/Button'
 
 export default defineComponent({
   name: 'UploadCard',
-  components: { BaseCard, Button },
+  components: { BaseCard, Button, UploadCardHead },
   props: {
     fileSize: { type: Number, required: true },
   },
@@ -57,37 +54,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss" scoped>
-.UploadCard {
-  &__head {
-    position: relative;
-    display: grid;
-    place-content: center;
-    padding: rem(25px 25px 0);
-    background: none;
-  }
-
-  &__circle {
-    $size: rem(144px);
-    position: relative;
-    width: $size;
-    height: $size;
-    border-radius: 50%;
-    border: 3px solid var(--color-shark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--concept-text-primary);
-
-    > h4 {
-      font-size: rem(16px);
-    }
-
-    &::before {
-      content: '';
-      position: absolute;
-    }
-  }
-}
-</style>

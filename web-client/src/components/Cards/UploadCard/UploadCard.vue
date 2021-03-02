@@ -1,7 +1,7 @@
 <template>
   <BaseCard class="UploadCard" fileName="HelloWorld.ts">
     <template #top>
-      <UploadCardHead />
+      <UploadCardHead :uploadProgress="uploadProgress" />
     </template>
 
     <template #details>
@@ -31,6 +31,7 @@ export default defineComponent({
   components: { BaseCard, Button, UploadCardHead },
   props: {
     fileSize: { type: Number, required: true },
+    uploadProgress: { type: [String, Number], required: true },
   },
   emits: ['onActionClick'],
   setup(props, { emit }) {

@@ -31,10 +31,14 @@ export default defineComponent({
   emits: {
     onDrop: (payload: onDropFile) => payload,
   },
+  props: {
+    maxSize: { type: Number },
+  },
   setup(props, { emit }) {
     const dropzoneOptions: Partial<FileUploadOptions> = {
       // @ts-expect-error missing matching types
       onDrop,
+      maxSize: props.maxSize,
     }
 
     const {

@@ -9,6 +9,7 @@
 
     <FileUploader
       class="UploaderContainer__file-uploader"
+      :maxSize="FILE_MAX_SIZE"
       @onDrop="handleDropFiles"
     />
   </Container>
@@ -34,14 +35,6 @@ import { Container } from '@/components/Container'
 import { FileUploader } from './components/FileUploader'
 import { UploadCard } from '@/components/Cards/UploadCard'
 
-/*
-  const config = {
-    onUploadProgress: event => console.log(event.loaded)
-  };
-
-  axios.post("/api", data, config);
-*/
-
 export default defineComponent({
   name: 'Upload',
   components: {
@@ -53,9 +46,10 @@ export default defineComponent({
     UploadCard,
   },
   setup() {
+    const FILE_MAX_SIZE = 100000000 // 100 MB
     const handleDropFiles = (files: File[]) => console.log(files)
 
-    return { handleDropFiles }
+    return { handleDropFiles, FILE_MAX_SIZE }
   },
 })
 </script>

@@ -28,12 +28,19 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 
+import { ApiService } from '@/services/api'
+
 import { Navbar } from '@/components/Navbar'
 import { Heading } from '@/components/Heading'
 import { Text } from '@/components/Text'
 import { Container } from '@/components/Container'
 import { FileUploader } from './components/FileUploader'
 import { UploadCard } from '@/components/Cards/UploadCard'
+
+interface IDroppedFiles {
+  acceptedFiles: File[]
+  rejectedFiles: File[]
+}
 
 export default defineComponent({
   name: 'Upload',
@@ -47,7 +54,22 @@ export default defineComponent({
   },
   setup() {
     const FILE_MAX_SIZE = 100000000 // 100 MB
-    const handleDropFiles = (files: File[]) => console.log(files)
+    const handleDropFiles = async (files: IDroppedFiles) => {
+      const data = new FormData()
+      data.append('file', files.acceptedFiles[0])
+
+      const response = await ApiService.post('/user/123456/files', data, {
+        onUploadProgress: (progressEvent) => {
+          const progress = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          )
+
+          console.log(progress)
+        },
+      })
+
+      console.log({ response })
+    }
 
     return { handleDropFiles, FILE_MAX_SIZE }
   },

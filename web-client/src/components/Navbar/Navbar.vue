@@ -1,13 +1,21 @@
 <template>
   <nav class="Navbar">
     <div class="Navbar__container">
-      <a class="Navbar__back" @click="handleBackNavigation">
+      <a
+        class="Navbar__back"
+        data-testid="back-link"
+        @click="handleBackNavigation"
+      >
         <IconArrowLeft size="44" />
       </a>
 
-      <RouterLink class="Navbar__link" :to="targetRouteName">
+      <a
+        class="Navbar__link"
+        data-testid="external-link"
+        @click="handleExternalNavigation"
+      >
         {{ linkName }}
-      </RouterLink>
+      </a>
     </div>
   </nav>
 </template>
@@ -26,12 +34,13 @@ export default defineComponent({
     routeName: { type: String, required: true },
   },
   setup(props) {
-    const { back } = useRouter()
+    const { back, push } = useRouter()
     const targetRouteName = { name: props.routeName }
 
     const handleBackNavigation = back
+    const handleExternalNavigation = () => push(targetRouteName)
 
-    return { targetRouteName, handleBackNavigation }
+    return { handleExternalNavigation, handleBackNavigation }
   },
 })
 </script>

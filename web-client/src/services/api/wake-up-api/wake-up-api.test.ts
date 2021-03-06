@@ -2,11 +2,7 @@ import axios from 'axios'
 import { createWakeUpApiService } from './index'
 
 describe('WakeUpApi', () => {
-  it('should create the service without error', () => {
-    createWakeUpApiService()
-  })
-
-  it('service should return a object with expected properties', () => {
+  it('should return a created service with expected methods', () => {
     const service = createWakeUpApiService()
 
     expect(service).toEqual({

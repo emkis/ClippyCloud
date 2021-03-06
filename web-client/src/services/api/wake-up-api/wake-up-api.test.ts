@@ -9,8 +9,9 @@ describe('WakeUpApi', () => {
   it('service should return a object with expected properties', () => {
     const service = createWakeUpApiService()
 
-    expect(service).toHaveProperty('init')
-    expect(typeof service.init).toBe('function')
+    expect(service).toEqual({
+      init: expect.any(Function),
+    })
   })
 
   it('should execute "init" and return a promise', () => {

@@ -10,7 +10,7 @@
         :cy="radius"
       />
       <circle
-        :stroke="backgroundColor"
+        :stroke="progressColor"
         :stroke-dasharray="`${circumference} ${circumference}`"
         :style="{ strokeDashoffset: strokeDashOffset }"
         :stroke-width="stroke"
@@ -32,7 +32,7 @@ export default defineComponent({
     size: { type: String, default: '100' },
     stroke: { type: Number, default: 3 },
     progress: { type: Number, default: 0 },
-    backgroundColor: { type: String, required: true },
+    progressColor: { type: String, required: true },
     foregroundColor: { type: String, required: true },
   },
   setup(props) {

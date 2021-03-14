@@ -1,7 +1,7 @@
 <template>
   <BaseCard class="UploadCard" fileName="HelloWorld.ts">
     <template #top>
-      <UploadCardHead :uploadProgress="uploadProgress" />
+      <UploadCardHeadContainer :progress="uploadProgress" />
     </template>
 
     <template #details>
@@ -22,12 +22,12 @@ import { getReadableSize } from '../helpers'
 import { EThemeConcepts } from '@/services/theme'
 
 import BaseCard from '../BaseCard.vue'
-import UploadCardHead from './UploadCardHead.vue'
+import UploadCardHeadContainer from './UploadCardHead/UploadCardHeadContainer.vue'
 import { Button, EThemes } from '@/components/Button'
 
 export default defineComponent({
   name: 'UploadCard',
-  components: { BaseCard, Button, UploadCardHead },
+  components: { BaseCard, Button, UploadCardHeadContainer },
   props: {
     fileSize: { type: Number, required: true },
     uploadProgress: { type: Number, required: true },

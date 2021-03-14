@@ -1,7 +1,7 @@
 <template>
   <BaseCard class="UploadCard" fileName="HelloWorld.ts">
     <template #top>
-      <UploadCardHeadContainer :progress="uploadProgress" />
+      <UploadCardHeadContainer :progress="progress" />
     </template>
 
     <template #details>
@@ -30,26 +30,26 @@ export default defineComponent({
   components: { BaseCard, Button, UploadCardHeadContainer },
   props: {
     fileSize: { type: Number, required: true },
-    uploadProgress: { type: Number, required: true },
+    progress: { type: Number, required: true },
     isFileInvalid: { type: Boolean, default: false },
+    isUploadFailed: { type: Boolean, default: false },
   },
   emits: ['onActionClick'],
   setup(props, { emit }) {
     const formattedFileSize = computed(() => getReadableSize(props.fileSize))
     const statusMessage = computed(() => {
       if (isUploadComplete.value) return 'Uploaded'
-      if (isUploadFailed.value) return 'Error uploading file'
+      if (props.isUploadFailed) return 'Error uploading file'
       if (props.isFileInvalid) return 'File bigger than 100mb'
       else return formattedFileSize.value
     })
 
-    const isUploadComplete = computed(() => props.uploadProgress === 100)
-    const isUploadFailed = computed(() => false)
+    const isUploadComplete = computed(() => props.progress >= 100)
 
     const handleAction = () => emit('onActionClick')
     const actionText = computed(() => {
       if (isUploadComplete.value) return 'Copy link'
-      if (isUploadFailed.value || props.isFileInvalid) return 'Try again'
+      if (props.isUploadFailed || props.isFileInvalid) return 'Try again'
       else return 'Cancel'
     })
 
@@ -57,7 +57,7 @@ export default defineComponent({
       if (isUploadComplete.value) {
         return `color: ${EThemeConcepts.successColor}`
       }
-      if (isUploadFailed.value) {
+      if (props.isUploadFailed) {
         return `color: ${EThemeConcepts.errorColor}`
       }
 
@@ -66,7 +66,7 @@ export default defineComponent({
 
     const actionTheme = computed(() => {
       if (isUploadComplete.value) return EThemes.Primary
-      if (isUploadFailed.value || props.isFileInvalid) return EThemes.Error
+      if (props.isUploadFailed || props.isFileInvalid) return EThemes.Error
       else return EThemes.Default
     })
 
@@ -79,7 +79,6 @@ export default defineComponent({
       handleAction,
 
       isUploadComplete,
-      isUploadFailed,
     }
   },
 })

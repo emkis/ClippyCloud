@@ -1,6 +1,6 @@
 import { makeCustomKey, validateStorageItem } from './helpers'
 
-export function getFromStorage(key: string): any | null {
+export function getFromStorage(key: string): unknown | null {
   const customKey = makeCustomKey(key)
 
   const isValidData = validateStorageItem(customKey)
@@ -10,7 +10,7 @@ export function getFromStorage(key: string): any | null {
   return JSON.parse(rawData)
 }
 
-export function saveInStorage(key: string, data: any): void {
+export function saveInStorage(key: string, data: unknown): void {
   const customKey = makeCustomKey(key)
   localStorage.setItem(customKey, JSON.stringify(data))
 }

@@ -22,7 +22,7 @@ function setUserId(targetId: string): void {
 }
 
 async function initializeUser(): Promise<void> {
-  const user: IUserState = getFromStorage('user')
+  const user = getFromStorage('user') as IUserState | null
 
   if (user) setUserId(user.id)
   else setUserId(generateId())

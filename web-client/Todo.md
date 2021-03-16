@@ -1,6 +1,8 @@
 # Componente de Card
 [x] Criar abstração pra lidar só com as cores
-[] Criar componente UploadCard
+[x] Criar componente UploadCard
+[x] Criar variações do head do UploadCard
+[] Ver se tem como usar os provide ao inves de ter varios default props
 
 [] Lidar com upload de arquivos
 

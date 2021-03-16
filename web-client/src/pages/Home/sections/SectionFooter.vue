@@ -28,7 +28,7 @@ import { defineComponent } from 'vue'
 import { Container } from '@/components/Container'
 import { Heading } from '@/components/Heading'
 import { Text } from '@/components/Text'
-import { IconHeart } from '@/components/Icons'
+import IconHeart from '@/components/Icons/IconHeart.vue'
 
 export default defineComponent({
   name: 'SectionFooter',

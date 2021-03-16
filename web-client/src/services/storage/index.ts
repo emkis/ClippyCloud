@@ -6,7 +6,7 @@ export function getFromStorage(key: string): any | null {
   const isValidData = validateStorageItem(customKey)
   if (!isValidData) return null
 
-  const rawData = localStorage.getItem(customKey) || '{}'
+  const rawData = localStorage.getItem(customKey) as string
   return JSON.parse(rawData)
 }
 

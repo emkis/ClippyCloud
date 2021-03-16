@@ -5,12 +5,12 @@
     </template>
 
     <template #details>
-      <span :style="statusStyle">{{ statusMessage }}</span>
+      <span :style="status?.style">{{ status?.message }}</span>
     </template>
 
     <template #bottom>
-      <Button :theme="actionTheme" @onClick="handleAction">
-        {{ actionText }}
+      <Button :theme="action?.style" @onClick="handleAction">
+        {{ action?.message }}
       </Button>
     </template>
   </BaseCard>
@@ -25,6 +25,24 @@ import BaseCard from '../BaseCard.vue'
 import UploadCardHeadContainer from './UploadCardHead/UploadCardHeadContainer.vue'
 import { Button, EThemes } from '@/components/Button'
 
+interface IUploadState {
+  status: {
+    message: string
+    style: string
+  }
+  action: {
+    message: string
+    style: string
+  }
+}
+
+const enum ECardState {
+  Concluded = 'concluded',
+  Failed = 'failed',
+  FileSizeInvalid = 'file-size-invalid',
+  Uploading = 'uploading',
+}
+
 export default defineComponent({
   name: 'UploadCard',
   components: { BaseCard, Button, UploadCardHeadContainer },
@@ -37,48 +55,76 @@ export default defineComponent({
   emits: ['onActionClick'],
   setup(props, { emit }) {
     const formattedFileSize = computed(() => getReadableSize(props.fileSize))
-    const statusMessage = computed(() => {
-      if (isUploadComplete.value) return 'Uploaded'
-      if (props.isUploadFailed) return 'Error uploading file'
-      if (props.isFileInvalid) return 'File bigger than 100mb'
-      else return formattedFileSize.value
-    })
-
     const isUploadComplete = computed(() => props.progress >= 100)
-
     const handleAction = () => emit('onActionClick')
-    const actionText = computed(() => {
-      if (isUploadComplete.value) return 'Copy link'
-      if (props.isUploadFailed || props.isFileInvalid) return 'Try again'
-      else return 'Cancel'
-    })
 
-    const statusStyle = computed(() => {
-      if (isUploadComplete.value) {
-        return `color: ${EThemeConcepts.successColor}`
-      }
-      if (props.isUploadFailed) {
-        return `color: ${EThemeConcepts.errorColor}`
-      }
+    // TODO: provide state
 
-      return `color: ${EThemeConcepts.textSecondary}`
-    })
+    function getCardState() {
+      if (isUploadComplete.value) return ECardState.Concluded
+      if (props.isUploadFailed) return ECardState.Failed
+      if (props.isFileInvalid) return ECardState.FileSizeInvalid
+      else return ECardState.Uploading
+    }
 
-    const actionTheme = computed(() => {
-      if (isUploadComplete.value) return EThemes.Primary
-      if (props.isUploadFailed || props.isFileInvalid) return EThemes.Error
-      else return EThemes.Default
-    })
+    function useCardState() {
+      const cardState = new Map<string, IUploadState>()
+
+      cardState.set(ECardState.Concluded, {
+        status: {
+          message: 'Uploaded',
+          style: `color: ${EThemeConcepts.successColor}`,
+        },
+        action: {
+          message: 'Copy link',
+          style: EThemes.Primary,
+        },
+      })
+
+      cardState.set(ECardState.Failed, {
+        status: {
+          message: 'Error uploading file',
+          style: `color: ${EThemeConcepts.errorColor}`,
+        },
+        action: {
+          message: 'Try again',
+          style: EThemes.Error,
+        },
+      })
+
+      cardState.set(ECardState.FileSizeInvalid, {
+        status: {
+          message: 'File bigger than 100mb',
+          style: `color: ${EThemeConcepts.errorColor}`,
+        },
+        action: {
+          message: 'Try again',
+          style: EThemes.Error,
+        },
+      })
+
+      cardState.set(ECardState.Uploading, {
+        status: {
+          message: formattedFileSize.value,
+          style: `color: ${EThemeConcepts.textSecondary}`,
+        },
+        action: {
+          message: 'Cancel',
+          style: EThemes.Default,
+        },
+      })
+
+      const currentState = getCardState()
+      return cardState.get(currentState)
+    }
+
+    const state = useCardState()
 
     return {
-      statusStyle,
-      statusMessage,
-
-      actionTheme,
-      actionText,
       handleAction,
-
       isUploadComplete,
+      status: state?.status,
+      action: state?.action,
     }
   },
 })

@@ -1,7 +1,7 @@
 <template>
   <footer class="SectionFooter" v-once>
     <Container class="SectionFooter__container">
-      <IconHeart size="54" color="var(--color-dodger-blue)" />
+      <IconHeart size="54" :color="EThemeConcepts.primaryColor" />
 
       <Heading class="SectionFooter__title" level="3">
         Made with love by Emkis
@@ -24,6 +24,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { EThemeConcepts } from '@/services/theme'
 
 import { Container } from '@/components/Container'
 import { Heading } from '@/components/Heading'
@@ -33,6 +34,7 @@ import IconHeart from '@/components/Icons/IconHeart.vue'
 export default defineComponent({
   name: 'SectionFooter',
   components: { Container, Heading, Text, IconHeart },
+  setup: () => ({ EThemeConcepts }),
 })
 </script>
 

@@ -6,7 +6,7 @@ const createLocalStorageMock = () => {
       storage = new Map()
     },
 
-    getItem(key: string): any | null {
+    getItem(key: string): unknown | null {
       return storage.get(key) || null
     },
 

@@ -8,8 +8,16 @@
       </Text>
 
       <div class="SectionHero__actions">
-        <Button theme="primary" @click="navigateToUpload">Upload Files</Button>
-        <Button @click="navigateToMyUploads">My Uploads</Button>
+        <Button
+          theme="primary"
+          data-testid="primary-button"
+          @click="navigateToUpload"
+        >
+          Upload Files
+        </Button>
+        <Button data-testid="secondary-button" @click="navigateToMyUploads">
+          My Uploads
+        </Button>
       </div>
     </Container>
   </section>

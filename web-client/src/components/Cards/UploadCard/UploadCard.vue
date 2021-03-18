@@ -20,28 +20,11 @@
 import { computed, defineComponent } from 'vue'
 import { getReadableSize } from '../helpers'
 import { EThemeConcepts } from '@/services/theme'
+import { IUploadState, ECardState } from './types'
 
 import BaseCard from '../BaseCard.vue'
 import UploadCardHeadContainer from './UploadCardHead/UploadCardHeadContainer.vue'
 import { Button, EThemes } from '@/components/Button'
-
-interface IUploadState {
-  status: {
-    message: string
-    style: string
-  }
-  action: {
-    message: string
-    style: string
-  }
-}
-
-const enum ECardState {
-  Concluded = 'concluded',
-  Failed = 'failed',
-  FileSizeInvalid = 'file-size-invalid',
-  Uploading = 'uploading',
-}
 
 export default defineComponent({
   name: 'UploadCard',

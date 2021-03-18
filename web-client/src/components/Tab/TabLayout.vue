@@ -13,7 +13,7 @@ export default defineComponent({
     name: { type: String, required: true },
   },
   setup(props) {
-    const activeTab: Ref<string> | undefined = inject('activeTab')
+    const activeTab = inject('activeTab') as Ref<string>
 
     const isTabActive = computed(() => props.name === activeTab?.value)
 

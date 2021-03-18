@@ -26,10 +26,10 @@ export default defineComponent({
     disabled: { type: Boolean, default: false },
   },
   setup(props) {
-    const activeTab: Ref<string> | undefined = inject('activeTab')
+    const activeTab = inject('activeTab') as Ref<string>
     const tabChangeEmitter = inject('tabChangeEmitter') as (a: string) => void
 
-    const isTabActive = computed(() => props.name === activeTab?.value)
+    const isTabActive = computed(() => props.name === activeTab.value)
 
     const handleSelectTab = () => {
       if (!props.disabled) tabChangeEmitter(props.name)

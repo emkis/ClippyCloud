@@ -1,5 +1,5 @@
 <template>
-  <UploadProgressCircle :progressColor="progressColor" :progress="progress" />
+  <UploadProgressCircle :progress="progress" />
 
   <div class="center-progress">
     <h4>{{ progress }}%</h4>
@@ -7,20 +7,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { defaultProperties } from './defaultProperties'
-import { EThemeConcepts } from '@/services/theme'
-
+import { defineComponent, inject } from 'vue'
 import UploadProgressCircle from './UploadProgressCircle.vue'
 
 export default defineComponent({
   name: 'Uploading',
-  props: defaultProperties,
   components: { UploadProgressCircle },
   setup() {
-    const progressColor = EThemeConcepts.primaryColor
+    const progress = inject('progress') as number
 
-    return { progressColor }
+    return { progress }
   },
 })
 </script>

@@ -7,8 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { defaultProperties } from './defaultProperties'
+import { defineComponent, computed, provide } from 'vue'
 
 import Uploading from './Uploading.vue'
 import UploadFailed from './UploadFailed.vue'
@@ -18,11 +17,16 @@ import UploadInvalidSize from './UploadInvalidSize.vue'
 export default defineComponent({
   name: 'UploadCardHeadContainer',
   props: {
-    ...defaultProperties,
+    progress: { type: Number, default: 0 },
     isUploadFailed: { type: Boolean, default: false },
     isFileSizeInvalid: { type: Boolean, default: false },
   },
   setup(props) {
+    provide(
+      'progress',
+      computed(() => props.progress)
+    )
+
     const isUploadComplete = computed(() => props.progress >= 100)
 
     const UploadStateComponent = computed(() => {

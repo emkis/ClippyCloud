@@ -8,9 +8,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { EThemeColors } from '@/services/theme'
-import { defaultProperties } from './defaultProperties'
+import { defineComponent, inject } from 'vue'
+import { EThemeColors, EThemeConcepts } from '@/services/theme'
 
 import ProgressCircle from '../ProgressCircle.vue'
 
@@ -18,13 +17,13 @@ export default defineComponent({
   name: 'UploadProgressCircle',
   components: { ProgressCircle },
   props: {
-    ...defaultProperties,
-    progressColor: { type: String, required: true },
+    progressColor: { type: String, default: EThemeConcepts.primaryColor },
   },
   setup() {
     const foregroundColor = EThemeColors.shark
+    const progress = inject('progress') as number
 
-    return { foregroundColor }
+    return { foregroundColor, progress }
   },
 })
 </script>

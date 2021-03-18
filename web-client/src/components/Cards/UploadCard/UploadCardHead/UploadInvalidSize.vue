@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject } from 'vue'
 import { EThemeConcepts } from '@/services/theme'
 
 import UploadProgressCircle from './UploadProgressCircle.vue'
@@ -18,8 +18,9 @@ export default defineComponent({
   components: { UploadProgressCircle, IconClose },
   setup() {
     const errorColor = EThemeConcepts.errorColor
+    const progress = inject('progress') as number
 
-    return { errorColor }
+    return { errorColor, progress }
   },
 })
 </script>

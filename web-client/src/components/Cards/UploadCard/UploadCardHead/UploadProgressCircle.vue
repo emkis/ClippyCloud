@@ -11,7 +11,7 @@
 import { defineComponent, inject } from 'vue'
 import { EThemeColors, EThemeConcepts } from '@/services/theme'
 
-import ProgressCircle from '../ProgressCircle.vue'
+import { ProgressCircle } from '@/components/ProgressCircle'
 
 export default defineComponent({
   name: 'UploadProgressCircle',

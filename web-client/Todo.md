@@ -2,7 +2,9 @@
 [x] Criar abstração pra lidar só com as cores
 [x] Criar componente UploadCard
 [x] Criar variações do head do UploadCard
-[] Ver se tem como usar os provide ao inves de ter varios default props
+[x] Mover ProgressCircle pra /components
+[x] Ver se tem como usar os provide ao inves de ter varios default props
+[] Refatorar Upload Card pra ficar reativo
 
 [] Lidar com upload de arquivos
 

@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, provide } from 'vue'
 import { getReadableSize } from '../helpers'
 import { EThemeConcepts } from '@/services/theme'
 import { IUploadState, ECardState } from './types'
@@ -41,7 +41,16 @@ export default defineComponent({
     const isUploadComplete = computed(() => props.progress >= 100)
     const handleAction = () => emit('onActionClick')
 
-    // TODO: provide state
+    const progress = computed(() => props.progress)
+    const isFileInvalid = computed(() => props.isFileInvalid)
+    const isUploadFailed = computed(() => props.isUploadFailed)
+
+    provide('progress', progress)
+    provide('isUploadComplete', isUploadComplete)
+    provide('isFileInvalid', isFileInvalid)
+    provide('isUploadFailed', isUploadFailed)
+
+    const currentCardState = computed(() => getCardState())
 
     function getCardState() {
       if (isUploadComplete.value) return ECardState.Concluded
@@ -97,17 +106,16 @@ export default defineComponent({
         },
       })
 
-      const currentState = getCardState()
-      return cardState.get(currentState)
+      return cardState.get(currentCardState.value)
     }
 
-    const state = useCardState()
+    const state = computed(() => useCardState())
 
     return {
       handleAction,
       isUploadComplete,
-      status: state?.status,
-      action: state?.action,
+      status: state.value?.status,
+      action: state.value?.action,
     }
   },
 })

@@ -1,13 +1,13 @@
 <template>
   <div class="UploadCardHeadContainer">
     <div class="UploadCardHeadContainer__inner">
-      <component :is="UploadStateComponent" v-bind="{ progress }" />
+      <component :is="UploadStateComponent" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, provide } from 'vue'
+import { defineComponent, computed, inject, Ref } from 'vue'
 
 import Uploading from './Uploading.vue'
 import UploadFailed from './UploadFailed.vue'
@@ -16,22 +16,14 @@ import UploadInvalidSize from './UploadInvalidSize.vue'
 
 export default defineComponent({
   name: 'UploadCardHeadContainer',
-  props: {
-    progress: { type: Number, default: 0 },
-    isUploadFailed: { type: Boolean, default: false },
-    isFileSizeInvalid: { type: Boolean, default: false },
-  },
-  setup(props) {
-    provide(
-      'progress',
-      computed(() => props.progress)
-    )
-
-    const isUploadComplete = computed(() => props.progress >= 100)
+  setup() {
+    const isUploadComplete = inject('isUploadComplete') as Ref<boolean>
+    const isUploadFailed = inject('isUploadFailed') as Ref<boolean>
+    const isFileInvalid = inject('isFileInvalid') as Ref<boolean>
 
     const UploadStateComponent = computed(() => {
-      if (props.isUploadFailed) return UploadFailed
-      else if (props.isFileSizeInvalid) return UploadInvalidSize
+      if (isUploadFailed.value) return UploadFailed
+      else if (isFileInvalid.value) return UploadInvalidSize
       else if (isUploadComplete.value) return UploadSuccess
       else return Uploading
     })

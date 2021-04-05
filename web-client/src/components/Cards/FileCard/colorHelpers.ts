@@ -1,8 +1,9 @@
+import { watchEffect, ref, Ref } from 'vue'
 import { EThemeColors, makeRgba } from '@/services/theme'
 
-interface IHeadColors {
-  icon: string
-  background: string
+interface IHeadColor {
+  icon: Ref<string>
+  background: Ref<string>
 }
 
 interface IRandomColor {
@@ -10,7 +11,21 @@ interface IRandomColor {
   rgb: EThemeColors
 }
 
-export function useHeadColors(isExpired: boolean): IHeadColors {
+export function useHeadColors(getExpired: () => boolean): IHeadColor {
+  const background = ref('')
+  const icon = ref('')
+
+  watchEffect(() => {
+    const colors = getFileColors(getExpired())
+
+    icon.value = colors.icon
+    background.value = colors.background
+  })
+
+  return { background, icon }
+}
+
+function getFileColors(isExpired: boolean) {
   const { rgb: colorRgb, solid: solidColor } = getRandomColor()
 
   const randomColors = {

@@ -18,7 +18,7 @@ export default defineComponent({
     isExpired: { type: Boolean, default: false },
   },
   setup(props) {
-    const { icon, background } = useHeadColors(props.isExpired)
+    const { icon, background } = useHeadColors(() => props.isExpired)
     const fileExtension = inject('fileExtension') as Ref<string>
 
     return {

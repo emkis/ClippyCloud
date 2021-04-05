@@ -7,14 +7,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue'
+import { defineComponent, inject, Ref } from 'vue'
 import UploadProgressCircle from './UploadProgressCircle.vue'
 
 export default defineComponent({
   name: 'Uploading',
   components: { UploadProgressCircle },
   setup() {
-    const progress = inject('progress') as number
+    const progress = inject('progress') as Ref<number>
 
     return { progress }
   },

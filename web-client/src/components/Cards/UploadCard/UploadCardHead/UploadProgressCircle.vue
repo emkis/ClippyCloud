@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue'
+import { defineComponent, inject, Ref } from 'vue'
 import { EThemeColors, EThemeConcepts } from '@/services/theme'
 
 import { ProgressCircle } from '@/components/ProgressCircle'
@@ -21,7 +21,7 @@ export default defineComponent({
   },
   setup() {
     const foregroundColor = EThemeColors.shark
-    const progress = inject('progress') as number
+    const progress = inject('progress') as Ref<number>
 
     return { foregroundColor, progress }
   },

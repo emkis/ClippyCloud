@@ -29,7 +29,7 @@ describe('isValidJSON()', () => {
 })
 
 describe('makeCustomKey()', () => {
-  it('should return only the storage prefix', () => {
+  it('should return the storage prefix only', () => {
     const key = makeCustomKey('')
     expect(key).toBe(STORAGE_PREFIX)
   })
@@ -44,17 +44,20 @@ describe('makeCustomKey()', () => {
 })
 
 describe('validateStorageItem()', () => {
+  beforeEach(jest.clearAllMocks)
+
   it('should return "false" if item in storage is not JSON parsable', () => {
     const itemResponse = validateStorageItem('auth')
     expect(itemResponse).toBe(false)
   })
 
-  it('should return remove the storage item if is invalid or not exists', () => {
+  it('should remove item from storage, if is an invalid JSON', () => {
     const itemResponse = validateStorageItem('user')
+    expect(LocalStorageMock.removeItem).toHaveBeenNthCalledWith(1, 'user')
     expect(itemResponse).toBe(false)
   })
 
-  it('should return "true" if item in storage is JSON parsable', () => {
+  it('should return "true" if item exists in storage and is a valid JSON', () => {
     LocalStorageMock.setItem('username', '{ "name": "emkis" }')
 
     const itemResponse = validateStorageItem('username')

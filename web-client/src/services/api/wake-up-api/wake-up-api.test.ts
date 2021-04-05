@@ -2,22 +2,35 @@ import axios from 'axios'
 import { createWakeUpApiService } from './index'
 
 describe('WakeUpApi', () => {
-  it('should return a created service with expected methods', () => {
-    const service = createWakeUpApiService()
+  beforeEach(jest.clearAllMocks)
 
-    expect(service).toEqual({
-      init: expect.any(Function),
+  describe('createWakeUpApiService()', () => {
+    it('should return expected functions', () => {
+      const service = createWakeUpApiService()
+
+      expect(service).toEqual({
+        init: expect.any(Function),
+      })
     })
   })
 
-  it('should execute "init" and return a promise', () => {
+  describe('init()', () => {
     const axiosMock = axios.create()
-    axiosMock.get = jest.fn().mockImplementation(() => Promise.resolve())
+    const mockService = createWakeUpApiService(axiosMock)
+    jest.spyOn(axiosMock, 'get')
 
-    const service = createWakeUpApiService(axiosMock)
-    const response = service.init()
+    it('should return a promise', () => {
+      const response = mockService.init()
 
-    expect(response).toBeInstanceOf(Promise)
-    expect(axiosMock.get).toBeCalledTimes(1)
+      expect(response).toBeInstanceOf(Promise)
+      expect(axiosMock.get).toBeCalledTimes(1)
+    })
+
+    it('should call with expected url', () => {
+      mockService.init()
+
+      expect(axiosMock.get).toBeCalledTimes(1)
+      expect(axiosMock.get).toHaveBeenCalledWith('wake-up')
+    })
   })
 })

@@ -19,11 +19,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, provide } from 'vue'
 
 import { EThemeColors } from '@/services/theme'
 import { defaultBaseCardProps } from '../defaultBaseCardProps'
-import { defaultFileCardProps } from './defaultFileCardProps'
 import { getTimeToExpire, isFileExpired } from './timeHelpers'
 import { getReadableSize } from '../helpers'
 
@@ -35,27 +34,29 @@ export default defineComponent({
   name: 'FileCard',
   props: {
     ...defaultBaseCardProps,
-    ...defaultFileCardProps,
     fileSize: { type: Number, required: true },
+    fileExtension: { type: String, required: true },
     createdAt: { type: String, required: true },
   },
   emits: ['onActionClick'],
   components: { BaseCard, FileCardHead, Button },
   setup(props, { emit }) {
+    const fileExtension = computed(() => props.fileExtension)
+
     const isFileAlreadyExpired = computed(() => isFileExpired(props.createdAt))
+    const formattedFileSize = computed(() => getReadableSize(props.fileSize))
+    const handleAction = () => emit('onActionClick')
 
     const fileTimeStatus = computed(() => {
       const minutes = getTimeToExpire(props.createdAt)
       return isFileAlreadyExpired.value ? 'Expired' : `${minutes} to expire`
     })
 
-    const formattedFileSize = computed(() => getReadableSize(props.fileSize))
-
     const fileStatusStyle = computed(() => {
       return isFileAlreadyExpired.value && `color: ${EThemeColors.kournikova}`
     })
 
-    const handleAction = () => emit('onActionClick')
+    provide('fileExtension', fileExtension)
 
     return {
       isFileAlreadyExpired,

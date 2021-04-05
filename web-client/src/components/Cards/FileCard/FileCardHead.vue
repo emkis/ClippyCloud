@@ -6,9 +6,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, inject, Ref } from 'vue'
 import { EThemeColors, makeRgba } from '@/services/theme'
-import { defaultFileCardProps } from './defaultFileCardProps'
 
 import IconFile from '@/components/Icons/IconFile.vue'
 
@@ -69,13 +68,14 @@ export default defineComponent({
   name: 'FileCardHead',
   components: { IconFile },
   props: {
-    ...defaultFileCardProps,
     isExpired: { type: Boolean, default: false },
   },
   setup(props) {
     const { icon, background } = useHeadColors(props.isExpired)
+    const fileExtension = inject('fileExtension') as Ref<string>
 
     return {
+      fileExtension,
       iconColor: icon,
       backgroundColor: background,
     }

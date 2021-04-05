@@ -7,7 +7,7 @@ describe('getFromStorage()', () => {
     expect(getFromStorage('user')).toBeNull()
   })
 
-  it('should return the correct data is storage when called', () => {
+  it('should return the correct data when called', () => {
     const customKey = makeCustomKey('user')
     LocalStorageMock.setItem(customKey, `{ "name": "emkis" }`)
 
@@ -19,18 +19,17 @@ describe('getFromStorage()', () => {
 })
 
 describe('removeFromStorage()', () => {
-  it('should remove the wanted item', () => {
+  beforeEach(jest.clearAllMocks)
+
+  it('should remove expected item', () => {
     const customKey = makeCustomKey('email')
     LocalStorageMock.setItem(customKey, `{ "email": "lipsum@email.com" }`)
 
     removeFromStorage('email')
     const valueFromStorage = getFromStorage('email')
 
+    expect(LocalStorageMock.removeItem).toHaveBeenNthCalledWith(1, customKey)
     expect(valueFromStorage).toBeNull()
-  })
-
-  it('should return "undefined" when executed', () => {
-    expect(removeFromStorage('')).toBeUndefined()
   })
 })
 

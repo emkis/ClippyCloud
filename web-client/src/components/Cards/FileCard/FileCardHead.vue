@@ -7,62 +7,9 @@
 
 <script lang="ts">
 import { defineComponent, inject, Ref } from 'vue'
-import { EThemeColors, makeRgba } from '@/services/theme'
+import { useHeadColors } from './colorHelpers'
 
 import IconFile from '@/components/Icons/IconFile.vue'
-
-interface HeadColors {
-  icon: string
-  background: string
-}
-
-function getRandomColor() {
-  const colors = [
-    {
-      solid: EThemeColors.kournikova,
-      rgb: EThemeColors.kournikovaRGB,
-    },
-    {
-      solid: EThemeColors.dodgerBlue,
-      rgb: EThemeColors.dodgerBlueRGB,
-    },
-    {
-      solid: EThemeColors.grannySmithApple,
-      rgb: EThemeColors.grannySmithAppleRGB,
-    },
-    {
-      solid: EThemeColors.geraldine,
-      rgb: EThemeColors.geraldineRGB,
-    },
-    {
-      solid: EThemeColors.heliotrope,
-      rgb: EThemeColors.heliotropeRGB,
-    },
-  ]
-
-  const randomColor = colors[Math.floor(Math.random() * colors.length)]
-  return randomColor
-}
-
-function makeBackground(color: string) {
-  return `background: ${makeRgba(color, 0.25)}`
-}
-
-function useHeadColors(isExpired: boolean): HeadColors {
-  const { rgb: colorRgb, solid: solidColor } = getRandomColor()
-
-  const randomColors = {
-    icon: solidColor,
-    background: makeBackground(colorRgb),
-  }
-
-  const expiredColors = {
-    icon: EThemeColors.white,
-    background: makeBackground(EThemeColors.whiteRGB),
-  }
-
-  return isExpired ? expiredColors : randomColors
-}
 
 export default defineComponent({
   name: 'FileCardHead',

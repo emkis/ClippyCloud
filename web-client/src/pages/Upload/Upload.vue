@@ -19,8 +19,10 @@
 
     <div class="Files__container">
       <UploadCard :fileSize="23423" :progress="35" />
-      <UploadCard :fileSize="345345" :progress="48" />
+      <UploadCard :fileSize="93483" :progress="100" />
+      <UploadCard :fileSize="9423433" isFileInvalid />
       <UploadCard :fileSize="12312365" :progress="83" />
+      <UploadCard :fileSize="837262" isUploadFailed />
     </div>
   </Container>
 </template>

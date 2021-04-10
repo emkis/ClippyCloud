@@ -24,7 +24,13 @@
           <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Available">
             <FileCard
               :key="cardIndex"
-              v-for="cardIndex in 4"
+              v-for="cardIndex in 3"
+              fileName="HelloWord.ts"
+              fileExtension="ts"
+              :fileSize="34298373"
+              createdAt="2021-05-01T00:57:55.875Z"
+            />
+            <FileCard
               fileName="HelloWord.ts"
               fileExtension="ts"
               :fileSize="34298373"

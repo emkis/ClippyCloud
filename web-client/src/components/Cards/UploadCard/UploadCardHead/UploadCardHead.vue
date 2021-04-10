@@ -1,6 +1,6 @@
 <template>
-  <div class="UploadCardHeadContainer">
-    <div class="UploadCardHeadContainer__inner">
+  <div class="UploadCardHead">
+    <div class="UploadCardHead__inner">
       <component :is="UploadStateComponent" />
     </div>
   </div>
@@ -15,7 +15,7 @@ import UploadSuccess from './UploadSuccess.vue'
 import UploadInvalidSize from './UploadInvalidSize.vue'
 
 export default defineComponent({
-  name: 'UploadCardHeadContainer',
+  name: 'UploadCardHead',
   setup() {
     const isUploadComplete = inject('isUploadComplete') as Ref<boolean>
     const isUploadFailed = inject('isUploadFailed') as Ref<boolean>
@@ -34,7 +34,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.UploadCardHeadContainer {
+.UploadCardHead {
   display: grid;
   place-content: center;
   padding: rem(25px 25px 0);

@@ -14,8 +14,7 @@ export default defineComponent({
   },
   setup(props) {
     const activeTab = inject('activeTab') as Ref<string>
-
-    const isTabActive = computed(() => props.name === activeTab?.value)
+    const isTabActive = computed(() => props.name === activeTab.value)
 
     return { isTabActive }
   },

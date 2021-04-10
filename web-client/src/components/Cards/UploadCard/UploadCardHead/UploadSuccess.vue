@@ -1,5 +1,5 @@
 <template>
-  <UploadProgressCircle :progress="100" :progressColor="successColor" />
+  <UploadProgressCircle :progressColor="successColor" />
 
   <div class="center-progress">
     <IconCheckMark size="54" :color="successColor" />

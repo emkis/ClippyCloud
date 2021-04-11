@@ -9,7 +9,7 @@
     </template>
 
     <template #bottom>
-      <UploadCardAction @onClick="handleAction" />
+      <UploadCardAction />
     </template>
   </BaseCard>
 </template>
@@ -53,8 +53,7 @@ export default defineComponent({
     provide('fileSize', fileSize)
     provide('progress', progress)
     provide('variant', variant)
-
-    return { handleAction }
+    provide('actionHandler', handleAction)
   },
 })
 </script>

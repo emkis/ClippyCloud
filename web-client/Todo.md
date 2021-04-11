@@ -1,26 +1,27 @@
-# Componente de Card
-[x] Criar abstração pra lidar só com as cores
-[x] Criar componente UploadCard
-[x] Criar variações do head do UploadCard
-[x] Mover ProgressCircle pra /components
-[x] Ver se tem como usar os provide ao inves de ter varios default props
-[] Refatorar Upload Card pra ficar reativo
-
+# Coisas pra fazer
+[] Refatorar Upload Card pra ficar reativo (retornar refs)
 [] Lidar com upload de arquivos
+[] Inicializar app chamando o WakeUpApi
 
-[] Adicionar tokens de espaçamentos
-[] Refatorar app pra utilizar esses tokens
 
-[] Estudar sobre Three Shaking
-[] Refatorar componentes que usam Barrer File (Icons, Tabs)
+# Refatorações
+[] Criar helpers com `computed` pros casos de: `isUploadComplete` e `formattedFileSize`
+[] Criar constante pra definir o máximo limite do tamanho de um arquivo
+[] Fazer com o que texto "File bigger than 100mb" seja dinamico de acordo com o limite do tamanho do arquivo
 
-[] Ver se as cores vão continuar assim (concepts, colors scss)
 
-[] Adicionar Husky
-[] Configurar ação de lint antes de commit
-[] Configurar ação de testes antes de push
-
-[] Começar a testar os componentes
-
+# Testes
+[] Anotar os componentes que precisam de testes
 [] Setup do Cypress
 [] Criar teste de páginas com o Cypress
+
+
+# Processos
+[] Estudar sobre Three Shaking
+[] Configurar ação de lint antes de commit
+
+
+# CSS
+[] Sticky Navbar?
+[] Adicionar tokens de espaçamentos
+[] Ver se as cores vão continuar assim (concepts, colors scss)

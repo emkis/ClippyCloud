@@ -1,9 +1,9 @@
 import { ECardVariants } from '../types'
 
-import DetailError from './Error.vue'
-import DetailSuccess from './Success.vue'
-import DetailFileSize from './FileSize.vue'
-import DetailInvalidFileSize from './InvalidFileSize.vue'
+import DetailError from './variants/Error.vue'
+import DetailSuccess from './variants/Success.vue'
+import DetailFileSize from './variants/FileSize.vue'
+import DetailInvalidFileSize from './variants/InvalidFileSize.vue'
 
 const DetailVariants = {
   [ECardVariants.Success]: DetailSuccess,

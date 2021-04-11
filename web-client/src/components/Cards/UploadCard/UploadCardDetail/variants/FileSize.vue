@@ -4,8 +4,7 @@
 
 <script lang="ts">
 import { defineComponent, inject, computed, Ref } from 'vue'
-
-import { getReadableSize } from '../../helpers'
+import { getReadableSize } from '../../../helpers'
 
 export default defineComponent({
   name: 'FileSize',

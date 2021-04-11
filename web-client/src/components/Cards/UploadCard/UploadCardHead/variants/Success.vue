@@ -10,7 +10,7 @@
 import { defineComponent } from 'vue'
 import { EThemeConcepts } from '@/services/theme'
 
-import UploadProgressCircle from './UploadProgressCircle.vue'
+import UploadProgressCircle from '../UploadProgressCircle.vue'
 import IconCheckMark from '@/components/Icons/IconCheckMark.vue'
 
 export default defineComponent({

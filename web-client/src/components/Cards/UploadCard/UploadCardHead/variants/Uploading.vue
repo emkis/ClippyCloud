@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, inject, Ref } from 'vue'
-import UploadProgressCircle from './UploadProgressCircle.vue'
+import UploadProgressCircle from '../UploadProgressCircle.vue'
 
 export default defineComponent({
   name: 'Uploading',

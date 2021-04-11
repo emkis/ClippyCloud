@@ -1,9 +1,9 @@
 import { ECardVariants } from '../types'
 
-import Uploading from './Uploading.vue'
-import UploadError from './Error.vue'
-import UploadSuccess from './Success.vue'
-import UploadInvalidFileSize from './InvalidFileSize.vue'
+import Uploading from './variants/Uploading.vue'
+import UploadError from './variants/Error.vue'
+import UploadSuccess from './variants/Success.vue'
+import UploadInvalidFileSize from './variants/InvalidFileSize.vue'
 
 const HeadVariants = {
   [ECardVariants.Success]: UploadSuccess,

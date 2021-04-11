@@ -2,7 +2,7 @@
   <UploadProgressCircle progressColor="transparent" />
 
   <div class="center-progress">
-    <IconClose size="54" :color="errorColor" />
+    <IconRefresh size="54" :color="errorColor" />
   </div>
 </template>
 
@@ -11,11 +11,11 @@ import { defineComponent } from 'vue'
 import { EThemeConcepts } from '@/services/theme'
 
 import UploadProgressCircle from './UploadProgressCircle.vue'
-import IconClose from '@/components/Icons/IconClose.vue'
+import IconRefresh from '@/components/Icons/IconRefresh.vue'
 
 export default defineComponent({
-  name: 'UploadInvalidSize',
-  components: { UploadProgressCircle, IconClose },
+  name: 'Error',
+  components: { UploadProgressCircle, IconRefresh },
   setup() {
     const errorColor = EThemeConcepts.errorColor
 

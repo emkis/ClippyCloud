@@ -14,7 +14,7 @@ import UploadProgressCircle from './UploadProgressCircle.vue'
 import IconCheckMark from '@/components/Icons/IconCheckMark.vue'
 
 export default defineComponent({
-  name: 'UploadSuccess',
+  name: 'Success',
   components: { UploadProgressCircle, IconCheckMark },
   setup() {
     const successColor = EThemeConcepts.successColor

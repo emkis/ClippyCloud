@@ -7,7 +7,7 @@ import { defineComponent } from 'vue'
 import { EThemeConcepts } from '@/services/theme'
 
 export default defineComponent({
-  name: 'InvalidSize',
+  name: 'InvalidFileSize',
   setup() {
     const detailColor = EThemeConcepts.errorColor
     const detailStyle = { color: detailColor } as CSSStyleDeclaration

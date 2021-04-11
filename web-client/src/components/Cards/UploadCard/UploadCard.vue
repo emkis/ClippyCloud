@@ -1,5 +1,5 @@
 <template>
-  <BaseCard class="UploadCard" fileName="HelloWorld.ts">
+  <BaseCard class="UploadCard" :fileName="fileName">
     <template #top>
       <UploadCardHead />
     </template>
@@ -16,7 +16,9 @@
 
 <script lang="ts">
 import { computed, defineComponent, provide } from 'vue'
+
 import { ECardVariants } from './types'
+import { defaultBaseCardProps } from '../defaultBaseCardProps'
 
 import BaseCard from '../BaseCard.vue'
 import { UploadCardHead } from './UploadCardHead'
@@ -27,6 +29,7 @@ export default defineComponent({
   name: 'UploadCard',
   components: { BaseCard, UploadCardHead, UploadCardDetail, UploadCardAction },
   props: {
+    ...defaultBaseCardProps,
     fileSize: { type: Number, required: true },
     progress: { type: Number, required: true },
     isFileInvalid: { type: Boolean, default: false },

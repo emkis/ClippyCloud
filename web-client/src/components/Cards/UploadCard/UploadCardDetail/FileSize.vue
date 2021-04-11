@@ -11,7 +11,9 @@ export default defineComponent({
   name: 'FileSize',
   setup() {
     const originalFileSize = inject('fileSize') as Ref<string>
-    const fileSize = computed(() => getReadableSize(originalFileSize.value))
+    const fileSize = computed(() =>
+      getReadableSize(Number(originalFileSize.value))
+    )
 
     return { fileSize }
   },

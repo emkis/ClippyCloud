@@ -1,7 +1,7 @@
 <template>
   <div class="UploadCardHead">
     <div class="UploadCardHead__inner">
-      <component :is="UploadStateComponent" />
+      <component :is="HeadComponent" />
     </div>
   </div>
 </template>
@@ -9,26 +9,16 @@
 <script lang="ts">
 import { defineComponent, computed, inject, Ref } from 'vue'
 
-import Uploading from './Uploading.vue'
-import UploadFailed from './UploadFailed.vue'
-import UploadSuccess from './UploadSuccess.vue'
-import UploadInvalidSize from './UploadInvalidSize.vue'
+import { ECardVariants } from '../types'
+import { makeHeadVariant } from './headFactory'
 
 export default defineComponent({
   name: 'UploadCardHead',
   setup() {
-    const isUploadComplete = inject('isUploadComplete') as Ref<boolean>
-    const isUploadFailed = inject('isUploadFailed') as Ref<boolean>
-    const isFileInvalid = inject('isFileInvalid') as Ref<boolean>
+    const variant = inject('variant') as Ref<ECardVariants>
+    const HeadComponent = computed(() => makeHeadVariant(variant.value))
 
-    const UploadStateComponent = computed(() => {
-      if (isUploadFailed.value) return UploadFailed
-      else if (isFileInvalid.value) return UploadInvalidSize
-      else if (isUploadComplete.value) return UploadSuccess
-      else return Uploading
-    })
-
-    return { UploadStateComponent }
+    return { HeadComponent }
   },
 })
 </script>

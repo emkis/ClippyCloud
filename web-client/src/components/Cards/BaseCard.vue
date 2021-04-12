@@ -46,6 +46,11 @@ export default defineComponent({
   &__filename {
     margin-bottom: 4px;
     font-size: rem(18px);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
     color: var(--concept-text-primary);
   }
 

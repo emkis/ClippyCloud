@@ -30,6 +30,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .BaseCard {
+  display: flex;
+  flex-flow: column nowrap;
   border-radius: $border-radius-m;
   background: var(--concept-over-background);
   text-align: left;
@@ -37,6 +39,7 @@ export default defineComponent({
   overflow: auto;
 
   &__content {
+    margin-top: auto;
     padding: rem(28px);
     display: flex;
     flex-direction: column;

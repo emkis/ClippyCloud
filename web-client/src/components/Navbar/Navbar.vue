@@ -47,6 +47,9 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .Navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
   padding: rem(0 24px);
   background: var(--concept-over-background);
 

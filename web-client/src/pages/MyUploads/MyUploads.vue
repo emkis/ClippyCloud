@@ -17,8 +17,8 @@
 
         <TabContext :activeTab="activeTab">
           <TabList @onTabChange="setActiveTab">
-            <Tab :name="TabNames.Available" />
-            <Tab :name="TabNames.Expired" />
+            <Tab :name="TabNames.Available" :total="3" />
+            <Tab :name="TabNames.Expired" :total="2" />
           </TabList>
 
           <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Available">
@@ -30,6 +30,15 @@
               :fileSize="34298373"
               createdAt="2021-05-01T00:57:55.875Z"
             />
+          </TabLayout>
+
+          <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Expired">
+            <FileCard
+              fileName="HelloWord.ts"
+              fileExtension="ts"
+              :fileSize="34298373"
+              createdAt="2021-03-01T00:57:55.875Z"
+            />
             <FileCard
               fileName="HelloWord.ts"
               fileExtension="ts"
@@ -37,8 +46,6 @@
               createdAt="2021-03-01T00:57:55.875Z"
             />
           </TabLayout>
-
-          <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Expired" />
         </TabContext>
       </Container>
     </template>

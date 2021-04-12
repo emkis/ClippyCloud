@@ -14,7 +14,7 @@ export const FileController = {
     }
 
     const file = await File.create({
-      path: request.file.fieldname,
+      path: request.file.filename,
       title: request.file.originalname,
     })
 

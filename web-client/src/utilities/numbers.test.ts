@@ -1,4 +1,4 @@
-import { getPercentage } from './numbers'
+import { getPercentage, getRoundPercentage } from './numbers'
 
 describe('getPercentage()', () => {
   it('should return expected percentages', () => {
@@ -10,6 +10,20 @@ describe('getPercentage()', () => {
 
   it('should return a number', () => {
     const result = getPercentage(59, 100)
+    expect(typeof result).toBe('number')
+  })
+})
+
+describe('getRoundPercentage()', () => {
+  it('should return expected percentages', () => {
+    expect(getRoundPercentage(94.5, 100)).toBe(95)
+    expect(getRoundPercentage(27, 400)).toBe(7)
+    expect(getRoundPercentage(1864, 7234)).toBe(26)
+    expect(getRoundPercentage(93, 384)).toBe(24)
+  })
+
+  it('should return a number', () => {
+    const result = getRoundPercentage(100, 100)
     expect(typeof result).toBe('number')
   })
 })

@@ -33,6 +33,8 @@ describe('FileUpload Service', () => {
       )
     })
 
-    it.skip('should call onUploadProgress handler with progress', () => {})
+    it.skip('should call onUploadProgress handler with progress', () => {
+      // to be continued...
+    })
   })
 })

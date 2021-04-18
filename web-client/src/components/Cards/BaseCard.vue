@@ -6,7 +6,7 @@
 
     <div class="BaseCard__content">
       <div class="BaseCard__file-info">
-        <h4 class="BaseCard__filename">{{ fileName }}</h4>
+        <h4 class="BaseCard__filename">{{ truncatedFileName }}</h4>
 
         <div class="BaseCard__file-details">
           <slot name="details" />
@@ -20,11 +20,18 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+
+import { truncate } from '@/utilities/strings'
 import { defaultBaseCardProps } from './defaultBaseCardProps'
 
 export default defineComponent({
   name: 'BaseCard',
   props: defaultBaseCardProps,
+  setup(props) {
+    const truncatedFileName = truncate(props.fileName as string, 35)
+
+    return { truncatedFileName }
+  },
 })
 </script>
 
@@ -51,9 +58,6 @@ export default defineComponent({
     font-size: rem(18px);
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    text-overflow: ellipsis;
     color: var(--concept-text-primary);
   }
 

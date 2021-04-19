@@ -59,8 +59,6 @@ export default defineComponent({
     UploadCard,
   },
   setup() {
-    const FILE_MAX_SIZE = 100000000 // 100 MB
-
     const files = reactive<CustomFile[]>([])
     const { user } = useUser()
     const hasDroppedFiles = computed(() => files.length)
@@ -119,7 +117,6 @@ export default defineComponent({
       files,
       hasDroppedFiles,
       handleDropFiles,
-      FILE_MAX_SIZE,
     }
   },
 })

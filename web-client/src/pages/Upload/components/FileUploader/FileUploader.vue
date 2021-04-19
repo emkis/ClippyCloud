@@ -36,7 +36,7 @@ export default defineComponent({
   },
   setup(props, { emit }) {
     const dropzoneOptions: Partial<FileUploadOptions> = {
-      // @ts-expect-error missing matching types
+      // @ts-expect-error missing lib exported types
       onDrop,
       maxSize: props.maxSize,
     }

@@ -1,0 +1,1 @@
+export const FILE_MAX_SIZE = 100000000 // 100 MB

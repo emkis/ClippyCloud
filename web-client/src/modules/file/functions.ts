@@ -9,8 +9,8 @@ export function parseFile(file: File): CustomFile {
     name: file.name,
     size: file.size,
     progress: 0,
-    uploadError: false,
-    invalidSize: false,
+    hasUploadError: false,
+    hasInvalidSize: false,
     url: null,
   }
 }

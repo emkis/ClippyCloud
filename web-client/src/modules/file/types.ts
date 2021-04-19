@@ -5,8 +5,8 @@ export interface CustomFile {
   name: string
   progress: number
   size: number
-  uploadError: boolean
-  invalidSize: boolean
+  hasUploadError: boolean
+  hasInvalidSize: boolean
 }
 
 export interface DroppedFiles {

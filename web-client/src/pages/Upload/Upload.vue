@@ -9,7 +9,6 @@
 
     <FileUploader
       class="UploaderContainer__file-uploader"
-      :maxSize="FILE_MAX_SIZE"
       @onDrop="handleDropFiles"
     />
   </Container>

@@ -22,6 +22,8 @@ import { useDropzone } from 'vue3-dropzone'
 import type { FileUploadOptions } from 'vue3-dropzone/dist/useDropzone'
 import type { DroppedFiles } from '@/modules/file'
 
+import { FILE_MAX_SIZE } from '@/modules/file/constants'
+
 import { Text } from '@/components/Text'
 import { Button } from '@/components/Button'
 
@@ -32,7 +34,7 @@ export default defineComponent({
     onDrop: (payload: DroppedFiles) => payload,
   },
   props: {
-    maxSize: { type: Number },
+    maxSize: { type: Number, default: FILE_MAX_SIZE },
   },
   setup(props, { emit }) {
     const dropzoneOptions: Partial<FileUploadOptions> = {

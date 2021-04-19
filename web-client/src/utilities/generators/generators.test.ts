@@ -1,4 +1,4 @@
-import { generateUniqueId } from './generators'
+import { generateUniqueId } from '../generators'
 
 describe('generateUniqueId()', () => {
   it('should create different IDs in a sequence', () => {

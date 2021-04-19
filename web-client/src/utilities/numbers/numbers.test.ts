@@ -1,4 +1,4 @@
-import { getPercentage, getRoundPercentage } from './numbers'
+import { getPercentage, getRoundPercentage } from '../numbers'
 
 describe('getPercentage()', () => {
   it('should return expected percentages', () => {

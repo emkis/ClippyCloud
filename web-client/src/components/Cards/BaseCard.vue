@@ -6,7 +6,9 @@
 
     <div class="BaseCard__content">
       <div class="BaseCard__file-info">
-        <h4 class="BaseCard__filename">{{ truncatedFileName }}</h4>
+        <h4 class="BaseCard__filename" :title="fileName">
+          {{ truncatedFileName }}
+        </h4>
 
         <div class="BaseCard__file-details">
           <slot name="details" />

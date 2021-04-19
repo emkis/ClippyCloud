@@ -1,10 +1,12 @@
 <template>
-  <span :style="detailStyle">File bigger than 100mb</span>
+  <span :style="detailStyle">File bigger than {{ maxFileSize }}</span>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+
 import { EThemeConcepts } from '@/services/theme'
+import { FILE_MAX_SIZE_READABLE } from '@/modules/file/constants'
 
 export default defineComponent({
   name: 'InvalidFileSize',
@@ -12,7 +14,9 @@ export default defineComponent({
     const detailColor = EThemeConcepts.errorColor
     const detailStyle = { color: detailColor } as CSSStyleDeclaration
 
-    return { detailStyle }
+    const maxFileSize = FILE_MAX_SIZE_READABLE.toLowerCase()
+
+    return { detailStyle, maxFileSize }
   },
 })
 </script>

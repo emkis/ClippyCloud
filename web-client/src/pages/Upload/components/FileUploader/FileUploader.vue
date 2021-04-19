@@ -20,7 +20,7 @@ import { defineComponent } from 'vue'
 import { useDropzone } from 'vue3-dropzone'
 
 import type { FileUploadOptions } from 'vue3-dropzone/dist/useDropzone'
-import type { DroppedFiles } from '@/modules/file'
+import type { DroppedFiles, FileRejection } from '@/modules/file'
 
 import { FILE_MAX_SIZE } from '@/modules/file/constants'
 
@@ -50,7 +50,7 @@ export default defineComponent({
       isDragActive,
     } = useDropzone(dropzoneOptions)
 
-    function onDrop({ acceptedFiles, rejectedFiles }: DroppedFiles) {
+    function onDrop(acceptedFiles: File[], rejectedFiles: FileRejection[]) {
       emit('onDrop', { acceptedFiles, rejectedFiles })
     }
 

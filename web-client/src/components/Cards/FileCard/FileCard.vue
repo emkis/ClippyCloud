@@ -24,7 +24,7 @@ import { computed, defineComponent, provide } from 'vue'
 import { EThemeColors } from '@/services/theme'
 import { defaultBaseCardProps } from '../defaultBaseCardProps'
 import { getTimeToExpire, isFileExpired } from './timeHelpers'
-import { getReadableSize } from '../helpers'
+import { getReadableSize } from '@/modules/file'
 
 import { Button } from '@/components/Button'
 import BaseCard from '../BaseCard.vue'

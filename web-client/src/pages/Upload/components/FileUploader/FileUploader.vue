@@ -20,7 +20,7 @@ import { defineComponent } from 'vue'
 import { useDropzone } from 'vue3-dropzone'
 
 import type { FileUploadOptions } from 'vue3-dropzone/dist/useDropzone'
-import type { DroppedFiles } from '../../types'
+import type { DroppedFiles } from '@/modules/file'
 
 import { Text } from '@/components/Text'
 import { Button } from '@/components/Button'

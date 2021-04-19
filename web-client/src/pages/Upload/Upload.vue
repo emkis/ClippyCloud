@@ -26,8 +26,8 @@
         :fileName="file.name"
         :fileSize="file.size"
         :progress="file.progress"
-        :isFileInvalid="file.invalidSize"
-        :isUploadFailed="file.uploadError"
+        :isFileInvalid="file.hasInvalidSize"
+        :isUploadFailed="file.hasUploadError"
       />
     </div>
   </Container>
@@ -36,10 +36,10 @@
 <script lang="ts">
 import { defineComponent, computed, reactive } from 'vue'
 
-import type { CustomFile, DroppedFiles, FileRejection } from './types'
+import type { CustomFile, DroppedFiles, FileRejection } from '@/modules/file'
 
 import { FileUpload } from '@/services/api/file-upload'
-import { parseFile } from './fileHelpers'
+import { parseFile } from '@/modules/file'
 import { useUser } from '@/hooks/user'
 
 import { Navbar } from '@/components/Navbar'
@@ -76,7 +76,7 @@ export default defineComponent({
     function handleRejected(rejectedFiles: FileRejection[]) {
       const parsedRejectedFiles = rejectedFiles.map(({ file }) => {
         const parsedFile = parseFile(file)
-        parsedFile.invalidSize = true
+        parsedFile.hasInvalidSize = true
 
         return parsedFile
       })
@@ -107,7 +107,7 @@ export default defineComponent({
 
         updateFile(droppedFile.id, { url: response.data.url })
       } catch (error) {
-        updateFile(droppedFile.id, { uploadError: true })
+        updateFile(droppedFile.id, { hasUploadError: true })
       }
     }
 

@@ -20,7 +20,7 @@ import { defineComponent } from 'vue'
 import { useDropzone } from 'vue3-dropzone'
 
 import type { FileUploadOptions } from 'vue3-dropzone/dist/useDropzone'
-import type { onDropFile } from './types'
+import type { DroppedFiles } from '../../types'
 
 import { Text } from '@/components/Text'
 import { Button } from '@/components/Button'
@@ -29,7 +29,7 @@ export default defineComponent({
   name: 'FileUploader',
   components: { Text, Button },
   emits: {
-    onDrop: (payload: onDropFile) => payload,
+    onDrop: (payload: DroppedFiles) => payload,
   },
   props: {
     maxSize: { type: Number },
@@ -48,7 +48,7 @@ export default defineComponent({
       isDragActive,
     } = useDropzone(dropzoneOptions)
 
-    function onDrop(acceptedFiles: File[], rejectedFiles: File[]) {
+    function onDrop({ acceptedFiles, rejectedFiles }: DroppedFiles) {
       emit('onDrop', { acceptedFiles, rejectedFiles })
     }
 

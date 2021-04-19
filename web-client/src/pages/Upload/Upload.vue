@@ -33,13 +33,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, reactive } from 'vue'
+import { defineComponent, computed } from 'vue'
 
-import type { CustomFile, DroppedFiles, FileRejection } from '@/modules/file'
-
-import { FileUpload } from '@/services/api/file-upload'
-import { parseFile, FILE_MAX_SIZE_FORMATTED } from '@/modules/file'
-import { useUser } from '@/hooks/user'
+import { FILE_MAX_SIZE_FORMATTED } from '@/modules/file'
+import { useFileUpload } from './hook'
 
 import { Navbar } from '@/components/Navbar'
 import { Heading } from '@/components/Heading'
@@ -59,65 +56,13 @@ export default defineComponent({
     UploadCard,
   },
   setup() {
-    const { user } = useUser()
+    const { files, handleDropFiles } = useFileUpload()
 
-    const files = reactive<CustomFile[]>([])
-    const hasDroppedFiles = computed(() => files.length)
+    const maxFileSize = FILE_MAX_SIZE_FORMATTED
+    const hasDroppedFiles = computed(() => Boolean(files.length))
     const isUploading = computed(() =>
       files.some((file) => file.progress < 100)
     )
-
-    const maxFileSize = FILE_MAX_SIZE_FORMATTED
-
-    function handleDropFiles(files: DroppedFiles) {
-      const { acceptedFiles, rejectedFiles } = files
-
-      handleUpload(acceptedFiles)
-      handleRejected(rejectedFiles)
-    }
-
-    function handleRejected(rejectedFiles: FileRejection[]) {
-      const parsedRejectedFiles = rejectedFiles.map(({ file }) => {
-        const parsedFile = parseFile(file)
-        parsedFile.hasInvalidSize = true
-
-        return parsedFile
-      })
-
-      parsedRejectedFiles.forEach((file) => files.push(file))
-    }
-
-    function handleUpload(filesToUpload: File[]) {
-      const parsedFiles = filesToUpload.map(parseFile)
-
-      parsedFiles.forEach((file) => files.push(file))
-      parsedFiles.forEach(processUpload)
-    }
-
-    async function processUpload(droppedFile: CustomFile) {
-      const data = new FormData()
-      data.append('file', droppedFile.file, droppedFile.name)
-
-      const updateFileProgress = (progress: number) => {
-        updateFile(droppedFile.id, { progress })
-      }
-
-      try {
-        const response = await FileUpload.upload(
-          { userId: user.id, formData: data },
-          updateFileProgress
-        )
-
-        updateFile(droppedFile.id, { url: response.data.url })
-      } catch (error) {
-        updateFile(droppedFile.id, { hasUploadError: true })
-      }
-    }
-
-    function updateFile(fileId: string, data: Partial<CustomFile>) {
-      const targetFile = files.find((file) => file.id === fileId)
-      Object.assign(targetFile, data)
-    }
 
     return {
       files,

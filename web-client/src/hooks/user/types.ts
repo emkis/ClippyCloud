@@ -1,8 +1,7 @@
-export interface IUserHook {
-  user: Readonly<IUserState>
-  initializeUser: () => void
+export interface UserHook {
+  user: Readonly<UserState>
 }
 
-export interface IUserState {
+export interface UserState {
   id: string
 }

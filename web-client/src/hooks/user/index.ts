@@ -1,15 +1,16 @@
 import { reactive, readonly } from 'vue'
 
-import { IUserHook, IUserState } from './types'
+import type { UserHook, UserState } from './types'
+
 import { getFromStorage, saveInStorage } from '@/services/storage'
 import { generateUniqueId } from '@/utilities/generators'
 
-const state = reactive<IUserState>({
+const state = reactive<UserState>({
   id: '',
 })
 
-export function useUser(): IUserHook {
-  return { user: readonly(state), initializeUser }
+export function useUser(): UserHook {
+  return { user: readonly(state) }
 }
 
 function setUserId(targetId: string) {
@@ -17,8 +18,8 @@ function setUserId(targetId: string) {
   saveInStorage('user', state)
 }
 
-function initializeUser() {
-  const user = getFromStorage('user') as IUserState | null
+export function initializeUser() {
+  const user = getFromStorage('user') as UserState | null
 
   if (user) setUserId(user.id)
   else setUserId(generateUniqueId())

@@ -23,8 +23,11 @@ import { computed, defineComponent, provide } from 'vue'
 
 import { EThemeColors } from '@/services/theme'
 import { defaultBaseCardProps } from '../defaultBaseCardProps'
-import { getTimeToExpire, isFileExpired } from './timeHelpers'
-import { getReadableSize } from '@/modules/file'
+import {
+  getReadableSize,
+  getTimeToExpireFile,
+  isFileExpired,
+} from '@/modules/file'
 
 import { Button } from '@/components/Button'
 import BaseCard from '../BaseCard.vue'
@@ -48,7 +51,7 @@ export default defineComponent({
     const handleAction = () => emit('onActionClick')
 
     const fileTimeStatus = computed(() => {
-      const minutes = getTimeToExpire(props.createdAt)
+      const minutes = getTimeToExpireFile(props.createdAt)
       return isFileAlreadyExpired.value ? 'Expired' : `${minutes} to expire`
     })
 

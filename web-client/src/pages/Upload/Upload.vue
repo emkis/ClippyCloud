@@ -5,7 +5,7 @@
     <Heading class="UploaderContainer__title" level="1">
       Upload your files
     </Heading>
-    <Text>The files should be maximum of 100mb.</Text>
+    <Text>The files should be maximum of {{ maxFileSize }}.</Text>
 
     <FileUploader
       class="UploaderContainer__file-uploader"
@@ -15,7 +15,7 @@
 
   <Container class="Files">
     <Heading class="Files__title" level="3" v-if="hasDroppedFiles">
-      Uploading files
+      {{ isUploading ? 'Uploading' : 'Uploaded' }} files
     </Heading>
 
     <div class="Files__container">
@@ -38,7 +38,7 @@ import { defineComponent, computed, reactive } from 'vue'
 import type { CustomFile, DroppedFiles, FileRejection } from '@/modules/file'
 
 import { FileUpload } from '@/services/api/file-upload'
-import { parseFile } from '@/modules/file'
+import { parseFile, FILE_MAX_SIZE_FORMATTED } from '@/modules/file'
 import { useUser } from '@/hooks/user'
 
 import { Navbar } from '@/components/Navbar'
@@ -59,9 +59,15 @@ export default defineComponent({
     UploadCard,
   },
   setup() {
-    const files = reactive<CustomFile[]>([])
     const { user } = useUser()
+
+    const files = reactive<CustomFile[]>([])
     const hasDroppedFiles = computed(() => files.length)
+    const isUploading = computed(() =>
+      files.some((file) => file.progress < 100)
+    )
+
+    const maxFileSize = FILE_MAX_SIZE_FORMATTED
 
     function handleDropFiles(files: DroppedFiles) {
       const { acceptedFiles, rejectedFiles } = files
@@ -115,6 +121,8 @@ export default defineComponent({
 
     return {
       files,
+      maxFileSize,
+      isUploading,
       hasDroppedFiles,
       handleDropFiles,
     }

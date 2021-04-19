@@ -6,7 +6,7 @@
 import { defineComponent } from 'vue'
 
 import { EThemeConcepts } from '@/services/theme'
-import { FILE_MAX_SIZE_READABLE } from '@/modules/file/constants'
+import { FILE_MAX_SIZE_FORMATTED } from '@/modules/file/constants'
 
 export default defineComponent({
   name: 'InvalidFileSize',
@@ -14,7 +14,7 @@ export default defineComponent({
     const detailColor = EThemeConcepts.errorColor
     const detailStyle = { color: detailColor } as CSSStyleDeclaration
 
-    const maxFileSize = FILE_MAX_SIZE_READABLE.toLowerCase()
+    const maxFileSize = FILE_MAX_SIZE_FORMATTED
 
     return { detailStyle, maxFileSize }
   },

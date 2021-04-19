@@ -1,8 +1,26 @@
 import filesize from 'filesize'
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import addMinutes from 'date-fns/addMinutes'
+import isPast from 'date-fns/isPast'
 
 import type { CustomFile } from './types'
 
 import { generateUniqueId } from '@/utilities/generators'
+
+export function isFileExpired(fileCreationDate: string) {
+  const creationDate = new Date(fileCreationDate)
+  const expireDate = addMinutes(creationDate, 30)
+
+  return isPast(expireDate)
+}
+
+export function getTimeToExpireFile(fileCreationDate: string) {
+  const creationDate = new Date(fileCreationDate)
+  const expireDate = addMinutes(creationDate, 30)
+  const timeToExpire = formatDistanceToNow(expireDate)
+
+  return timeToExpire
+}
 
 export function parseFile(file: File): CustomFile {
   return {

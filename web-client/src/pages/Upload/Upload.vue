@@ -15,34 +15,32 @@
   </Container>
 
   <Container class="Files">
-    <Heading class="Files__title" level="3">Uploading {{ 5 }} files</Heading>
+    <Heading class="Files__title" level="3" v-if="hasDroppedFiles">
+      Uploading files
+    </Heading>
 
     <div class="Files__container">
-      <UploadCard fileName="Container.js" :fileSize="23423" :progress="35" />
       <UploadCard
-        fileName="Lorem Ipsum Sit.png"
-        :fileSize="93483"
-        :progress="100"
+        :key="file.id"
+        v-for="file in files"
+        :fileName="file.name"
+        :fileSize="file.size"
+        :progress="file.progress"
+        :isFileInvalid="file.invalidSize"
+        :isUploadFailed="file.uploadError"
       />
-      <UploadCard
-        fileName="Hello There.pdf"
-        :fileSize="9423433"
-        isFileInvalid
-      />
-      <UploadCard
-        fileName="Ask-him-api.md"
-        :fileSize="12312365"
-        :progress="83"
-      />
-      <UploadCard fileName="index.ts" :fileSize="837262" isUploadFailed />
     </div>
   </Container>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed, reactive } from 'vue'
 
-import { ApiService } from '@/services/api'
+import type { CustomFile, DroppedFiles, FileRejection } from './types'
+
+import { FileUpload } from '@/services/api/file-upload'
+import { parseFile } from './fileHelpers'
+import { useUser } from '@/hooks/user'
 
 import { Navbar } from '@/components/Navbar'
 import { Heading } from '@/components/Heading'
@@ -50,11 +48,6 @@ import { Text } from '@/components/Text'
 import { Container } from '@/components/Container'
 import { FileUploader } from './components/FileUploader'
 import { UploadCard } from '@/components/Cards/UploadCard'
-
-interface IDroppedFiles {
-  acceptedFiles: File[]
-  rejectedFiles: File[]
-}
 
 export default defineComponent({
   name: 'Upload',
@@ -68,24 +61,67 @@ export default defineComponent({
   },
   setup() {
     const FILE_MAX_SIZE = 100000000 // 100 MB
-    const handleDropFiles = async (files: IDroppedFiles) => {
-      const data = new FormData()
-      data.append('file', files.acceptedFiles[0])
 
-      const response = await ApiService.post('/user/123456/files', data, {
-        onUploadProgress: (progressEvent) => {
-          const progress = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total
-          )
+    const files = reactive<CustomFile[]>([])
+    const { user } = useUser()
+    const hasDroppedFiles = computed(() => files.length)
 
-          console.log(progress)
-        },
-      })
+    function handleDropFiles(files: DroppedFiles) {
+      const { acceptedFiles, rejectedFiles } = files
 
-      console.log({ response })
+      handleUpload(acceptedFiles)
+      handleRejected(rejectedFiles)
     }
 
-    return { handleDropFiles, FILE_MAX_SIZE }
+    function handleRejected(rejectedFiles: FileRejection[]) {
+      const parsedRejectedFiles = rejectedFiles.map(({ file }) => {
+        const parsedFile = parseFile(file)
+        parsedFile.invalidSize = true
+
+        return parsedFile
+      })
+
+      parsedRejectedFiles.forEach((file) => files.push(file))
+    }
+
+    function handleUpload(filesToUpload: File[]) {
+      const parsedFiles = filesToUpload.map(parseFile)
+
+      parsedFiles.forEach((file) => files.push(file))
+      parsedFiles.forEach(processUpload)
+    }
+
+    async function processUpload(droppedFile: CustomFile) {
+      const data = new FormData()
+      data.append('file', droppedFile.file, droppedFile.name)
+
+      const updateFileProgress = (progress: number) => {
+        updateFile(droppedFile.id, { progress })
+      }
+
+      try {
+        const response = await FileUpload.upload(
+          { userId: user.id, formData: data },
+          updateFileProgress
+        )
+
+        updateFile(droppedFile.id, { url: response.data.url })
+      } catch (error) {
+        updateFile(droppedFile.id, { uploadError: true })
+      }
+    }
+
+    function updateFile(fileId: string, data: Partial<CustomFile>) {
+      const targetFile = files.find((file) => file.id === fileId)
+      Object.assign(targetFile, data)
+    }
+
+    return {
+      files,
+      hasDroppedFiles,
+      handleDropFiles,
+      FILE_MAX_SIZE,
+    }
   },
 })
 </script>

@@ -1,4 +1,4 @@
-export interface IFile {
+export interface CustomFile {
   file: File
   id: string
   url: string | null
@@ -9,7 +9,22 @@ export interface IFile {
   invalidSize: boolean
 }
 
-export interface IDroppedFiles {
+export interface DroppedFiles {
   acceptedFiles: File[]
-  rejectedFiles: File[]
+  rejectedFiles: FileRejection[]
+}
+
+export interface FileError {
+  message: string
+  code:
+    | 'file-too-large'
+    | 'file-too-small'
+    | 'too-many-files'
+    | 'file-invalid-type'
+    | string
+}
+
+export interface FileRejection {
+  file: File
+  errors: FileError[]
 }

@@ -1,22 +1,23 @@
 # Coisas pra fazer
-[] Lidar na UI com os cards de erro
-[] Separar Logica de upload
+[x] Lidar na UI com os cards de erro
+[x] Separar Logica de upload
 [] Criar props de dados no UploadCard
-[] Refatorar logica de upload
+[x] Refatorar logica de upload
 [] Como fazer ação em cada action do UploadCard?
 
 
 ## Pontos da UI pra pensar
 [] Como notificar que o link foi copiado?
 [] Deveria alterar o estado do card depois do upload dar certo? (thumb talvez)
-[] Vale a pena ter o "Try Again" quando arquivo for invalido?
-[] Deveria alterar o texto "Uploading `0` files" depois que ja fez upload de todos?
+[x] Vale a pena ter o "Try Again" quando arquivo for invalido?
+[x] Deveria alterar o texto "Uploading `0` files" depois que ja fez upload de todos?
 
 
 # Refatorações
-[] Criar helpers com `computed` pros casos de: `isUploadComplete` e `formattedFileSize`
-[] Criar constante pra definir o máximo limite do tamanho de um arquivo
-[] Fazer com o que texto "File bigger than 100mb" seja dinâmico de acordo com o limite do tamanho do arquivo
+[] Pensar se vale a pena separar exports do `modules/file` pra economizar no bundle
+[] Repensar a forma que criei as variants dos cards, pra ver se não poderia ser um único componente, com prop de texto, no caso dos botões, ou com props que decidam algo
+[x] Criar constante pra definir o máximo limite do tamanho de um arquivo
+[x] Fazer com o que texto "File bigger than 100mb" seja dinâmico de acordo com o limite do tamanho do arquivo
 
 
 # Testes
@@ -27,7 +28,7 @@
 
 
 # Processos
-[] Estudar sobre Three Shaking
+[] Estudar sobre Three Shaking (se rolar tem que refatorar: [date-fns, icons])
 [] Configurar ação de lint antes de commit
 
 

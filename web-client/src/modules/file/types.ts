@@ -7,6 +7,7 @@ export interface CustomFile {
   size: number
   hasUploadError: boolean
   hasInvalidSize: boolean
+  hasCanceled: boolean
 }
 
 export interface DroppedFiles {

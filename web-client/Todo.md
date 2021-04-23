@@ -1,19 +1,27 @@
 # Coisas pra fazer
-- [ ] Criar props de dados no UploadCard
-- [ ] Como fazer ação em cada action do UploadCard?
-- [ ] Mover componente NavBar pra fora do Container, na página `MyUploads`
+- [ ] Criar variant de card para cancelamento
+- [ ] Criar pasta de contexto, mover hook de usuário pra lá
+- [ ] Definir em como o contexto de arquivos vai funcionar
+- [ ] Pensar em como o UploadCard vai utilizar esse estado pra fazer as ações
 - [ ] Corrigir lógica de `isUploading`, quando um card é invalido ou da erro
+- [ ] Adicionar componente `ToggleMessage` e testes
 - [ ] Adicionar scroll quando feito upload
 
 
-## Pontos da UI pra pensar
-- [ ] Como notificar que o link foi copiado?
+# Pontos da UI pra pensar
 - [ ] Deveria alterar o estado do card depois do upload dar certo? (thumb talvez)
 
 
 # Refatorações
+- [ ] Analisar props enviadas pro `UploadCard` (talvez de pra remover algumas)
+- [ ] Analisar lógica de cancelamento
+- [ ] Analisar se faz sentido a responsabilidade de cancelamento no card
 - [ ] Pensar se vale a pena separar exports do `modules/file` pra economizar no bundle
 - [ ] Repensar a forma que criei as variants dos cards, pra ver se não poderia ser um único componente, com prop de texto, no caso dos botões, ou com props que decidam algo
+
+
+# Lasanha
+- [ ] Adicionar state de arquivos, pra poder alterar de página enquanto faz download
 
 
 # Testes

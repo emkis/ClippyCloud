@@ -1,4 +1,7 @@
 import axios from 'axios'
+
+import type { IUploadParams } from './types'
+
 import { createFileUploadService } from './index'
 
 describe('FileUpload Service', () => {
@@ -21,7 +24,12 @@ describe('FileUpload Service', () => {
     axiosMock.post = jest.fn()
 
     it('should be called with expected arguments', () => {
-      const mockUploadData = { userId: 'l48hfs', formData: new FormData() }
+      const mockUploadData: IUploadParams = {
+        uploadData: {
+          userId: 'l48hfs',
+          formData: new FormData(),
+        },
+      }
 
       mockService.upload(mockUploadData)
 

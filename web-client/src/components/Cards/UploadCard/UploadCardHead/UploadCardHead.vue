@@ -33,7 +33,7 @@ export default defineComponent({
   &__inner {
     position: relative;
 
-    ::v-deep .center-progress {
+    :deep(.center-progress) {
       position: absolute;
       left: 50%;
       top: 50%;

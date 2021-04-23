@@ -1,7 +1,7 @@
 <template>
-  <div class="MyUploads">
-    <Navbar linkName="Upload Files" routeName="Upload" />
+  <Navbar linkName="Upload Files" routeName="Upload" />
 
+  <div class="MyUploads">
     <EmptyState v-if="!hasUploadedFiles" />
 
     <template v-else>
@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, readonly } from 'vue'
+import { defineComponent, ref, readonly } from 'vue'
 
 import EmptyState from './components/EmptyState.vue'
 import { Container } from '@/components/Container'
@@ -81,7 +81,7 @@ export default defineComponent({
     const TabNames = readonly({ Available: 'Available', Expired: 'Expired' })
     const { activeTab, setActiveTab } = useTabs(TabNames.Available)
 
-    const hasUploadedFiles = computed(() => true)
+    const hasUploadedFiles = ref(false)
 
     return { hasUploadedFiles, TabNames, activeTab, setActiveTab }
   },

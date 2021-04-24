@@ -1,10 +1,12 @@
 # Coisas pra fazer
-- [ ] Criar variant de card para cancelamento
-- [ ] Criar pasta de contexto, mover hook de usuário pra lá
-- [ ] Definir em como o contexto de arquivos vai funcionar
+- [x] Criar variant de card para cancelamento
+- [x] Criar pasta de contexto, mover hook de usuário pra lá
+- [x] Refatorar todas as variantes para utilizar a composição
+- [ ] Definir como o contexto de arquivos vai funcionar
 - [ ] Pensar em como o UploadCard vai utilizar esse estado pra fazer as ações
 - [ ] Corrigir lógica de `isUploading`, quando um card é invalido ou da erro
 - [ ] Adicionar componente `ToggleMessage` e testes
+- [ ] Adicionar variante de action que tem o `ToggleMessage`
 - [ ] Adicionar scroll quando feito upload
 
 
@@ -13,6 +15,7 @@
 
 
 # Refatorações
+- [ ] Refatorar serviço de upload de arquivo (mudar pra função, criar tipo de retorno do serviço)
 - [ ] Analisar props enviadas pro `UploadCard` (talvez de pra remover algumas)
 - [ ] Analisar lógica de cancelamento
 - [ ] Analisar se faz sentido a responsabilidade de cancelamento no card
@@ -22,6 +25,9 @@
 
 # Lasanha
 - [ ] Adicionar state de arquivos, pra poder alterar de página enquanto faz download
+- [ ] Refatorar hook de usePageTitle
+- [ ] Criar dicionário para todo os tipos de textos de actions, details do `UploadCard`
+- [ ] Analisar [repo](https://github.com/wmartins/react-circular-progress) pra ver se consigo adaptar pra usar o componente (esse anima o progresso melhor)
 
 
 # Testes

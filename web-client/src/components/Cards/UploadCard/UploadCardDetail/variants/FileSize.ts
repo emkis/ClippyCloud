@@ -1,13 +1,15 @@
-<template>
-  <span>{{ fileSize }}</span>
-</template>
+import { defineComponent, inject, computed, h, Ref } from 'vue'
 
-<script lang="ts">
-import { defineComponent, inject, computed, Ref } from 'vue'
+import type { DefaultDetailProps } from '../detailDefaultProps'
 import { getReadableSize } from '@/modules/file'
+
+import DefaultDetail from './Default.vue'
 
 export default defineComponent({
   name: 'FileSize',
+  render() {
+    return h(DefaultDetail, { text: this.fileSize } as DefaultDetailProps)
+  },
   setup() {
     const originalFileSize = inject('fileSize') as Ref<string>
     const fileSize = computed(() =>
@@ -17,4 +19,3 @@ export default defineComponent({
     return { fileSize }
   },
 })
-</script>

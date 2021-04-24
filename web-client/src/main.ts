@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 
-import { initializeUser } from '@/hooks/user'
+import { initializeUser } from '@/contexts/user'
 import { router } from '@/router'
 
 import App from '@/App.vue'

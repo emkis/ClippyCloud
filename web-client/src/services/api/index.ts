@@ -7,4 +7,4 @@ export function createApiService() {
   })
 }
 
-export const ApiService = createApiService
+export const ApiService = createApiService()

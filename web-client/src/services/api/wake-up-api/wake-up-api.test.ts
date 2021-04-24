@@ -5,7 +5,7 @@ describe('WakeUpApi', () => {
   beforeEach(jest.clearAllMocks)
 
   describe('createWakeUpApiService()', () => {
-    it('should return expected functions', () => {
+    it('should return expected properties', () => {
       const service = createWakeUpApiService()
 
       expect(service).toEqual({
@@ -17,16 +17,9 @@ describe('WakeUpApi', () => {
   describe('init()', () => {
     const axiosMock = axios.create()
     const mockService = createWakeUpApiService(axiosMock)
-    jest.spyOn(axiosMock, 'get')
+    axiosMock.get = jest.fn()
 
-    it('should return a promise', () => {
-      const response = mockService.init()
-
-      expect(response).toBeInstanceOf(Promise)
-      expect(axiosMock.get).toBeCalledTimes(1)
-    })
-
-    it('should call with expected url', () => {
+    it('should be called with expected url', () => {
       mockService.init()
 
       expect(axiosMock.get).toBeCalledTimes(1)

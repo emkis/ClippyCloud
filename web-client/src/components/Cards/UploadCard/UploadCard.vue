@@ -34,6 +34,7 @@ export default defineComponent({
     progress: { type: Number, required: true },
     isFileInvalid: { type: Boolean, default: false },
     isUploadFailed: { type: Boolean, default: false },
+    isCanceled: { type: Boolean, default: false },
   },
   emits: ['onActionClick'],
   setup(props, { emit }) {
@@ -47,6 +48,7 @@ export default defineComponent({
       if (isUploadComplete.value) return ECardVariants.Success
       if (props.isUploadFailed) return ECardVariants.Error
       if (props.isFileInvalid) return ECardVariants.InvalidFileSize
+      if (props.isCanceled) return ECardVariants.Canceled
       else return ECardVariants.Initial
     })
 

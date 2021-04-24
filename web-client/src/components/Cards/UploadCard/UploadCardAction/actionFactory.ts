@@ -7,7 +7,7 @@ import DefaultAction from './variants/Default.vue'
 import SuccessAction from './variants/Success.vue'
 import ErrorAction from './variants/Error.vue'
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function withText(component: any, text: string) {
   return h(component, { text } as DefaultActionProps)
 }

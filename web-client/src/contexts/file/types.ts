@@ -5,6 +5,7 @@ export interface FileContextHook {
   files: Ref<CustomFile[]>
   uploadFile(file: File): void
   rejectFile(file: File): void
+  retryUploadFileById(fileId: string): void
   removeFileById(fileId: string): void
   cancelFileUploadById(fileId: string): void
 }

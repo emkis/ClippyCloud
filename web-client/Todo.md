@@ -1,16 +1,11 @@
 # Coisas pra fazer
-- [x] Definir como o contexto de arquivos vai funcionar
-- [x] Implementar contexto de arquivos
-- [x] Refatorar contexto de arquivos
-- [x] Trocar ref por reactive?
-- [x] Como o `UploadCard` vai receber as informações do arquivo (objeto CustomFile inteiro)?
-- [x] Analisar o que o `UploadCard` esta provendo
-- [ ] As variants de uma parte do card, sao apenas visuais, a logica do comportamento fica onde?
-- [ ] Criar interface `StoredCustomFile`
-- [ ] Pensar em como o UploadCard vai utilizar esse estado pra fazer as ações
+- [ ] Adicionar scroll quando feito upload
 - [ ] Adicionar componente `ToggleMessage` e testes
 - [ ] Adicionar variante de action que tem o `ToggleMessage`
-- [ ] Adicionar scroll quando feito upload
+- [ ] Refatorar Success action para usar o componente `ToggleMessage`
+- [ ] Pensar em como lidar com o LocalStorage
+- [ ] Pensar em como a página MyUploads vai lidar com os arquivos
+- [ ] Criar interface `StoredCustomFile`
 
 
 # Pontos da UI pra pensar
@@ -18,15 +13,10 @@
 
 
 # Refatorações
-- [x] Corrigir lógica de `isUploading`, quando um card é invalido ou da erro (`isSettled`?)
-- [x] Refatorar serviço de upload de arquivo (mudar pra função, criar tipo de retorno do serviço)
-- [x] Analisar lógica de cancelamento
-- [x] Analisar se faz sentido a responsabilidade de cancelamento no card
 - [ ] Pensar se vale a pena separar exports do `modules/file` pra economizar no bundle
 
 
 # Lasanha
-- [x] Adicionar state de arquivos, pra poder alterar de página enquanto faz download
 - [ ] Refatorar hook de usePageTitle
 - [ ] Criar dicionário para todo os tipos de textos de actions, details do `UploadCard`
 - [ ] Estudar sobre Three Shaking (se rolar tem que refatorar: [date-fns, icons])

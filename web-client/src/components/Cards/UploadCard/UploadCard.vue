@@ -45,7 +45,7 @@ export default defineComponent({
     const fileId = computed(() => props.file.id)
     const fileSize = computed(() => props.file.size)
 
-    provide('variant', cardVariant)
+    provide('variantName', cardVariant)
     provide('progress', progress)
     provide('fileId', fileId)
     provide('fileSize', fileSize)

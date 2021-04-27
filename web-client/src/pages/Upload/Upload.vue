@@ -22,11 +22,13 @@
       <UploadCard
         :key="file.id"
         v-for="file in files"
+        :fileId="file.id"
         :fileName="file.name"
         :fileSize="file.size"
         :progress="file.progress"
-        :isFileInvalid="file.hasInvalidSize"
-        :isUploadFailed="file.hasUploadError"
+        :isFileInvalid="file.isBiggerThanSizeLimit"
+        :isUploadFailed="file.isUploadFailed"
+        :isCanceled="file.isUploadCanceled"
       />
     </div>
   </Container>
@@ -35,8 +37,13 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 
-import { FILE_MAX_SIZE_FORMATTED } from '@/modules/file'
-import { useFileUpload } from './hook'
+import {
+  FILE_MAX_SIZE_FORMATTED,
+  DroppedFiles,
+  FileRejection,
+} from '@/modules/file'
+
+import { useFile } from '@/contexts/file'
 
 import { Navbar } from '@/components/Navbar'
 import { Heading } from '@/components/Heading'
@@ -56,12 +63,27 @@ export default defineComponent({
     UploadCard,
   },
   setup() {
-    const { files, handleDropFiles } = useFileUpload()
+    const { files, uploadFile, rejectFile } = useFile()
+
+    function handleDropFiles(files: DroppedFiles) {
+      const { acceptedFiles, rejectedFiles } = files
+
+      handleUpload(acceptedFiles)
+      handleRejected(rejectedFiles)
+    }
+
+    function handleUpload(files: File[]) {
+      files.forEach(uploadFile)
+    }
+
+    function handleRejected(files: FileRejection[]) {
+      files.forEach(({ file }: FileRejection) => rejectFile(file))
+    }
 
     const maxFileSize = FILE_MAX_SIZE_FORMATTED
-    const hasDroppedFiles = computed(() => Boolean(files.length))
+    const hasDroppedFiles = computed(() => Boolean(files.value.length))
     const isUploading = computed(() =>
-      files.some((file) => file.progress < 100)
+      files.value.some((file) => !file.isUploaded)
     )
 
     return {

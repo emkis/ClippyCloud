@@ -30,6 +30,7 @@ export function parseFile(file: File): CustomFile {
     size: file.size,
     progress: 0,
     url: null,
+    isSettled: false,
     isUploaded: false,
     isUploadFailed: false,
     isUploadCanceled: false,

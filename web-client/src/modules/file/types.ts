@@ -8,6 +8,7 @@ export interface CustomFile {
   rawFile: File
   progress: number
   requestSource?: CancelTokenSource
+  isSettled: boolean
   isUploaded: boolean
   isUploadFailed: boolean
   isUploadCanceled: boolean

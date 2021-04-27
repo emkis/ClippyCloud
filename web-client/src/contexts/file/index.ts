@@ -7,6 +7,7 @@ import { FileUpload } from '@/services/api/file-upload'
 
 import type { FileContextHook } from './types'
 
+const user = useUser()
 const files = ref<CustomFile[]>([])
 
 export function useFile(): FileContextHook {
@@ -15,6 +16,7 @@ export function useFile(): FileContextHook {
     uploadFile,
     rejectFile,
     removeFileById,
+    retryUploadFileById,
     cancelFileUploadById,
   }
 }
@@ -70,22 +72,39 @@ function rejectFile(file: File) {
   addFileToState(parsedFile)
 }
 
-async function uploadFile(file: File) {
-  const user = useUser()
+function resetFileState(fileId: string) {
+  updateFileState(fileId, {
+    isSettled: false,
+    isUploadCanceled: false,
+    isUploadFailed: false,
+    progress: 0,
+    requestSource: undefined,
+  })
+}
 
+function uploadFile(file: File) {
   const parsedFile = parseFile(file)
+
   addFileToState(parsedFile)
+  sendFileToServer(parsedFile)
+}
+
+function retryUploadFileById(fileId: string) {
+  const file = getFileById(fileId)
+  sendFileToServer(file, true)
+}
+
+async function sendFileToServer(file: CustomFile, needReset = false) {
+  if (needReset) resetFileState(file.id)
 
   const requestSource = createRequestSource()
 
   const formData = new FormData()
-  formData.append('file', parsedFile.rawFile, parsedFile.name)
+  formData.append('file', file.rawFile, file.name)
 
   const updateFileProgress = (progress: number) => {
-    updateFileState(parsedFile.id, { progress })
+    updateFileState(file.id, { progress, requestSource })
   }
-
-  updateFileState(parsedFile.id, { requestSource })
 
   try {
     const fileResponse = await FileUpload.upload({
@@ -94,17 +113,14 @@ async function uploadFile(file: File) {
       cancelToken: requestSource.token,
     })
 
-    updateFileState(parsedFile.id, {
-      isUploaded: true,
-      url: fileResponse.data.url,
-    })
+    updateFileState(file.id, { isUploaded: true, url: fileResponse.data.url })
   } catch (error) {
     if (axios.isCancel(error)) {
-      updateFileState(parsedFile.id, { isUploadCanceled: true })
+      updateFileState(file.id, { isUploadCanceled: true })
     } else {
-      updateFileState(parsedFile.id, { isUploadFailed: true })
+      updateFileState(file.id, { isUploadFailed: true })
     }
   } finally {
-    updateFileState(parsedFile.id, { isSettled: true })
+    updateFileState(file.id, { isSettled: true })
   }
 }

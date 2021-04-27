@@ -11,7 +11,7 @@ import { makeActionVariant } from './actionFactory'
 export default defineComponent({
   name: 'UploadCardAction',
   setup() {
-    const variant = inject('variant') as Ref<ECardVariants>
+    const variant = inject('variantName') as Ref<ECardVariants>
     const ActionComponent = computed(() => makeActionVariant(variant.value))
 
     return { ActionComponent }

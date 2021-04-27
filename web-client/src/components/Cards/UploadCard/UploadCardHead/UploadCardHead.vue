@@ -15,7 +15,7 @@ import { makeHeadVariant } from './headFactory'
 export default defineComponent({
   name: 'UploadCardHead',
   setup() {
-    const variant = inject('variant') as Ref<ECardVariants>
+    const variant = inject('variantName') as Ref<ECardVariants>
     const HeadComponent = computed(() => makeHeadVariant(variant.value))
 
     return { HeadComponent }

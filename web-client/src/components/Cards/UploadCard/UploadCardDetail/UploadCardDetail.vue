@@ -11,7 +11,7 @@ import { makeDetailVariant } from './detailFactory'
 export default defineComponent({
   name: 'UploadCardDetail',
   setup() {
-    const variant = inject('variant') as Ref<ECardVariants>
+    const variant = inject('variantName') as Ref<ECardVariants>
     const DetailComponent = computed(() => makeDetailVariant(variant.value))
 
     return { DetailComponent }

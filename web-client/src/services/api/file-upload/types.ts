@@ -1,6 +1,10 @@
-import type { CancelToken } from 'axios'
+import type { CancelToken, AxiosResponse } from 'axios'
 
-export interface IUploadData {
+export interface IUploadService {
+  upload(uploadParams: IUploadParams): Promise<AxiosResponse<IUploadResponse>>
+}
+
+interface IUploadData {
   userId: string
   formData: FormData
 }

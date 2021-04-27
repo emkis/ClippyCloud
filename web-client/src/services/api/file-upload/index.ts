@@ -1,26 +1,30 @@
 import { ApiService } from '@/services/api'
 import { getRoundPercentage } from '@/utilities/numbers'
 
-import type { IUploadParams, IUploadResponse } from './types'
+import type { IUploadParams, IUploadResponse, IUploadService } from './types'
 
-export const createFileUploadService = (httpClient = ApiService) => ({
-  upload(uploadParams: IUploadParams) {
-    const { uploadData, cancelToken, onProgress } = uploadParams
-    const { userId, formData } = uploadData
+export function createFileUploadService(
+  httpClient = ApiService
+): IUploadService {
+  return {
+    upload(uploadParams: IUploadParams) {
+      const { uploadData, cancelToken, onProgress } = uploadParams
+      const { userId, formData } = uploadData
 
-    const requestUrl = `user/${userId}/files`
+      const requestUrl = `user/${userId}/files`
 
-    return httpClient.post<IUploadResponse>(requestUrl, formData, {
-      onUploadProgress(progressEvent: ProgressEvent) {
-        const { loaded, total } = progressEvent
-        const progress = getRoundPercentage(loaded, total)
+      return httpClient.post<IUploadResponse>(requestUrl, formData, {
+        onUploadProgress(progressEvent: ProgressEvent) {
+          const { loaded, total } = progressEvent
+          const progress = getRoundPercentage(loaded, total)
 
-        onProgress?.(progress)
-      },
+          onProgress?.(progress)
+        },
 
-      cancelToken,
-    })
-  },
-})
+        cancelToken,
+      })
+    },
+  }
+}
 
 export const FileUpload = createFileUploadService()

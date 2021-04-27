@@ -42,9 +42,11 @@ export default defineComponent({
     })
 
     const progress = computed(() => props.file.progress)
+    const fileUrl = computed(() => props.file.url)
 
     provide('variantName', cardVariant)
     provide('progress', progress)
+    provide('fileUrl', fileUrl)
     provide('fileId', props.file.id)
     provide('fileSize', props.file.size)
   },

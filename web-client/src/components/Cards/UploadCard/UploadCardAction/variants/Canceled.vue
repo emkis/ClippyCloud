@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-// import { useFile } from '@/contexts/file'
+import { defineComponent, inject } from 'vue'
+import { useFile } from '@/contexts/file'
 
 import { Button } from '@/components/Button'
 
@@ -12,14 +12,12 @@ export default defineComponent({
   name: 'Canceled',
   components: { Button },
   setup() {
-    // const { reUploadFile } = useFile()
+    const { retryUploadFileById } = useFile()
 
-    // const fileId = inject('fileId') as string
+    const fileId = inject('fileId') as string
+    const handleClick = () => retryUploadFileById(fileId)
 
-    // const handleClick = () => reUploadFile(fileId)
-
-    // return { handleClick }
-    return { handleClick: () => ({}) }
+    return { handleClick }
   },
 })
 </script>

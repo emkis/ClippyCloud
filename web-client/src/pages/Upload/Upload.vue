@@ -19,17 +19,7 @@
     </Heading>
 
     <div class="Files__container">
-      <UploadCard
-        :key="file.id"
-        v-for="file in files"
-        :fileId="file.id"
-        :fileName="file.name"
-        :fileSize="file.size"
-        :progress="file.progress"
-        :isFileInvalid="file.isBiggerThanSizeLimit"
-        :isUploadFailed="file.isUploadFailed"
-        :isCanceled="file.isUploadCanceled"
-      />
+      <UploadCard :key="file.id" v-for="file in files" :file="file" />
     </div>
   </Container>
 </template>

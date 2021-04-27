@@ -13,6 +13,7 @@ export function useFile(): FileContextHook {
   return {
     files,
     uploadFile,
+    rejectFile,
     removeFileById,
     cancelFileUploadById,
   }
@@ -58,6 +59,13 @@ function createRequestSource() {
 function cancelFileUploadById(fileId: string) {
   const file = getFileById(fileId)
   file.requestSource?.cancel()
+}
+
+function rejectFile(file: File) {
+  const parsedFile = parseFile(file)
+  parsedFile.isBiggerThanSizeLimit = true
+
+  addFileToState(parsedFile)
 }
 
 async function uploadFile(file: File) {

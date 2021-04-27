@@ -7,3 +7,7 @@ export function truncate(text: string, limit: number) {
   const truncatedText = trimmedText.substring(0, limit).trim()
   return `${truncatedText}...`
 }
+
+export async function copyToClipboard(text: string) {
+  await navigator.clipboard.writeText(text)
+}

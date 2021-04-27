@@ -63,7 +63,9 @@ function cancelFileUploadById(fileId: string) {
 
 function rejectFile(file: File) {
   const parsedFile = parseFile(file)
+
   parsedFile.isBiggerThanSizeLimit = true
+  parsedFile.isSettled = true
 
   addFileToState(parsedFile)
 }
@@ -102,5 +104,7 @@ async function uploadFile(file: File) {
     } else {
       updateFileState(parsedFile.id, { isUploadFailed: true })
     }
+  } finally {
+    updateFileState(parsedFile.id, { isSettled: true })
   }
 }

@@ -83,7 +83,7 @@ export default defineComponent({
     const maxFileSize = FILE_MAX_SIZE_FORMATTED
     const hasDroppedFiles = computed(() => Boolean(files.value.length))
     const isUploading = computed(() =>
-      files.value.some((file) => !file.isUploaded)
+      files.value.some((file) => !file.isSettled)
     )
 
     return {

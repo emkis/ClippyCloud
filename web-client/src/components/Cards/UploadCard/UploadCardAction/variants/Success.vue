@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-// import { useFile } from '@/contexts/file'
+import { defineComponent, inject, Ref } from 'vue'
+import { copyToClipboard } from '@/utilities/strings'
 
 import { Button } from '@/components/Button'
 
@@ -12,13 +12,10 @@ export default defineComponent({
   name: 'Success',
   components: { Button },
   setup() {
-    // const {  } = useFile()
+    const fileUrl = inject('fileUrl') as Ref<string>
+    const handleClick = () => copyToClipboard(fileUrl.value)
 
-    // const fileId = inject('fileId') as string
-    // const handleClick = () => removeFileById(fileId)
-
-    // return { handleClick }
-    return { handleClick: () => ({}) }
+    return { handleClick }
   },
 })
 </script>

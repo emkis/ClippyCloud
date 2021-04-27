@@ -1,13 +1,17 @@
+import type { CancelTokenSource } from 'axios'
+
 export interface CustomFile {
-  file: File
   id: string
-  url: string | null
   name: string
-  progress: number
   size: number
-  hasUploadError: boolean
-  hasInvalidSize: boolean
-  hasCanceled: boolean
+  url: string | null
+  rawFile: File
+  progress: number
+  requestSource?: CancelTokenSource
+  isUploaded: boolean
+  isUploadFailed: boolean
+  isUploadCanceled: boolean
+  isBiggerThanSizeLimit: boolean
 }
 
 export interface DroppedFiles {

@@ -24,15 +24,16 @@ export function getTimeToExpireFile(fileCreationDate: string) {
 
 export function parseFile(file: File): CustomFile {
   return {
-    file,
+    rawFile: file,
     id: generateUniqueId(),
     name: file.name,
     size: file.size,
     progress: 0,
-    hasUploadError: false,
-    hasInvalidSize: false,
-    hasCanceled: false,
     url: null,
+    isUploaded: false,
+    isUploadFailed: false,
+    isUploadCanceled: false,
+    isBiggerThanSizeLimit: false,
   }
 }
 

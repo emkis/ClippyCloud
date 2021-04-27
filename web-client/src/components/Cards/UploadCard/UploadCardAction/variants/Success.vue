@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, Ref } from 'vue'
+import { defineComponent, inject } from 'vue'
 import { actionDefaultProps } from '../actionDefaultProps'
 
 import { Button } from '@/components/Button'
@@ -13,7 +13,7 @@ export default defineComponent({
   components: { Button },
   props: actionDefaultProps,
   setup() {
-    const handleAction = inject('actionHandler') as Ref<() => void>
+    const handleAction = inject('variantAction') as () => void
 
     return { handleAction }
   },

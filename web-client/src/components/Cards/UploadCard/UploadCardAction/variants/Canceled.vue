@@ -1,5 +1,5 @@
 <template>
-  <Button theme="error" @onClick="handleClick">Try again</Button>
+  <Button theme="error" @onClick="handleClick">Restart upload</Button>
 </template>
 
 <script lang="ts">
@@ -9,7 +9,7 @@ import { defineComponent } from 'vue'
 import { Button } from '@/components/Button'
 
 export default defineComponent({
-  name: 'Error',
+  name: 'Canceled',
   components: { Button },
   setup() {
     // const { reUploadFile } = useFile()

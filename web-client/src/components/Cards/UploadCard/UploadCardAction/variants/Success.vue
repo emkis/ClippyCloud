@@ -1,21 +1,24 @@
 <template>
-  <Button theme="primary" @onClick="handleAction">{{ text }}</Button>
+  <Button theme="primary" @onClick="handleClick">Copy link</Button>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue'
-import { actionDefaultProps } from '../actionDefaultProps'
+import { defineComponent } from 'vue'
+// import { useFile } from '@/contexts/file'
 
 import { Button } from '@/components/Button'
 
 export default defineComponent({
   name: 'Success',
   components: { Button },
-  props: actionDefaultProps,
   setup() {
-    const handleAction = inject('variantAction') as () => void
+    // const {  } = useFile()
 
-    return { handleAction }
+    // const fileId = inject('fileId') as string
+    // const handleClick = () => removeFileById(fileId)
+
+    // return { handleClick }
+    return { handleClick: () => ({}) }
   },
 })
 </script>

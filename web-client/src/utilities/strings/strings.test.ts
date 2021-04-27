@@ -1,4 +1,4 @@
-import { truncate } from './index'
+import { truncate, copyToClipboard } from './index'
 
 describe('truncate()', () => {
   it('should return the same text', () => {
@@ -26,5 +26,21 @@ describe('truncate()', () => {
         expect(truncate(originalText, limit)).toBe(expectedText)
       })
     })
+  })
+})
+
+describe('copyToClipboard()', () => {
+  beforeEach(jest.clearAllMocks)
+  beforeAll(() => {
+    Object.assign(navigator, {
+      clipboard: { writeText: jest.fn() },
+    })
+  })
+
+  it('should be called with expected text', () => {
+    copyToClipboard('Hello Jest')
+
+    expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(1)
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith('Hello Jest')
   })
 })

@@ -12,8 +12,9 @@
       <circle
         :stroke="progressColor"
         :stroke-dasharray="`${circumference} ${circumference}`"
-        :style="{ strokeDashoffset: strokeDashOffset }"
         :stroke-width="stroke"
+        stroke-linecap="round"
+        :style="{ strokeDashoffset: strokeDashOffset }"
         fill="none"
         :r="normalizedRadius"
         :cx="radius"
@@ -57,8 +58,11 @@ export default defineComponent({
   > svg {
     width: 100%;
     height: 100%;
-    transition: stroke 350ms, stroke-dashoffset 350ms;
     transform: rotate(-90deg);
+
+    circle {
+      transition: stroke 350ms, stroke-dashoffset 350ms;
+    }
   }
 }
 </style>

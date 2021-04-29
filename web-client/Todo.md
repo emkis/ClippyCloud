@@ -9,10 +9,12 @@
 
 
 # Pontos da UI pra pensar
+- [ ] Como mostrar o estado de drop na página inteira
 - [ ] Deveria alterar o estado do card depois do upload dar certo? (thumb talvez)
 
 
 # Refatorações
+- [ ] Pensar em como refatorar a troca do componente de progresso no UploadCard
 - [ ] Pensar se vale a pena separar exports do `modules/file` pra economizar no bundle
 
 

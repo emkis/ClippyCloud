@@ -53,7 +53,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, readonly } from 'vue'
+import { defineComponent, ref, readonly, onUnmounted, watchEffect } from 'vue'
+
+import { useAppScroll } from '@/hooks/app-scroll'
 
 import EmptyState from './components/EmptyState.vue'
 import { Container } from '@/components/Container'
@@ -78,10 +80,22 @@ export default defineComponent({
     FileCard,
   },
   setup() {
+    const { enableAppScroll, disableAppScroll } = useAppScroll()
+
     const TabNames = readonly({ Available: 'Available', Expired: 'Expired' })
     const { activeTab, setActiveTab } = useTabs(TabNames.Available)
 
     const hasUploadedFiles = ref(false)
+    const handleNoFiles = () => {
+      window.scrollTo({ top: 0 })
+      disableAppScroll()
+    }
+    watchEffect(() => {
+      const hasFiles = Boolean(hasUploadedFiles.value)
+      hasFiles ? enableAppScroll() : handleNoFiles()
+    })
+
+    onUnmounted(() => enableAppScroll())
 
     return { hasUploadedFiles, TabNames, activeTab, setActiveTab }
   },

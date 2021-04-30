@@ -1,11 +1,13 @@
 # Coisas pra fazer
+- [ ] Criar componente `ButtonCopy`
+- [ ] Criar testes do componente `ButtonCopy`
+- [ ] Refatorar UploadCard success action pra usar o `ButtonCopy`, e também o FileCard não expirado
 - [ ] Adicionar scroll quando feito upload
-- [ ] Adicionar componente `ToggleMessage` e testes
-- [ ] Adicionar variante de action que tem o `ToggleMessage`
-- [ ] Refatorar Success action para usar o componente `ToggleMessage`
 - [ ] Pensar em como lidar com o LocalStorage
 - [ ] Pensar em como a página MyUploads vai lidar com os arquivos
-- [ ] Criar interface `StoredCustomFile`
+- [ ] Ideia: Criar novo contexto pra arquivos do LocalStorage?
+- [ ] Criar interface `StoredCustomFile` (precisa ter data de upload do arquivo)
+- [ ] Caso a tab inicial esteja disabled, mover pra próxima
 
 
 # Pontos da UI pra pensar

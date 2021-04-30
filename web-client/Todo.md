@@ -1,4 +1,6 @@
 # Coisas pra fazer
+- [ ] Analisar o prevent scroll no mobile
+- [ ] Analisar o prevent com body e html
 - [ ] Criar componente `ButtonCopy`
 - [ ] Criar testes do componente `ButtonCopy`
 - [ ] Refatorar UploadCard success action pra usar o `ButtonCopy`, e também o FileCard não expirado

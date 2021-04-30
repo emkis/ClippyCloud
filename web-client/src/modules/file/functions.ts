@@ -22,6 +22,10 @@ export function getTimeToExpireFile(fileCreationDate: string) {
   return timeToExpire
 }
 
+export function getCurrentISODate() {
+  return new Date().toISOString()
+}
+
 export function parseFile(file: File): CustomFile {
   return {
     rawFile: file,
@@ -30,6 +34,7 @@ export function parseFile(file: File): CustomFile {
     size: file.size,
     progress: 0,
     url: null,
+    createdAt: getCurrentISODate(),
     isSettled: false,
     isUploaded: false,
     isUploadFailed: false,

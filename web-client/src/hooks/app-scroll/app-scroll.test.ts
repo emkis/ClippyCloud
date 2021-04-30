@@ -6,6 +6,8 @@ describe('useAppScroll()', () => {
   it.skip('should return expected properties', () => {
     expect(useAppScroll()).toEqual({
       toggleScroll: expect.any(Function),
+      enableAppScroll: expect.any(Function),
+      disableAppScroll: expect.any(Function),
     })
   })
 

@@ -7,7 +7,7 @@ export function useAppScroll() {
     handleNativeScroll(() => isScrollEnabled.value)
   })
 
-  return { toggleScroll }
+  return { toggleScroll, enableAppScroll, disableAppScroll }
 }
 
 function isAppScrollEnabled(): boolean {
@@ -26,10 +26,12 @@ function toggleScroll() {
   isScrollEnabled.value = !isScrollEnabled.value
 }
 
-export function enableAppScroll() {
+function enableAppScroll() {
+  isScrollEnabled.value = true
   document.body.style.overflow = ''
 }
 
-export function disableAppScroll() {
+function disableAppScroll() {
+  isScrollEnabled.value = false
   document.body.style.overflow = 'hidden'
 }

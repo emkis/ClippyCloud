@@ -1,4 +1,7 @@
+import mockCopy from 'copy-to-clipboard'
 import { truncate, copyToClipboard } from './index'
+
+jest.mock('copy-to-clipboard', () => jest.fn())
 
 describe('truncate()', () => {
   it('should return the same text', () => {
@@ -31,16 +34,11 @@ describe('truncate()', () => {
 
 describe('copyToClipboard()', () => {
   beforeEach(jest.clearAllMocks)
-  beforeAll(() => {
-    Object.assign(navigator, {
-      clipboard: { writeText: jest.fn() },
-    })
-  })
 
   it('should be called with expected text', () => {
     copyToClipboard('Hello Jest')
 
-    expect(navigator.clipboard.writeText).toHaveBeenCalledTimes(1)
-    expect(navigator.clipboard.writeText).toHaveBeenCalledWith('Hello Jest')
+    expect(mockCopy).toHaveBeenCalledTimes(1)
+    expect(mockCopy).toHaveBeenCalledWith('Hello Jest')
   })
 })

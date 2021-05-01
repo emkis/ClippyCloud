@@ -1,3 +1,5 @@
+import copy from 'copy-to-clipboard'
+
 export function truncate(text: string, limit: number) {
   const trimmedText = text.trim()
   const hasMinimumLength = trimmedText.length >= limit
@@ -8,6 +10,6 @@ export function truncate(text: string, limit: number) {
   return `${truncatedText}...`
 }
 
-export async function copyToClipboard(text: string) {
-  await navigator.clipboard.writeText(text)
+export function copyToClipboard(text: string) {
+  copy(text)
 }

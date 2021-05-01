@@ -14,26 +14,22 @@
   </Container>
 
   <Container class="Files">
-    <Heading class="Files__title" level="3" v-if="hasDroppedFiles">
+    <Heading class="Files__title" level="3" v-show="hasDroppedFiles">
       {{ isUploading ? 'Uploading' : 'Uploaded' }} files
     </Heading>
 
-    <div class="Files__container">
+    <div class="Files__container" ref="filesContainer">
       <UploadCard :key="file.id" v-for="file in files" :file="file" />
     </div>
   </Container>
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, computed, ref, watch } from 'vue'
 
-import {
-  FILE_MAX_SIZE_FORMATTED,
-  DroppedFiles,
-  FileRejection,
-} from '@/modules/file'
-
+import { FILE_MAX_SIZE_FORMATTED } from '@/modules/file'
 import { useFile } from '@/contexts/file'
+import { useDropFiles } from './composables/useDropFiles'
 
 import { Navbar } from '@/components/Navbar'
 import { Heading } from '@/components/Heading'
@@ -53,32 +49,26 @@ export default defineComponent({
     UploadCard,
   },
   setup() {
-    const { files, uploadFile, rejectFile } = useFile()
+    const { files } = useFile()
+    const { handleDropFiles } = useDropFiles()
 
-    function handleDropFiles(files: DroppedFiles) {
-      const { acceptedFiles, rejectedFiles } = files
-
-      handleUpload(acceptedFiles)
-      handleRejected(rejectedFiles)
+    const filesContainer = ref<HTMLDivElement>()
+    const scrollIntoFiles = () => {
+      filesContainer.value?.scrollIntoView({ behavior: 'smooth' })
     }
 
-    function handleUpload(files: File[]) {
-      files.forEach(uploadFile)
-    }
-
-    function handleRejected(files: FileRejection[]) {
-      files.forEach(({ file }: FileRejection) => rejectFile(file))
-    }
-
-    const maxFileSize = FILE_MAX_SIZE_FORMATTED
+    const sortedFiles = computed(() => [...files.value].reverse())
     const hasDroppedFiles = computed(() => Boolean(files.value.length))
     const isUploading = computed(() =>
       files.value.some((file) => !file.isSettled)
     )
 
+    watch(files, scrollIntoFiles, { flush: 'post' })
+
     return {
-      files,
-      maxFileSize,
+      filesContainer,
+      files: sortedFiles,
+      maxFileSize: FILE_MAX_SIZE_FORMATTED,
       isUploading,
       hasDroppedFiles,
       handleDropFiles,

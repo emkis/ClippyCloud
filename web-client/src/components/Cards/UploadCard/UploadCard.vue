@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, provide } from 'vue'
+import { computed, defineComponent, PropType, provide, toRefs } from 'vue'
 
 import { ECardVariants } from './types'
 
@@ -41,14 +41,13 @@ export default defineComponent({
       else return ECardVariants.Initial
     })
 
-    const progress = computed(() => props.file.progress)
-    const fileUrl = computed(() => props.file.url)
+    const { progress, url, id, size } = toRefs(props.file)
 
     provide('variantName', cardVariant)
     provide('progress', progress)
-    provide('fileUrl', fileUrl)
-    provide('fileId', props.file.id)
-    provide('fileSize', props.file.size)
+    provide('fileUrl', url)
+    provide('fileId', id.value)
+    provide('fileSize', size.value)
   },
 })
 </script>

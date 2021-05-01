@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, provide, computed } from 'vue'
+import { defineComponent, provide, toRefs } from 'vue'
 
 export default defineComponent({
   name: 'TabContext',
@@ -11,9 +11,8 @@ export default defineComponent({
     activeTab: { type: String, required: true },
   },
   setup(props) {
-    const reactiveActiveTab = computed(() => props.activeTab)
-
-    provide('activeTab', reactiveActiveTab)
+    const { activeTab } = toRefs(props)
+    provide('activeTab', activeTab)
   },
 })
 </script>

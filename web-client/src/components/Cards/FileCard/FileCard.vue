@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, provide } from 'vue'
+import { computed, defineComponent, provide, toRefs } from 'vue'
 
 import { EThemeColors } from '@/services/theme'
 import { defaultBaseCardProps } from '../defaultBaseCardProps'
@@ -44,7 +44,8 @@ export default defineComponent({
   emits: ['onActionClick'],
   components: { BaseCard, FileCardHead, Button },
   setup(props, { emit }) {
-    const fileExtension = computed(() => props.fileExtension)
+    const { fileExtension } = toRefs(props)
+    provide('fileExtension', fileExtension)
 
     const isFileAlreadyExpired = computed(() => isFileExpired(props.createdAt))
     const formattedFileSize = computed(() => getReadableSize(props.fileSize))
@@ -58,8 +59,6 @@ export default defineComponent({
     const fileStatusStyle = computed(() => {
       return isFileAlreadyExpired.value && `color: ${EThemeColors.kournikova}`
     })
-
-    provide('fileExtension', fileExtension)
 
     return {
       isFileAlreadyExpired,

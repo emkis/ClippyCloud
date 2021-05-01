@@ -13,7 +13,7 @@
     </template>
 
     <template #bottom v-if="!isFileAlreadyExpired">
-      <Button theme="primary" @onClick="handleAction">Copy Link</Button>
+      <ButtonCopy value="fake text for now" />
     </template>
   </BaseCard>
 </template>
@@ -29,7 +29,7 @@ import {
   isFileExpired,
 } from '@/modules/file'
 
-import { Button } from '@/components/Button'
+import { ButtonCopy } from '@/components/ButtonCopy'
 import BaseCard from '../BaseCard.vue'
 import FileCardHead from './FileCardHead.vue'
 
@@ -42,7 +42,7 @@ export default defineComponent({
     createdAt: { type: String, required: true },
   },
   emits: ['onActionClick'],
-  components: { BaseCard, FileCardHead, Button },
+  components: { BaseCard, FileCardHead, ButtonCopy },
   setup(props, { emit }) {
     const { fileExtension } = toRefs(props)
     provide('fileExtension', fileExtension)

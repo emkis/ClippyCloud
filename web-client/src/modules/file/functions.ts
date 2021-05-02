@@ -6,6 +6,7 @@ import isPast from 'date-fns/isPast'
 import type { CustomFile } from './types'
 
 import { generateUniqueId } from '@/utilities/generators'
+import { getFileExtension } from '@/utilities/strings'
 
 export function isFileExpired(fileCreationDate: string) {
   const creationDate = new Date(fileCreationDate)
@@ -31,6 +32,7 @@ export function parseFile(file: File): CustomFile {
     rawFile: file,
     id: generateUniqueId(),
     name: file.name,
+    extension: getFileExtension(file.name),
     size: file.size,
     progress: 0,
     url: null,

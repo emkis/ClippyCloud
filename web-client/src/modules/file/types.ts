@@ -3,6 +3,7 @@ import type { CancelTokenSource } from 'axios'
 export interface CustomFile {
   id: string
   name: string
+  extension?: string
   size: number
   url: string | null
   rawFile: File

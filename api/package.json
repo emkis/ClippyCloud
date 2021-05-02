@@ -1,6 +1,6 @@
 {
   "name": "clippy-cloud-api",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "src/server.js",
   "scripts": {
     "start": "node dist/server.js",
@@ -30,6 +30,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.12.7",
-    "multer": "^1.4.2"
+    "multer": "^1.4.2",
+    "nanoid": "^3.1.22"
   }
 }

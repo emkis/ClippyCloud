@@ -7,11 +7,12 @@ import ErrorDetail from './Error.vue'
 
 export default defineComponent({
   name: 'InvalidFileSize',
-  render() {
-    const maxFileSize = FILE_MAX_SIZE_FORMATTED
+  components: { ErrorDetail },
+  setup() {
+    const props: DefaultDetailProps = {
+      text: `File bigger than ${FILE_MAX_SIZE_FORMATTED}`,
+    }
 
-    return h(ErrorDetail, {
-      text: `File bigger than ${maxFileSize}`,
-    } as DefaultDetailProps)
+    return () => h(ErrorDetail, props)
   },
 })

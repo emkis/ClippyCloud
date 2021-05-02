@@ -7,13 +7,12 @@ import DefaultDetail from './Default.vue'
 
 export default defineComponent({
   name: 'FileSize',
-  render() {
-    return h(DefaultDetail, { text: this.fileSize } as DefaultDetailProps)
-  },
+  components: { DefaultDetail },
   setup() {
     const originalFileSize = inject('fileSize') as string
     const fileSize = computed(() => getReadableSize(Number(originalFileSize)))
+    const props: DefaultDetailProps = { text: fileSize.value }
 
-    return { fileSize }
+    return () => h(DefaultDetail, props)
   },
 })

@@ -10,18 +10,16 @@ import { UPLOAD_FOLDER_PATH } from './constants'
 const app = express()
 const server = new http.Server(app)
 
-app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
 mongoose.connect(environment.mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 })
 
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use('/files', express.static(UPLOAD_FOLDER_PATH))
-
 app.use(routes)
 
 server.listen(environment.appPort)

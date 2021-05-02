@@ -1,21 +1,23 @@
-import { reactive, readonly, toRefs } from 'vue'
+import { ref, readonly } from 'vue'
 
-import type { UserContext, UserState } from './types'
+import type { UserContext, UserState, UploadedFile } from './types'
 
 import { getFromStorage, saveInStorage } from '@/services/storage'
 import { generateUniqueId } from '@/utilities/generators'
 
-const state = reactive<UserState>({
-  id: '',
-})
+const id = ref('')
+const uploadedFiles = ref<UploadedFile[]>([])
 
 export function useUser(): UserContext {
-  return { ...toRefs(readonly(state)) }
+  return {
+    id: readonly(id),
+    uploadedFiles: readonly(uploadedFiles),
+  }
 }
 
 function setUserId(targetId: string) {
-  state.id = targetId
-  saveInStorage('user', state)
+  id.value = targetId
+  saveInStorage('user', { id: id.value })
 }
 
 export function initializeUser() {

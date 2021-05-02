@@ -17,8 +17,16 @@
 
         <TabContext :activeTab="activeTab">
           <TabList @onTabChange="setActiveTab">
-            <Tab :name="TabNames.Available" :total="availableFiles.length" />
-            <Tab :name="TabNames.Expired" :total="expiredFiles.length" />
+            <Tab
+              :name="TabNames.Available"
+              :total="totalAvailable"
+              :disabled="totalAvailable === 0"
+            />
+            <Tab
+              :name="TabNames.Expired"
+              :total="totalExpired"
+              :disabled="totalExpired === 0"
+            />
           </TabList>
 
           <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Available">
@@ -93,9 +101,13 @@ export default defineComponent({
     const availableFiles = computed(() =>
       uploadedFiles.value.filter((file) => !isFileExpired(file.createdAt))
     )
+    const totalAvailable = computed(() => availableFiles.value.length)
+
     const expiredFiles = computed(() =>
       uploadedFiles.value.filter((file) => isFileExpired(file.createdAt))
     )
+    const totalExpired = computed(() => expiredFiles.value.length)
+
     const hasUploadedFiles = computed(() => Boolean(uploadedFiles.value.length))
     const handleNoFiles = () => {
       window.scrollTo({ top: 0 })
@@ -111,7 +123,9 @@ export default defineComponent({
 
     return {
       availableFiles,
+      totalAvailable,
       expiredFiles,
+      totalExpired,
       hasUploadedFiles,
       TabNames,
       activeTab,

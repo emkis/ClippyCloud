@@ -1,7 +1,7 @@
 import multer from 'multer'
-import crypto from 'crypto'
 
 import { UPLOAD_FOLDER_PATH } from '../constants'
+import { generateUniqueId } from '../utilities/strings'
 
 export default {
   dest: UPLOAD_FOLDER_PATH,
@@ -11,11 +11,12 @@ export default {
       cb(null, UPLOAD_FOLDER_PATH)
     },
 
-    filename: (_, file: Express.Multer.File, cb) => {
-      crypto.randomBytes(16, (_, hash) => {
-        const customName = `${hash.toString('hex')}-${file.originalname}`
-        cb(null, customName)
-      })
+    filename: (_, file: Express.Multer.File, appendFileName) => {
+      const fileId = generateUniqueId()
+      const fileName = file.originalname
+      const customName = `${fileId}--${fileName}`
+
+      appendFileName(null, customName)
     },
   }),
 }

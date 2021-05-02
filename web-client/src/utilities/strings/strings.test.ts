@@ -1,5 +1,5 @@
 import mockCopy from 'copy-to-clipboard'
-import { truncate, copyToClipboard } from './index'
+import { truncate, copyToClipboard, getFileExtension } from './index'
 
 jest.mock('copy-to-clipboard', () => jest.fn())
 
@@ -40,5 +40,20 @@ describe('copyToClipboard()', () => {
 
     expect(mockCopy).toHaveBeenCalledTimes(1)
     expect(mockCopy).toHaveBeenCalledWith('Hello Jest')
+  })
+})
+
+describe('getFileExtension()', () => {
+  it('should return "undefined" if file has no extension', () => {
+    const fileName = 'fake-file-name'
+    expect(getFileExtension(fileName)).toBeUndefined()
+  })
+
+  it('should return expected file extensions', () => {
+    expect(getFileExtension('hello.ts')).toBe('ts')
+    expect(getFileExtension('fetch.service.js')).toBe('js')
+    expect(getFileExtension('Certificate File.PDF')).toBe('pdf')
+    expect(getFileExtension('MySuperFileName Oh Yess.Md')).toBe('md')
+    expect(getFileExtension('he he he he.xd')).toBe('xd')
   })
 })

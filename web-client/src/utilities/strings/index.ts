@@ -13,3 +13,11 @@ export function truncate(text: string, limit: number) {
 export function copyToClipboard(text: string) {
   copy(text)
 }
+
+export function getFileExtension(fileName: string) {
+  const extension = fileName.split('.').pop() as string
+  const hasNoExtension = extension === fileName
+
+  if (hasNoExtension) return
+  else return extension.toLowerCase()
+}

@@ -19,7 +19,7 @@ mongoose.connect(environment.mongoUrl, {
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use('/files', express.static(UPLOAD_FOLDER_PATH))
+app.use('/file', express.static(UPLOAD_FOLDER_PATH))
 app.use(routes)
 
 server.listen(environment.appPort)

@@ -22,7 +22,7 @@ const FileSchema = new Schema(
 
 function FileURLGetter (this: IFile) {
   const { appUrl } = environment
-  return `${appUrl}/files/${encodeURIComponent(this.path)}`
+  return `${appUrl}/file/${encodeURIComponent(this.path)}`
 }
 
 FileSchema.virtual('url').get(FileURLGetter)

@@ -1,10 +1,15 @@
-import type { ToRefs, DeepReadonly } from 'vue'
+import type { DeepReadonly, Ref } from 'vue'
 
-export type UserContext = DeepReadonly<ToRefs<UserState>>
+export interface UserContextHook {
+  id: DeepReadonly<Ref<string>>
+  uploadedFiles: DeepReadonly<Ref<UploadedFile[]>>
+  addUploadedFile(file: UploadedFile): void
+}
 
 export interface UserState {
   id: string
   uploadedFiles: UploadedFile[]
+  addUploadedFile(file: UploadedFile): void
 }
 
 export interface UploadedFile {

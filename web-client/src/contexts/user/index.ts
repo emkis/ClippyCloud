@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue'
 
-import type { UserContext, UserState, UploadedFile } from './types'
+import type { UserContextHook, UserState, UploadedFile } from './types'
 
 import { getFromStorage, saveInStorage } from '@/services/storage'
 import { generateUniqueId } from '@/utilities/generators'
@@ -12,8 +12,8 @@ watch([id, uploadedFiles], () => {
   syncUserStateWithStorage()
 })
 
-export function useUser(): UserContext {
-  return { id, uploadedFiles }
+export function useUser(): UserContextHook {
+  return { id, uploadedFiles, addUploadedFile }
 }
 
 export function initializeUser() {
@@ -21,6 +21,10 @@ export function initializeUser() {
 
   if (user) setUserState(user)
   else setUserId(generateUniqueId())
+}
+
+function addUploadedFile(file: UploadedFile) {
+  uploadedFiles.value = [file, ...uploadedFiles.value]
 }
 
 function setUserId(targetId: string) {

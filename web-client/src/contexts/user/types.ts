@@ -18,5 +18,4 @@ export interface UploadedFile {
   size: number
   extension?: string
   createdAt: string
-  isExpired: boolean
 }

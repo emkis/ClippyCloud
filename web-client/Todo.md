@@ -1,15 +1,10 @@
 # Coisas pra fazer
-- [x] Analisar o prevent scroll no mobile
-- [x] Analisar o prevent com body e html
-- [x] Adicionar scroll quando feito upload
-- [x] Criar componente `ButtonCopy`
-- [x] Criar testes do componente `ButtonCopy`
-- [x] Refatorar UploadCard success action pra usar o `ButtonCopy`, e também o FileCard não expirado
-
-- [ ] Pensar em como lidar com o LocalStorage
-- [ ] Pensar em como a página MyUploads vai lidar com os arquivos
-- [ ] Ideia: Criar novo contexto pra arquivos do LocalStorage?
-- [ ] Criar interface `StoredCustomFile` (precisa ter data de upload do arquivo)
+- [ ] Adicionar lógica para pegar extensão do arquivo
+- [ ] Adicionar prop extensão em todas as interfaces necessárias
+- [ ] Revisar como esta sendo utilizado a finalização do mandar arquivo pro server (ver se faz sentido estar ali)
+- [ ] Remover props desnecessárias do `FileCard`, e passar apenas File com a nova interface
+- [ ] Remover lógica de expiração de dentro do `FileCard`
+- [ ] Dividir as lógicas da página `MyUploads` em features (scroll, arquivos)
 - [ ] Caso a tab inicial esteja disabled, mover pra próxima
 
 
@@ -19,18 +14,15 @@
 
 
 # Refatorações
-- [x] Pensar em como refatorar a troca do componente de progresso no UploadCard
-
 - [ ] Adicionar função utilitária de smooth scroll mais compatível
 - [ ] Corrigir scroll dos cards, focar bem no começo, onde pega o titulo e a primeira fila
 - [ ] Corrigir scroll dos cards, quando arquivo removido
-- [ ] Utilização de render functions para retornar diretamente pelo setup
 - [ ] Pensar se vale a pena separar exports do `modules/file` pra economizar no bundle
 
 
 # Lasanha
+- [ ] Atualizar state das páginas que lidam com arquivos depois de retornar pra janela do browser
 - [ ] Refatorar hook de usePageTitle
-- [ ] Criar dicionário para todo os tipos de textos de actions, details do `UploadCard`
 - [ ] Estudar sobre Three Shaking (se rolar tem que refatorar: [date-fns, icons])
 - [ ] Configurar ação de lint antes de commit
 - [ ] Analisar [repo](https://github.com/wmartins/react-circular-progress) pra ver se consigo adaptar pra usar o componente (esse anima o progresso melhor)

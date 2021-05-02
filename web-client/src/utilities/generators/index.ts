@@ -1,5 +1,5 @@
-import { v4 as uuid } from 'uuid'
+import { nanoid } from 'nanoid'
 
-export function generateUniqueId() {
-  return uuid()
+export function generateUniqueId(idLength = 8) {
+  return nanoid(idLength)
 }

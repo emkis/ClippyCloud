@@ -17,33 +17,29 @@
 
         <TabContext :activeTab="activeTab">
           <TabList @onTabChange="setActiveTab">
-            <Tab :name="TabNames.Available" :total="3" />
-            <Tab :name="TabNames.Expired" :total="2" />
+            <Tab :name="TabNames.Available" :total="availableFiles.length" />
+            <Tab :name="TabNames.Expired" :total="expiredFiles.length" />
           </TabList>
 
           <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Available">
             <FileCard
-              :key="cardIndex"
-              v-for="cardIndex in 3"
-              fileName="HelloWord.ts"
-              fileExtension="ts"
-              :fileSize="34298373"
-              createdAt="2021-05-01T00:57:55.875Z"
+              :key="file.createdAt"
+              v-for="file in availableFiles"
+              :fileName="file.name"
+              :fileExtension="file.extension"
+              :fileSize="file.size"
+              :createdAt="file.createdAt"
             />
           </TabLayout>
 
           <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Expired">
             <FileCard
-              fileName="HelloWord.ts"
-              fileExtension="ts"
-              :fileSize="34298373"
-              createdAt="2021-03-01T00:57:55.875Z"
-            />
-            <FileCard
-              fileName="HelloWord.ts"
-              fileExtension="ts"
-              :fileSize="34298373"
-              createdAt="2021-03-01T00:57:55.875Z"
+              :key="file.createdAt"
+              v-for="file in expiredFiles"
+              :fileName="file.name"
+              :fileExtension="file.extension"
+              :fileSize="file.size"
+              :createdAt="file.createdAt"
             />
           </TabLayout>
         </TabContext>
@@ -53,9 +49,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, readonly, onUnmounted, watchEffect } from 'vue'
+import {
+  defineComponent,
+  readonly,
+  onUnmounted,
+  watchEffect,
+  computed,
+} from 'vue'
 
 import { useAppScroll } from '@/hooks/app-scroll'
+import { useUser } from '@/contexts/user'
+import { isFileExpired } from '@/modules/file'
 
 import EmptyState from './components/EmptyState.vue'
 import { Container } from '@/components/Container'
@@ -81,15 +85,23 @@ export default defineComponent({
   },
   setup() {
     const { enableAppScroll, disableAppScroll } = useAppScroll()
+    const { uploadedFiles } = useUser()
 
     const TabNames = readonly({ Available: 'Available', Expired: 'Expired' })
     const { activeTab, setActiveTab } = useTabs(TabNames.Available)
 
-    const hasUploadedFiles = ref(false)
+    const availableFiles = computed(() =>
+      uploadedFiles.value.filter((file) => !isFileExpired(file.createdAt))
+    )
+    const expiredFiles = computed(() =>
+      uploadedFiles.value.filter((file) => isFileExpired(file.createdAt))
+    )
+    const hasUploadedFiles = computed(() => Boolean(uploadedFiles.value.length))
     const handleNoFiles = () => {
       window.scrollTo({ top: 0 })
       disableAppScroll()
     }
+
     watchEffect(() => {
       const hasFiles = Boolean(hasUploadedFiles.value)
       hasFiles ? enableAppScroll() : handleNoFiles()
@@ -97,7 +109,14 @@ export default defineComponent({
 
     onUnmounted(() => enableAppScroll())
 
-    return { hasUploadedFiles, TabNames, activeTab, setActiveTab }
+    return {
+      availableFiles,
+      expiredFiles,
+      hasUploadedFiles,
+      TabNames,
+      activeTab,
+      setActiveTab,
+    }
   },
 })
 </script>

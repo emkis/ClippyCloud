@@ -1,8 +1,8 @@
-import type { Ref } from 'vue'
+import type { Ref, DeepReadonly } from 'vue'
 import type { CustomFile } from '@/modules/file'
 
 export interface FileContextHook {
-  files: Ref<Readonly<CustomFile[]>>
+  files: DeepReadonly<Ref<CustomFile[]>>
   uploadFile(file: File): void
   rejectFile(file: File): void
   retryUploadFileById(fileId: string): void

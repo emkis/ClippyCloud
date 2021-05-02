@@ -5,3 +5,9 @@ export const enum ECardVariants {
   Success = 'success',
   InvalidFileSize = 'invalid-file-size',
 }
+
+export interface ICardHeadVariant {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  component: any
+  color?: string | ECardVariants
+}

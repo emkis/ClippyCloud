@@ -1,10 +1,11 @@
 # Coisas pra fazer
-- [ ] Analisar o prevent scroll no mobile
-- [ ] Analisar o prevent com body e html
-- [ ] Criar componente `ButtonCopy`
-- [ ] Criar testes do componente `ButtonCopy`
-- [ ] Refatorar UploadCard success action pra usar o `ButtonCopy`, e também o FileCard não expirado
-- [ ] Adicionar scroll quando feito upload
+- [x] Analisar o prevent scroll no mobile
+- [x] Analisar o prevent com body e html
+- [x] Adicionar scroll quando feito upload
+- [x] Criar componente `ButtonCopy`
+- [x] Criar testes do componente `ButtonCopy`
+- [x] Refatorar UploadCard success action pra usar o `ButtonCopy`, e também o FileCard não expirado
+
 - [ ] Pensar em como lidar com o LocalStorage
 - [ ] Pensar em como a página MyUploads vai lidar com os arquivos
 - [ ] Ideia: Criar novo contexto pra arquivos do LocalStorage?
@@ -18,7 +19,12 @@
 
 
 # Refatorações
-- [ ] Pensar em como refatorar a troca do componente de progresso no UploadCard
+- [x] Pensar em como refatorar a troca do componente de progresso no UploadCard
+
+- [ ] Adicionar função utilitária de smooth scroll mais compatível
+- [ ] Corrigir scroll dos cards, focar bem no começo, onde pega o titulo e a primeira fila
+- [ ] Corrigir scroll dos cards, quando arquivo removido
+- [ ] Utilização de render functions para retornar diretamente pelo setup
 - [ ] Pensar se vale a pena separar exports do `modules/file` pra economizar no bundle
 
 

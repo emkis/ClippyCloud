@@ -1,10 +1,10 @@
-import { ECardVariants } from '../types'
+import { ECardVariants, ICardHeadVariant } from '../types'
 
-import Uploading from './variants/Uploading.vue'
-import UploadError from './variants/Error.vue'
-import UploadSuccess from './variants/Success.vue'
-import UploadCanceled from './variants/Canceled.vue'
-import UploadInvalidFileSize from './variants/InvalidFileSize.vue'
+import { Uploading } from './variants/Uploading'
+import { UploadError } from './variants/Error'
+import { UploadSuccess } from './variants/Success'
+import { UploadCanceled } from './variants/Canceled'
+import { UploadInvalidFileSize } from './variants/InvalidFileSize'
 
 const HeadVariants = {
   [ECardVariants.Success]: UploadSuccess,
@@ -14,6 +14,6 @@ const HeadVariants = {
   [ECardVariants.Canceled]: UploadCanceled,
 }
 
-export function makeHeadVariant(variant: ECardVariants) {
+export function makeHeadVariant(variant: ECardVariants): ICardHeadVariant {
   return HeadVariants[variant]
 }

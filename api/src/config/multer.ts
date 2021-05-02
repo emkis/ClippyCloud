@@ -1,14 +1,18 @@
-import multer from 'multer'
+import multer, { Options } from 'multer'
 
-import { UPLOAD_FOLDER_PATH } from '../constants'
+import { UPLOAD_FOLDER_PATH, FILE_MAX_SIZE } from '../constants'
 import { generateUniqueId } from '../utilities/strings'
 
-export default {
+const multerConfigs: Options = {
   dest: UPLOAD_FOLDER_PATH,
 
+  limits: {
+    fileSize: FILE_MAX_SIZE,
+  },
+
   storage: multer.diskStorage({
-    destination: (_, __, cb) => {
-      cb(null, UPLOAD_FOLDER_PATH)
+    destination: (_, __, createFileInFolder) => {
+      createFileInFolder(null, UPLOAD_FOLDER_PATH)
     },
 
     filename: (_, file: Express.Multer.File, appendFileName) => {
@@ -20,3 +24,5 @@ export default {
     },
   }),
 }
+
+export default multerConfigs

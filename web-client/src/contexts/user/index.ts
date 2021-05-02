@@ -1,4 +1,4 @@
-import { ref, readonly } from 'vue'
+import { ref, watch } from 'vue'
 
 import type { UserContext, UserState, UploadedFile } from './types'
 
@@ -8,21 +8,33 @@ import { generateUniqueId } from '@/utilities/generators'
 const id = ref('')
 const uploadedFiles = ref<UploadedFile[]>([])
 
-export function useUser(): UserContext {
-  return {
-    id: readonly(id),
-    uploadedFiles: readonly(uploadedFiles),
-  }
-}
+watch([id, uploadedFiles], () => {
+  syncUserStateWithStorage()
+})
 
-function setUserId(targetId: string) {
-  id.value = targetId
-  saveInStorage('user', { id: id.value })
+export function useUser(): UserContext {
+  return { id, uploadedFiles }
 }
 
 export function initializeUser() {
   const user = getFromStorage('user') as UserState | null
 
-  if (user) setUserId(user.id)
+  if (user) setUserState(user)
   else setUserId(generateUniqueId())
+}
+
+function setUserId(targetId: string) {
+  id.value = targetId
+}
+
+function setUserState(userData: UserState) {
+  id.value = userData.id
+  uploadedFiles.value = userData.uploadedFiles
+}
+
+function syncUserStateWithStorage() {
+  saveInStorage('user', {
+    id: id.value,
+    uploadedFiles: uploadedFiles.value,
+  } as UserState)
 }

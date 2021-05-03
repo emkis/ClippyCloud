@@ -31,23 +31,18 @@
 
           <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Available">
             <FileCard
-              :key="file.createdAt"
               v-for="file in availableFiles"
-              :fileName="file.name"
-              :fileExtension="file.extension"
-              :fileSize="file.size"
-              :createdAt="file.createdAt"
+              :key="file.id"
+              :file="file"
             />
           </TabLayout>
 
           <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Expired">
             <FileCard
-              :key="file.createdAt"
               v-for="file in expiredFiles"
-              :fileName="file.name"
-              :fileExtension="file.extension"
-              :fileSize="file.size"
-              :createdAt="file.createdAt"
+              :key="file.id"
+              :file="file"
+              isExpired
             />
           </TabLayout>
         </TabContext>

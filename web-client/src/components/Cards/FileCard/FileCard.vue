@@ -1,33 +1,27 @@
 <template>
-  <BaseCard :fileName="fileName">
+  <BaseCard :fileName="file.name">
     <template #top>
-      <FileCardHead
-        :fileExtension="fileExtension"
-        :isExpired="isFileAlreadyExpired"
-      />
+      <FileCardHead />
     </template>
 
     <template #details>
-      <span>{{ formattedFileSize }}</span>
-      <span :style="fileStatusStyle">{{ fileTimeStatus }}</span>
+      <span>{{ formattedSize }}</span>
+      <span :style="timeToExpireStyle">{{ timeToExpire }}</span>
     </template>
 
-    <template #bottom v-if="!isFileAlreadyExpired">
-      <ButtonCopy value="fake text for now" />
+    <template #bottom v-if="!isExpired">
+      <ButtonCopy :value="file.url" />
     </template>
   </BaseCard>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, provide, toRefs } from 'vue'
+import { computed, defineComponent, PropType, provide, toRefs } from 'vue'
+
+import type { UploadedFile } from '@/contexts/user/types'
 
 import { EThemeColors } from '@/services/theme'
-import { defaultBaseCardProps } from '../defaultBaseCardProps'
-import {
-  getReadableSize,
-  getTimeToExpireFile,
-  isFileExpired,
-} from '@/modules/file'
+import { getReadableSize, getTimeToExpireFile } from '@/modules/file'
 
 import { ButtonCopy } from '@/components/ButtonCopy'
 import BaseCard from '../BaseCard.vue'
@@ -36,37 +30,29 @@ import FileCardHead from './FileCardHead.vue'
 export default defineComponent({
   name: 'FileCard',
   props: {
-    ...defaultBaseCardProps,
-    fileSize: { type: Number, required: true },
-    fileExtension: { type: String, required: true },
-    createdAt: { type: String, required: true },
+    file: { type: Object as PropType<UploadedFile>, required: true },
+    isExpired: { type: Boolean as PropType<boolean>, default: false },
   },
-  emits: ['onActionClick'],
   components: { BaseCard, FileCardHead, ButtonCopy },
-  setup(props, { emit }) {
-    const { fileExtension } = toRefs(props)
-    provide('fileExtension', fileExtension)
+  setup(props) {
+    const { isExpired } = toRefs(props)
+    const { extension, createdAt, size } = toRefs(props.file)
 
-    const isFileAlreadyExpired = computed(() => isFileExpired(props.createdAt))
-    const formattedFileSize = computed(() => getReadableSize(props.fileSize))
-    const handleAction = () => emit('onActionClick')
+    const formattedSize = computed(() => getReadableSize(size.value))
 
-    const fileTimeStatus = computed(() => {
-      const minutes = getTimeToExpireFile(props.createdAt)
-      return isFileAlreadyExpired.value ? 'Expired' : `${minutes} to expire`
+    const timeToExpire = computed(() => {
+      const minutes = getTimeToExpireFile(createdAt.value)
+      return isExpired.value ? 'Expired' : `${minutes} to expire`
     })
 
-    const fileStatusStyle = computed(() => {
-      return isFileAlreadyExpired.value && `color: ${EThemeColors.kournikova}`
+    const timeToExpireStyle = computed(() => {
+      return isExpired.value && `color: ${EThemeColors.kournikova}`
     })
 
-    return {
-      isFileAlreadyExpired,
-      fileTimeStatus,
-      formattedFileSize,
-      handleAction,
-      fileStatusStyle,
-    }
+    provide('isExpired', isExpired)
+    provide('fileExtension', extension)
+
+    return { timeToExpire, formattedSize, timeToExpireStyle }
   },
 })
 </script>

@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import { useUser } from '@/contexts/user'
 import { CustomFile, parseFile } from '@/modules/file'
 import { FileUpload } from '@/services/api/file-upload'
+import { generateUniqueId } from '@/utilities/generators'
 
 import type { FileContextHook } from './types'
 
@@ -82,6 +83,19 @@ function resetFileState(fileId: string) {
   })
 }
 
+function handleFinish(fileId: string) {
+  const { name, createdAt, size, url, extension } = getFileById(fileId)
+
+  user.addUploadedFile({
+    id: generateUniqueId(),
+    createdAt,
+    name,
+    size,
+    url: url as string,
+    extension,
+  })
+}
+
 function uploadFile(file: File) {
   const parsedFile = parseFile(file)
 
@@ -114,6 +128,7 @@ async function sendFileToServer(file: CustomFile, needReset = false) {
     })
 
     updateFileState(file.id, { isUploaded: true, url: fileResponse.data.url })
+    handleFinish(file.id)
   } catch (error) {
     if (axios.isCancel(error)) {
       updateFileState(file.id, { isUploadCanceled: true })

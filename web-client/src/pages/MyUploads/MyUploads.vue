@@ -90,17 +90,15 @@ export default defineComponent({
     const { enableAppScroll, disableAppScroll } = useAppScroll()
     const { uploadedFiles } = useUser()
 
-    const TabNames = readonly({ Available: 'Available', Expired: 'Expired' })
-    const { activeTab, setActiveTab } = useTabs(TabNames.Available)
-
     const availableFiles = computed(() =>
       uploadedFiles.value.filter((file) => !isFileExpired(file.createdAt))
     )
-    const totalAvailable = computed(() => availableFiles.value.length)
 
     const expiredFiles = computed(() =>
       uploadedFiles.value.filter((file) => isFileExpired(file.createdAt))
     )
+
+    const totalAvailable = computed(() => availableFiles.value.length)
     const totalExpired = computed(() => expiredFiles.value.length)
 
     const hasUploadedFiles = computed(() => Boolean(uploadedFiles.value.length))
@@ -108,6 +106,14 @@ export default defineComponent({
       window.scrollTo({ top: 0 })
       disableAppScroll()
     }
+
+    const TabNames = readonly({ Available: 'Available', Expired: 'Expired' })
+    const initialTab = () => {
+      const hasAvailable = totalAvailable.value > 0
+      return hasAvailable ? TabNames.Available : TabNames.Expired
+    }
+
+    const { activeTab, setActiveTab } = useTabs(initialTab())
 
     watchEffect(() => {
       const hasFiles = Boolean(hasUploadedFiles.value)

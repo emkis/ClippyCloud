@@ -1,5 +1,8 @@
 # Coisas pra fazer
-- [ ] Revisar como esta sendo utilizado a finalização do mandar arquivo pro server (ver se faz sentido estar ali) acho que daria pra pegar isso dando um watch nos files e fazendo um filter
+- [ ] Definir pra onde mover o contexto dos arquivos que foi feito upload
+- [ ] Refatorar contextos para nova forma definida
+- [ ] Alterar a forma como é definido as cores dos arquivos (aleatório só uma vez)
+- [ ] Guardar no contexto a cor do arquivo
 - [ ] Dividir as lógicas da página `MyUploads` em features (scroll, arquivos)
 
 
@@ -12,7 +15,6 @@
 - [ ] Corrigir scroll dos cards, focar bem no começo, onde pega o titulo e a primeira fila
 - [ ] Corrigir scroll dos cards, quando arquivo removido
 - [ ] Converter os enums do theme pra normal (e remover as variaveis usando eles quando nao precisava)
-- [ ] Pensar se vale a pena separar exports do `modules/file` pra economizar no bundle
 
 
 # Lasanha
@@ -25,12 +27,9 @@
 
 # Testes
 - [ ] Criar os testes com `skip`
-- [ ] Anotar os componentes que precisam de testes
+- [ ] Fazer ToDo de testes pendêntes
 - [ ] Setup do Cypress
-- [ ] Criar teste de páginas com o Cypress
 
 
 # CSS
 - [ ] Pensar em alguma sombra ou forma de melhorar a NavBar
-- [ ] Adicionar tokens de espaçamentos
-- [ ] Ver se as cores vão continuar assim (concepts, colors scss)

@@ -24,11 +24,12 @@
 import { defineComponent } from 'vue'
 
 import { truncate } from '@/utilities/strings'
-import { defaultBaseCardProps } from './defaultBaseCardProps'
 
 export default defineComponent({
   name: 'BaseCard',
-  props: defaultBaseCardProps,
+  props: {
+    fileName: { type: String, required: true },
+  },
   setup(props) {
     const truncatedFileName = truncate(props.fileName as string, 35)
 

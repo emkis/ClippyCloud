@@ -22,7 +22,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
 import { truncate } from '@/utilities/strings'
 
 export default defineComponent({
@@ -31,7 +30,7 @@ export default defineComponent({
     fileName: { type: String, required: true },
   },
   setup(props) {
-    const truncatedFileName = truncate(props.fileName as string, 35)
+    const truncatedFileName = truncate(props.fileName, 35)
 
     return { truncatedFileName }
   },

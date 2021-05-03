@@ -11,7 +11,7 @@
   >
     {{ name }}
 
-    <span class="Tab__badge">{{ total }}</span>
+    <span class="Tab__badge" v-if="hasTotal">{{ total }}</span>
   </button>
 </template>
 
@@ -22,7 +22,7 @@ export default defineComponent({
   name: 'Tab',
   props: {
     name: { type: String, required: true },
-    total: { type: Number, default: 0 },
+    total: { type: Number },
     disabled: { type: Boolean, default: false },
   },
   setup(props) {
@@ -30,12 +30,13 @@ export default defineComponent({
     const tabChangeEmitter = inject('tabChangeEmitter') as (a: string) => void
 
     const isTabActive = computed(() => props.name === activeTab.value)
+    const hasTotal = computed(() => props.total !== undefined)
 
     const handleSelectTab = () => {
       if (!props.disabled) tabChangeEmitter(props.name)
     }
 
-    return { handleSelectTab, isTabActive }
+    return { hasTotal, handleSelectTab, isTabActive }
   },
 })
 </script>

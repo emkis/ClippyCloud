@@ -14,12 +14,11 @@ import IconFile from '@/components/Icons/IconFile.vue'
 export default defineComponent({
   name: 'FileCardHead',
   components: { IconFile },
-  props: {
-    isExpired: { type: Boolean, default: false },
-  },
-  setup(props) {
-    const { icon, background } = useHeadColors(() => props.isExpired)
+  setup() {
     const fileExtension = inject('fileExtension') as Ref<string>
+    const isExpired = inject('isExpired') as Ref<boolean>
+
+    const { icon, background } = useHeadColors(() => isExpired.value)
 
     return {
       fileExtension,

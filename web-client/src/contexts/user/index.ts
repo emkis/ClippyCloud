@@ -17,7 +17,7 @@ export function useUser(): UserContextHook {
 }
 
 export function initializeUser() {
-  const user = getFromStorage('user') as UserState | null
+  const user = getFromStorage<UserState>('user')
 
   if (user) setUserState(user)
   else setUserId(generateUniqueId())
@@ -37,8 +37,8 @@ function setUserState(userData: UserState) {
 }
 
 function syncUserStateWithStorage() {
-  saveInStorage('user', {
+  saveInStorage<UserState>('user', {
     id: id.value,
     uploadedFiles: uploadedFiles.value,
-  } as UserState)
+  })
 }

@@ -9,7 +9,6 @@ export interface UserContextHook {
 export interface UserState {
   id: string
   uploadedFiles: UploadedFile[]
-  addUploadedFile(file: UploadedFile): void
 }
 
 export interface UploadedFile {

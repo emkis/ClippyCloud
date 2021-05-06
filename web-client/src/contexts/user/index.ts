@@ -2,7 +2,11 @@ import { ref, watch } from 'vue'
 
 import type { UserContextHook, UserState, UploadedFile } from './types'
 
-import { getFromStorage, saveInStorage } from '@/services/storage'
+import {
+  getFromStorage,
+  removeFromStorage,
+  saveInStorage,
+} from '@/services/storage'
 import { generateUniqueId } from '@/utilities/generators'
 
 const id = ref('')
@@ -18,9 +22,23 @@ export function useUser(): UserContextHook {
 
 export function initializeUser() {
   const user = getFromStorage<UserState>('user')
+  const storeUser = () => setUserId(generateUniqueId())
 
-  if (user) setUserState(user)
-  else setUserId(generateUniqueId())
+  if (!user) storeUser()
+  else {
+    const isValidData = validateUser(user)
+    isValidData ? setUserState(user) : storeUser()
+  }
+}
+
+function validateUser(userData: UserState): boolean {
+  const { id, uploadedFiles } = userData
+
+  if (id && uploadedFiles) return true
+  else {
+    removeFromStorage('user')
+    return false
+  }
 }
 
 function addUploadedFile(file: UploadedFile) {

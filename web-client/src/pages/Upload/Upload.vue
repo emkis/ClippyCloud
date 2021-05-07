@@ -54,10 +54,7 @@ export default defineComponent({
 
     const filesContainer = ref<HTMLDivElement>()
     const scrollIntoFiles = () => {
-      filesContainer.value?.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      })
+      filesContainer.value?.scrollIntoView({ block: 'start' })
     }
 
     const sortedFiles = computed(() => [...files.value].reverse())

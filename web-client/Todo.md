@@ -25,9 +25,71 @@
 
 # Testes
 - [ ] Criar os testes com `skip`
-- [ ] Fazer ToDo de testes pendêntes
 - [ ] Setup do Cypress
 
+# Para testar
+- [x] utilities/
+  - [x] generators/
+  - [x] numbers/
+  - [x] strings/
 
-# CSS
-- [ ] Pensar em alguma sombra ou forma de melhorar a NavBar
+- [x] services/
+  - [x] storage/
+  - [x] theme/
+  - [x] api/
+    - [x] wake-up-api/
+    - [ ] file-upload/ (faltam alguns casos)
+
+- [x] configs/
+  - [x] environment.ts
+
+- [ ] pages/
+  - [ ] Home/
+    - [x] Home.vue
+    - [ ] components/
+      - [ ] CardInfo.vue
+    - [ ] sections/
+      - [ ] SectionHero.vue
+      - [ ] SectionHowItWorks.vue
+      - [ ] SectionFooter.vue
+
+  - [ ] Upload/
+    - [ ] Upload.vue
+      - [ ] components/
+        - [ ] FileUploader.vue
+      - [ ] composables/
+        - [ ] useDropFiles.ts
+
+  - [ ] MyUploads/
+    - [ ] MyUploads.vue
+      - [ ] components/
+        - [ ] EmptyState.vue
+
+- [ ] modules/
+  - [ ] file/
+    - [ ] functions.ts
+
+- [ ] hooks/
+  - [x] page-title/
+  - [ ] app-scroll/ (testes existem mas com skip)
+
+- [ ] contexts/
+  - [ ] user/
+  - [ ] file/
+
+- [ ] components/
+  - [x] Button/
+  - [x] ButtonCopy/
+  - [x] Navbar/
+  - [ ] Tab/
+    - [x] hook.ts
+    - [ ] TabContext.vue
+    - [ ] Tab.vue
+    - [ ] TabLayout.vue
+    - [ ] TabList.vue
+  - [ ] ProgressCircle/
+  - [ ] Card/
+    - [ ] BaseCard.vue
+    - [ ] FileCard/
+    - [ ] UploadCard/
+

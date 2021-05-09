@@ -17,10 +17,8 @@
 
 # Lasanha
 - [ ] Atualizar state das páginas que lidam com arquivos depois de retornar pra janela do browser
-- [ ] Refatorar hook de usePageTitle
 - [ ] Adicionar GitHub Actions
 - [ ] Estudar sobre Three Shaking (se rolar tem que refatorar: [date-fns, icons])
-- [ ] Configurar ação de lint antes de commit
 
 
 # Testes

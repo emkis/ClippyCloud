@@ -11,10 +11,8 @@
 
 
 # Refatorações
-- [ ] Adicionar função utilitária de smooth scroll mais compatível
 - [ ] Corrigir scroll dos cards, focar bem no começo, onde pega o titulo e a primeira fila
 - [ ] Corrigir scroll dos cards, quando arquivo removido
-- [ ] Converter os enums do theme pra normal (e remover as variaveis usando eles quando nao precisava)
 
 
 # Lasanha

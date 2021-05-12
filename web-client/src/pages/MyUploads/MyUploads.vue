@@ -40,7 +40,7 @@
 import { defineComponent, readonly, onUnmounted, watchEffect, computed } from 'vue'
 
 import { useAppScroll } from '@/hooks/app-scroll'
-import { useUser } from '@/contexts/user'
+import { useFile } from '@/contexts/file'
 import { isFileExpired } from '@/modules/file'
 
 import EmptyState from './components/EmptyState.vue'
@@ -67,20 +67,20 @@ export default defineComponent({
   },
   setup() {
     const { enableAppScroll, disableAppScroll } = useAppScroll()
-    const { uploadedFiles } = useUser()
+    const { storedFiles } = useFile()
 
     const availableFiles = computed(() =>
-      uploadedFiles.value.filter((file) => !isFileExpired(file.createdAt))
+      storedFiles.value.filter((file) => !isFileExpired(file.createdAt))
     )
 
     const expiredFiles = computed(() =>
-      uploadedFiles.value.filter((file) => isFileExpired(file.createdAt))
+      storedFiles.value.filter((file) => isFileExpired(file.createdAt))
     )
 
     const totalAvailable = computed(() => availableFiles.value.length)
     const totalExpired = computed(() => expiredFiles.value.length)
 
-    const hasUploadedFiles = computed(() => Boolean(uploadedFiles.value.length))
+    const hasUploadedFiles = computed(() => Boolean(storedFiles.value.length))
     const handleNoFiles = () => {
       window.scrollTo({ top: 0 })
       disableAppScroll()

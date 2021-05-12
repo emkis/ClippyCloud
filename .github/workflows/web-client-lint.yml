@@ -7,7 +7,7 @@ defaults:
     working-directory: web-client
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
 
     strategy:

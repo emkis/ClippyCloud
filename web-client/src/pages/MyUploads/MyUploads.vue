@@ -11,9 +11,7 @@
       </Container>
 
       <Container class="MyUploads__tabs-container">
-        <Heading class="MyUploads__tabs-title" level="3">
-          Choose file status
-        </Heading>
+        <Heading class="MyUploads__tabs-title" level="3">Choose file status</Heading>
 
         <TabContext :activeTab="activeTab">
           <TabList @onTabChange="setActiveTab">
@@ -22,28 +20,15 @@
               :total="totalAvailable"
               :disabled="totalAvailable === 0"
             />
-            <Tab
-              :name="TabNames.Expired"
-              :total="totalExpired"
-              :disabled="totalExpired === 0"
-            />
+            <Tab :name="TabNames.Expired" :total="totalExpired" :disabled="totalExpired === 0" />
           </TabList>
 
           <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Available">
-            <FileCard
-              v-for="file in availableFiles"
-              :key="file.id"
-              :file="file"
-            />
+            <FileCard v-for="file in availableFiles" :key="file.id" :file="file" />
           </TabLayout>
 
           <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Expired">
-            <FileCard
-              v-for="file in expiredFiles"
-              :key="file.id"
-              :file="file"
-              isExpired
-            />
+            <FileCard v-for="file in expiredFiles" :key="file.id" :file="file" isExpired />
           </TabLayout>
         </TabContext>
       </Container>
@@ -52,13 +37,7 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  readonly,
-  onUnmounted,
-  watchEffect,
-  computed,
-} from 'vue'
+import { defineComponent, readonly, onUnmounted, watchEffect, computed } from 'vue'
 
 import { useAppScroll } from '@/hooks/app-scroll'
 import { useUser } from '@/contexts/user'

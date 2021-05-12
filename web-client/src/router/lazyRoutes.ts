@@ -5,7 +5,5 @@ export const Upload = (): Promise<Component> => {
 }
 
 export const MyUploads = (): Promise<Component> => {
-  return import(
-    /* webpackChunkName: "MyUploads" */ '@/pages/MyUploads/MyUploads.vue'
-  )
+  return import(/* webpackChunkName: "MyUploads" */ '@/pages/MyUploads/MyUploads.vue')
 }

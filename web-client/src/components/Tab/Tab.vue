@@ -1,11 +1,7 @@
 <template>
   <button
     type="button"
-    :class="[
-      'Tab',
-      { 'Tab--active': isTabActive },
-      { 'Tab--disabled': disabled },
-    ]"
+    :class="['Tab', { 'Tab--active': isTabActive }, { 'Tab--disabled': disabled }]"
     :disabled="disabled"
     @click="handleSelectTab"
   >

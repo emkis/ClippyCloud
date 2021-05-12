@@ -3,8 +3,7 @@
     <Container>
       <Heading level="2">How it works</Heading>
       <Text class="SectionHowItWorks__description">
-        Clippy Cloud is just simple, it was built to make everything easy for
-        you.
+        Clippy Cloud is just simple, it was built to make everything easy for you.
       </Text>
 
       <div class="SectionHowItWorks__cards-container">
@@ -16,8 +15,7 @@
             <IconTimer :color="EThemeColors.kournikova" size="54" />
           </template>
 
-          After 30 minutes, all files expire automatically. Then you can no
-          longer access them.
+          After 30 minutes, all files expire automatically. Then you can no longer access them.
         </CardInfo>
 
         <CardInfo
@@ -28,8 +26,8 @@
             <IconFast :color="EThemeColors.geraldine" size="54" />
           </template>
 
-          No data from you will be saved. As long as you stay in the same
-          browser, you can see all your uploaded files.
+          No data from you will be saved. As long as you stay in the same browser, you can see all
+          your uploaded files.
         </CardInfo>
 
         <CardInfo
@@ -40,8 +38,8 @@
             <IconFlower :color="EThemeColors.heliotrope" size="54" />
           </template>
 
-          You will never need to pay for this service. It was created with the
-          intention of simplifying your life.
+          You will never need to pay for this service. It was created with the intention of
+          simplifying your life.
         </CardInfo>
       </div>
     </Container>

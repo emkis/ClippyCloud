@@ -3,15 +3,11 @@
     <Container class="SectionFooter__container">
       <IconHeart size="54" :color="EThemeConcepts.primaryColor" />
 
-      <Heading class="SectionFooter__title" level="3">
-        Made with love by Emkis
-      </Heading>
+      <Heading class="SectionFooter__title" level="3">Made with love by Emkis</Heading>
 
       <div class="SectionFooter__links">
         <Text as="span">
-          <a href="https://www.linkedin.com/in/nicolas-jardim" rel="noopener">
-            Linkedin
-          </a>
+          <a href="https://www.linkedin.com/in/nicolas-jardim" rel="noopener">Linkedin</a>
         </Text>
 
         <Text as="span">

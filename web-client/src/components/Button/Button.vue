@@ -1,9 +1,5 @@
 <template>
-  <button
-    :class="['Button', `Button--${theme}`]"
-    :disabled="disabled"
-    @click="handleClick"
-  >
+  <button :class="['Button', `Button--${theme}`]" :disabled="disabled" @click="handleClick">
     <slot />
   </button>
 </template>

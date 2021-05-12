@@ -1,9 +1,4 @@
-import {
-  isValidJSON,
-  makeCustomKey,
-  validateStorageItem,
-  STORAGE_PREFIX,
-} from './helpers'
+import { isValidJSON, makeCustomKey, validateStorageItem, STORAGE_PREFIX } from './helpers'
 import { LocalStorageMock } from './__mocks__/localStorage'
 
 describe('isValidJSON()', () => {

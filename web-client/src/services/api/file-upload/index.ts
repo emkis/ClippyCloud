@@ -3,9 +3,7 @@ import { getRoundPercentage } from '@/utilities/numbers'
 
 import type { IUploadParams, IUploadResponse, IUploadService } from './types'
 
-export function createFileUploadService(
-  httpClient = ApiService
-): IUploadService {
+export function createFileUploadService(httpClient = ApiService): IUploadService {
   return {
     upload(uploadParams: IUploadParams) {
       const { uploadData, cancelToken, onProgress } = uploadParams

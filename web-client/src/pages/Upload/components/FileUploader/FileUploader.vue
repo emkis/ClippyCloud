@@ -1,10 +1,7 @@
 <template>
   <div class="FileUploader">
     <div
-      :class="[
-        'FileUploader__drop-area',
-        { 'FileUploader__drop-area--active': isDragActive },
-      ]"
+      :class="['FileUploader__drop-area', { 'FileUploader__drop-area--active': isDragActive }]"
       v-bind="getRootProps()"
     >
       <input v-bind="getInputProps()" />
@@ -43,12 +40,9 @@ export default defineComponent({
       maxSize: props.maxSize,
     }
 
-    const {
-      getRootProps,
-      getInputProps,
-      open: openFilePicker,
-      isDragActive,
-    } = useDropzone(dropzoneOptions)
+    const { getRootProps, getInputProps, open: openFilePicker, isDragActive } = useDropzone(
+      dropzoneOptions
+    )
 
     function onDrop(acceptedFiles: File[], rejectedFiles: FileRejection[]) {
       emit('onDrop', { acceptedFiles, rejectedFiles })

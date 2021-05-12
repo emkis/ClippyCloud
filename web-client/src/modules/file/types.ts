@@ -33,12 +33,7 @@ export interface DroppedFiles {
 
 export interface FileError {
   message: string
-  code:
-    | 'file-too-large'
-    | 'file-too-small'
-    | 'too-many-files'
-    | 'file-invalid-type'
-    | string
+  code: 'file-too-large' | 'file-too-small' | 'too-many-files' | 'file-invalid-type' | string
 }
 
 export interface FileRejection {

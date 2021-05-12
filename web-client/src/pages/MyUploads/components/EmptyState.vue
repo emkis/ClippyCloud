@@ -1,17 +1,11 @@
 <template>
   <Container class="EmptyState">
-    <Heading class="EmptyState__title" level="1">
-      You don't have any files uploaded yet
-    </Heading>
+    <Heading class="EmptyState__title" level="1">You don't have any files uploaded yet</Heading>
 
     <Button theme="primary" @click="handleNavigate">Share now</Button>
   </Container>
 
-  <img
-    class="EmptyState__background"
-    src="@/assets/cards-mansory.svg"
-    alt="A grid of cards"
-  />
+  <img class="EmptyState__background" src="@/assets/cards-mansory.svg" alt="A grid of cards" />
 </template>
 
 <script lang="ts">

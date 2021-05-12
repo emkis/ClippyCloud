@@ -9,12 +9,7 @@
     role="presentation"
   >
     <title>Icon representing go back to previous step</title>
-    <path
-      d="M1.6 16L38.4 16"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
+    <path d="M1.6 16L38.4 16" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
     <path
       d="M4.80078 21.001L0.799976 16L4.80078 10.999"
       stroke-width="1.5"

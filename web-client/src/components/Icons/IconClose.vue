@@ -1,11 +1,5 @@
 <template>
-  <svg
-    viewBox="0 0 54 54"
-    :fill="color"
-    :height="size"
-    :width="size"
-    role="presentation"
-  >
+  <svg viewBox="0 0 54 54" :fill="color" :height="size" :width="size" role="presentation">
     <title>Icon representing an X</title>
     <path
       fill-rule="evenodd"

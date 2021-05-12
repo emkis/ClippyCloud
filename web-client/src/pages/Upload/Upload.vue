@@ -2,15 +2,10 @@
   <Navbar linkName="My Uploads" routeName="MyUploads" />
 
   <Container class="UploaderContainer">
-    <Heading class="UploaderContainer__title" level="1">
-      Upload your files
-    </Heading>
+    <Heading class="UploaderContainer__title" level="1">Upload your files</Heading>
     <Text>The files should be maximum of {{ maxFileSize }}.</Text>
 
-    <FileUploader
-      class="UploaderContainer__file-uploader"
-      @onDrop="handleDropFiles"
-    />
+    <FileUploader class="UploaderContainer__file-uploader" @onDrop="handleDropFiles" />
   </Container>
 
   <Container class="Files">
@@ -59,9 +54,7 @@ export default defineComponent({
 
     const sortedFiles = computed(() => [...files.value].reverse())
     const hasDroppedFiles = computed(() => Boolean(files.value.length))
-    const isUploading = computed(() =>
-      files.value.some((file) => !file.isSettled)
-    )
+    const isUploading = computed(() => files.value.some((file) => !file.isSettled))
 
     watch(files, scrollIntoFiles, { flush: 'post' })
 

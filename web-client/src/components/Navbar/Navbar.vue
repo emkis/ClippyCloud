@@ -1,19 +1,11 @@
 <template>
   <nav class="Navbar">
     <div class="Navbar__container">
-      <a
-        class="Navbar__back"
-        data-testid="back-link"
-        @click="handleBackNavigation"
-      >
+      <a class="Navbar__back" data-testid="back-link" @click="handleBackNavigation">
         <IconArrowLeft size="44" />
       </a>
 
-      <a
-        class="Navbar__link"
-        data-testid="external-link"
-        @click="handleExternalNavigation"
-      >
+      <a class="Navbar__link" data-testid="external-link" @click="handleExternalNavigation">
         {{ linkName }}
       </a>
     </div>

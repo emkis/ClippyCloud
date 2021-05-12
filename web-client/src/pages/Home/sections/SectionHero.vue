@@ -3,21 +3,14 @@
     <Container>
       <Heading level="1">Clippy Cloud</Heading>
       <Text class="SectionHero__description">
-        Easy way to upload and share files quickly for free and no login
-        required.
+        Easy way to upload and share files quickly for free and no login required.
       </Text>
 
       <div class="SectionHero__actions">
-        <Button
-          theme="primary"
-          data-testid="primary-button"
-          @click="navigateToUpload"
-        >
+        <Button theme="primary" data-testid="primary-button" @click="navigateToUpload">
           Upload Files
         </Button>
-        <Button data-testid="secondary-button" @click="navigateToMyUploads">
-          My Uploads
-        </Button>
+        <Button data-testid="secondary-button" @click="navigateToMyUploads">My Uploads</Button>
       </div>
     </Container>
   </section>

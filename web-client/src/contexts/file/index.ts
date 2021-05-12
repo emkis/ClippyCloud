@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ref } from 'vue'
 
 import { useUser } from '@/contexts/user'
-import { CustomFile, parseFile } from '@/modules/file'
+import { CustomFile, StoredCustomFile, parseFile } from '@/modules/file'
 import { FileUpload } from '@/services/api/file-upload'
 import { generateUniqueId } from '@/utilities/generators'
 
@@ -10,10 +10,15 @@ import type { FileContextHook } from './types'
 
 const user = useUser()
 const files = ref<CustomFile[]>([])
+const storedFiles = ref<StoredCustomFile[]>([])
+
+// TODO: adicionar watcher pra sincronizar com local storage
+// TODO: adicionar watcher pra quando finalizar um upload (remover handleFinish)
 
 export function useFile(): FileContextHook {
   return {
     files,
+    storedFiles,
     uploadFile,
     rejectFile,
     removeFileById,
@@ -83,10 +88,14 @@ function resetFileState(fileId: string) {
   })
 }
 
+function addStoredFile(file: StoredCustomFile) {
+  storedFiles.value = [file, ...storedFiles.value]
+}
+
 function handleFinish(fileId: string) {
   const { name, createdAt, size, url, extension } = getFileById(fileId)
 
-  user.addUploadedFile({
+  addStoredFile({
     id: generateUniqueId(),
     createdAt,
     name,

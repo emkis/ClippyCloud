@@ -1,4 +1,4 @@
-name: Unit Testing
+name: Web Client Unit Testing
 
 on: push
 
@@ -17,6 +17,8 @@ jobs:
 
       - name: Installing application dependencies
         run: yarn
+        working-directory: web-client
 
       - name: Unit tests
         run: yarn test:unit
+        working-directory: web-client

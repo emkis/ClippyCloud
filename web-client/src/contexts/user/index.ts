@@ -7,13 +7,14 @@ import { generateUniqueId } from '@/utilities/generators'
 
 const id = ref('')
 
+initializeUser()
 watch([id], syncUserStateWithStorage)
 
 export function useUser(): UserContextHook {
   return { id }
 }
 
-export function initializeUser() {
+function initializeUser() {
   const user = getFromStorage<UserState>('user')
 
   if (!user) setUserId(generateUniqueId())

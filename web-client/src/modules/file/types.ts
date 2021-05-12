@@ -17,6 +17,15 @@ export interface CustomFile {
   isBiggerThanSizeLimit: boolean
 }
 
+export interface StoredCustomFile {
+  id: string
+  name: string
+  url: string
+  size: number
+  extension?: string
+  createdAt: string
+}
+
 export interface DroppedFiles {
   acceptedFiles: File[]
   rejectedFiles: FileRejection[]

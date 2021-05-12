@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Cloning repository
+        uses: actions/checkout@v2
+
       - name: Installing Yarn globally
         run: npm install --global yarn
 

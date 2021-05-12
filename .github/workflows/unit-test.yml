@@ -1,0 +1,22 @@
+name: Unit Testing
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.16.1]
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Installing application dependencies
+        run: yarn
+
+      - name: Unit tests
+        run: yarn test:unit

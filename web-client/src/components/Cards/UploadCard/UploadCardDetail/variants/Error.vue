@@ -12,8 +12,9 @@ export default defineComponent({
   name: 'Error',
   props: detailDefaultProps,
   setup() {
-    const detailColor = EThemeConcepts.errorColor
-    const detailStyle: Partial<CSSStyleDeclaration> = { color: detailColor }
+    const detailStyle: Partial<CSSStyleDeclaration> = {
+      color: EThemeConcepts.errorColor,
+    }
 
     return { detailStyle }
   },

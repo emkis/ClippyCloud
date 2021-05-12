@@ -11,25 +11,83 @@
 
 
 # Refatorações
-- [ ] Adicionar função utilitária de smooth scroll mais compatível
 - [ ] Corrigir scroll dos cards, focar bem no começo, onde pega o titulo e a primeira fila
 - [ ] Corrigir scroll dos cards, quando arquivo removido
-- [ ] Converter os enums do theme pra normal (e remover as variaveis usando eles quando nao precisava)
 
 
 # Lasanha
 - [ ] Atualizar state das páginas que lidam com arquivos depois de retornar pra janela do browser
-- [ ] Refatorar hook de usePageTitle
 - [ ] Adicionar GitHub Actions
 - [ ] Estudar sobre Three Shaking (se rolar tem que refatorar: [date-fns, icons])
-- [ ] Configurar ação de lint antes de commit
 
 
 # Testes
 - [ ] Criar os testes com `skip`
-- [ ] Fazer ToDo de testes pendêntes
 - [ ] Setup do Cypress
 
+# Para testar
+- [x] utilities/
+  - [x] generators/
+  - [x] numbers/
+  - [x] strings/
 
-# CSS
-- [ ] Pensar em alguma sombra ou forma de melhorar a NavBar
+- [x] services/
+  - [x] storage/
+  - [x] theme/
+  - [x] api/
+    - [x] wake-up-api/
+    - [ ] file-upload/ (faltam alguns casos)
+
+- [x] configs/
+  - [x] environment.ts
+
+- [ ] pages/
+  - [ ] Home/
+    - [x] Home.vue
+    - [ ] components/
+      - [ ] CardInfo.vue
+    - [ ] sections/
+      - [ ] SectionHero.vue
+      - [ ] SectionHowItWorks.vue
+      - [ ] SectionFooter.vue
+
+  - [ ] Upload/
+    - [ ] Upload.vue
+      - [ ] components/
+        - [ ] FileUploader.vue
+      - [ ] composables/
+        - [ ] useDropFiles.ts
+
+  - [ ] MyUploads/
+    - [ ] MyUploads.vue
+      - [ ] components/
+        - [ ] EmptyState.vue
+
+- [ ] modules/
+  - [ ] file/
+    - [ ] functions.ts
+
+- [ ] hooks/
+  - [x] page-title/
+  - [ ] app-scroll/ (testes existem mas com skip)
+
+- [ ] contexts/
+  - [ ] user/
+  - [ ] file/
+
+- [ ] components/
+  - [x] Button/
+  - [x] ButtonCopy/
+  - [x] Navbar/
+  - [ ] Tab/
+    - [x] hook.ts
+    - [ ] TabContext.vue
+    - [ ] Tab.vue
+    - [ ] TabLayout.vue
+    - [ ] TabList.vue
+  - [ ] ProgressCircle/
+  - [ ] Card/
+    - [ ] BaseCard.vue
+    - [ ] FileCard/
+    - [ ] UploadCard/
+

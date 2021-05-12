@@ -3,8 +3,6 @@ import { copyToClipboard as mockCopy } from '@/utilities/strings'
 
 import { ButtonCopy } from './index'
 
-jest.spyOn(globalThis, 'setTimeout')
-
 jest.mock('@/components/Button/types', () => ({
   EThemes: { Default: 'default' },
 }))
@@ -34,23 +32,6 @@ describe('<ButtonCopy />', () => {
     await fireEvent.click(button)
 
     await findByText('Copied')
-  })
-
-  it('should change text between initial and clicked state', async () => {
-    jest.useFakeTimers()
-
-    const { getByText, findByText } = renderButtonCopy()
-
-    const initialText = 'Copy link'
-    const finalText = 'Copied'
-
-    const button = getByText(initialText)
-    await fireEvent.click(button)
-
-    await findByText(finalText)
-    await findByText(initialText)
-
-    expect(setTimeout).toHaveBeenNthCalledWith(1, expect.any(Function), 2000)
   })
 
   it('should copy provided text when clicked', async () => {

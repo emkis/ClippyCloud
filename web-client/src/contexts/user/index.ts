@@ -7,8 +7,8 @@ import { generateUniqueId } from '@/utilities/generators'
 
 const id = ref('')
 
+watch(id, syncUserStateWithStorage)
 initializeUser()
-watch([id], syncUserStateWithStorage)
 
 export function useUser(): UserContextHook {
   return { id }

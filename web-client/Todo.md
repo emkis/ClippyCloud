@@ -17,7 +17,6 @@
 
 # Lasanha
 - [ ] Atualizar state das páginas que lidam com arquivos depois de retornar pra janela do browser
-- [ ] Adicionar GitHub Actions
 - [ ] Estudar sobre Three Shaking (se rolar tem que refatorar: [date-fns, icons])
 
 

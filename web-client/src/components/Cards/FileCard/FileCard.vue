@@ -18,10 +18,8 @@
 <script lang="ts">
 import { computed, defineComponent, PropType, provide, toRefs } from 'vue'
 
-import type { UploadedFile } from '@/contexts/user/types'
-
 import { EThemeColors } from '@/services/theme'
-import { getReadableSize, getTimeToExpireFile } from '@/modules/file'
+import { getReadableSize, getTimeToExpireFile, StoredCustomFile } from '@/modules/file'
 
 import { ButtonCopy } from '@/components/ButtonCopy'
 import BaseCard from '../BaseCard.vue'
@@ -30,7 +28,7 @@ import FileCardHead from './FileCardHead.vue'
 export default defineComponent({
   name: 'FileCard',
   props: {
-    file: { type: Object as PropType<UploadedFile>, required: true },
+    file: { type: Object as PropType<StoredCustomFile>, required: true },
     isExpired: { type: Boolean as PropType<boolean>, default: false },
   },
   components: { BaseCard, FileCardHead, ButtonCopy },

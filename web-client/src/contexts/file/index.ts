@@ -1,10 +1,13 @@
 import axios from 'axios'
-import { ref } from 'vue'
+import { is } from 'superstruct'
+import { ref, watch } from 'vue'
 
 import { useUser } from '@/contexts/user'
 import { CustomFile, StoredCustomFile, parseFile } from '@/modules/file'
 import { FileUpload } from '@/services/api/file-upload'
 import { generateUniqueId } from '@/utilities/generators'
+import { getFromStorage, removeFromStorage, saveInStorage } from '@/services/storage'
+import { STORAGE_KEY, storedCustomFileSchema } from './constants'
 
 import type { FileContextHook } from './types'
 
@@ -12,7 +15,10 @@ const user = useUser()
 const files = ref<CustomFile[]>([])
 const storedFiles = ref<StoredCustomFile[]>([])
 
-// TODO: adicionar watcher pra sincronizar com local storage
+watch(storedFiles, syncStoredFilesWithStorage)
+
+initializeStoredFiles()
+
 // TODO: adicionar watcher pra quando finalizar um upload (remover handleFinish)
 
 export function useFile(): FileContextHook {
@@ -86,6 +92,21 @@ function resetFileState(fileId: string) {
     progress: 0,
     requestSource: undefined,
   })
+}
+
+function initializeStoredFiles() {
+  const storageData = getFromStorage<StoredCustomFile[]>(STORAGE_KEY)
+  if (!storageData) return
+
+  if (is(storageData, storedCustomFileSchema)) {
+    storedFiles.value = storageData
+  } else {
+    removeFromStorage(STORAGE_KEY)
+  }
+}
+
+function syncStoredFilesWithStorage() {
+  saveInStorage<StoredCustomFile[]>(STORAGE_KEY, storedFiles.value)
 }
 
 function addStoredFile(file: StoredCustomFile) {

@@ -40,9 +40,12 @@ export default defineComponent({
       maxSize: props.maxSize,
     }
 
-    const { getRootProps, getInputProps, open: openFilePicker, isDragActive } = useDropzone(
-      dropzoneOptions
-    )
+    const {
+      getRootProps,
+      getInputProps,
+      open: openFilePicker,
+      isDragActive,
+    } = useDropzone(dropzoneOptions)
 
     function onDrop(acceptedFiles: File[], rejectedFiles: FileRejection[]) {
       emit('onDrop', { acceptedFiles, rejectedFiles })

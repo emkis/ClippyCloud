@@ -14,7 +14,7 @@
     "core-js": "^3.12.1",
     "date-fns": "^2.21.3",
     "filesize": "^6.3.0",
-    "nanoid": "^3.1.22",
+    "nanoid": "^3.1.23",
     "normalize.css": "^8.0.1",
     "sass-rem": "^2.0.1",
     "vue": "^3.0.11",
@@ -24,8 +24,8 @@
   "devDependencies": {
     "@testing-library/vue": "^6.4.2",
     "@types/jest": "^26.0.23",
-    "@typescript-eslint/eslint-plugin": "^4.22.1",
-    "@typescript-eslint/parser": "^4.22.1",
+    "@typescript-eslint/eslint-plugin": "^4.23.0",
+    "@typescript-eslint/parser": "^4.23.0",
     "@vue/cli-plugin-babel": "~4.5.13",
     "@vue/cli-plugin-eslint": "~4.5.13",
     "@vue/cli-plugin-router": "~4.5.13",
@@ -40,7 +40,7 @@
     "eslint-plugin-vue": "^7.9.0",
     "husky": "4",
     "node-sass": "^5.0.0",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.0",
     "sass-loader": "^10.1.1",
     "typescript": "^4.2.4",
     "vue-jest": "^5.0.0-0"

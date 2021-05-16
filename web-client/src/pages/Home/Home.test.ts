@@ -37,4 +37,19 @@ describe('<Home />', () => {
     expect(button).not.toBeNull()
     expect(mockUseRouter.push).toHaveBeenNthCalledWith(1, { name: 'MyUploads' })
   })
+
+  it('should show the feature cards', async () => {
+    const { findByText } = render(Home)
+
+    await findByText('All Files Expire')
+    await findByText('No Login Required')
+    await findByText('For Free Forever')
+  })
+
+  it('should how contact external links', async () => {
+    const { findByText } = render(Home)
+
+    await findByText('Linkedin')
+    await findByText('GitHub')
+  })
 })

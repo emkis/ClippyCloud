@@ -19,8 +19,6 @@ watch(storedFiles, syncStoredFilesWithStorage)
 
 initializeStoredFiles()
 
-// TODO: adicionar watcher pra quando finalizar um upload (remover handleFinish)
-
 export function useFile(): FileContextHook {
   return {
     files,

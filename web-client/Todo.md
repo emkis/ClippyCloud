@@ -1,8 +1,5 @@
 # Coisas pra fazer
-- [ ] Definir pra onde mover o contexto dos arquivos que foi feito upload
-- [ ] Refatorar contextos para nova forma definida
-- [ ] Alterar a forma como é definido as cores dos arquivos (aleatório só uma vez)
-- [ ] Guardar no contexto a cor do arquivo
+- [ ] Refatorar lógica do sendToServer
 - [ ] Dividir as lógicas da página `MyUploads` em features (scroll, arquivos)
 
 

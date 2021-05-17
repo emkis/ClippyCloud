@@ -7,7 +7,7 @@
       <input v-bind="getInputProps()" />
 
       <Text>Drag & Drop files here to upload</Text>
-      <Button theme="outlined" @click="openFilePicker">Browse files</Button>
+      <Button theme="outlined" @click.stop="openFilePicker">Browse files</Button>
     </div>
   </div>
 </template>

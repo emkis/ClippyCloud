@@ -58,6 +58,7 @@ export default defineComponent({
   &__filename {
     margin-bottom: 4px;
     font-size: rem(18px);
+    word-break: break-all;
     overflow: hidden;
     display: -webkit-box;
     color: var(--concept-text-primary);

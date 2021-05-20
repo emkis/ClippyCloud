@@ -1,7 +1,5 @@
 import filesize from 'filesize'
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-import addMinutes from 'date-fns/addMinutes'
-import isPast from 'date-fns/isPast'
+import { formatDistanceToNow, addMinutes, isPast } from 'date-fns'
 
 import type { CustomFile } from './types'
 

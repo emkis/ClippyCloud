@@ -1,0 +1,32 @@
+name: (web-client) Building
+
+on: [ push, pull_request ]
+
+defaults:
+  run:
+    working-directory: web-client
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.16.1]
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Cloning repository
+        uses: actions/checkout@v2
+
+      - name: Installing Yarn globally
+        run: npm install --global yarn
+
+      - name: Installing application dependencies
+        run: yarn
+
+      - name: Running build
+        run: yarn build

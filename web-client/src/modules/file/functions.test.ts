@@ -1,4 +1,10 @@
-import { getCurrentISODate, getReadableSize } from './functions'
+import {
+  getCurrentISODate,
+  getReadableSize,
+  getTimeToExpireFile,
+  isFileExpired,
+  parseFile,
+} from './functions'
 
 describe('File Functions', () => {
   beforeEach(jest.clearAllMocks)
@@ -26,4 +32,26 @@ describe('File Functions', () => {
       expect(getReadableSize(684098045345)).toBe('637 GB')
     })
   })
+
+  // describe('getTimeToExpireFile()', () => {
+  //   beforeAll(() => {
+  //     jest.useFakeTimers('modern')
+  //     jest.setSystemTime?.(new Date('2017-01-01'))
+  //   })
+
+  //   afterAll(() => {
+  //     jest.useRealTimers()
+  //   })
+
+  //   it('should return a string', () => {
+  //     const currentTime = getCurrentISODate()
+  //     expect(typeof getTimeToExpireFile(currentTime)).toBe('string')
+  //   })
+
+  //   it('should return expected time to expired', () => {
+  //     expect(getTimeToExpireFile('2021-05-16T06:14:03.135Z')).toBe('18 minutes')
+  //     expect(getTimeToExpireFile('2020-05-16T06:14:03.135Z')).toBe('18 minutes')
+  //     expect(getTimeToExpireFile('2021-05-16T06:14:03.135Z')).toBe('18 minutes')
+  //   })
+  // })
 })

@@ -25,7 +25,7 @@ import { EThemeConcepts } from '@/services/theme'
 import { Container } from '@/components/Container'
 import { Heading } from '@/components/Heading'
 import { Text } from '@/components/Text'
-import IconHeart from '@/components/Icons/IconHeart.vue'
+import { IconHeart } from '@/components/Icons'
 
 export default defineComponent({
   name: 'SectionFooter',

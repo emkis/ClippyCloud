@@ -2,7 +2,7 @@ import { defineComponent, h } from 'vue'
 
 import type { ICardHeadVariant } from '../../types'
 import { EThemeConcepts } from '@/services/theme'
-import IconRefresh from '@/components/Icons/IconRefresh.vue'
+import { IconRefresh } from '@/components/Icons'
 
 const errorColor = EThemeConcepts.errorColor
 

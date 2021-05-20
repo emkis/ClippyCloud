@@ -54,9 +54,7 @@ import { Container } from '@/components/Container'
 import { Heading } from '@/components/Heading'
 import { Text } from '@/components/Text'
 import CardInfo from '@/pages/Home/components/CardInfo.vue'
-import IconTimer from '@/components/Icons/IconTimer.vue'
-import IconFlower from '@/components/Icons/IconFlower.vue'
-import IconFast from '@/components/Icons/IconFast.vue'
+import { IconTimer, IconFlower, IconFast } from '@/components/Icons'
 
 export default defineComponent({
   name: 'SectionHowItWorks',

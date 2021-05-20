@@ -16,7 +16,7 @@
 import { defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 
-import IconArrowLeft from '@/components/Icons/IconArrowLeft.vue'
+import { IconArrowLeft } from '@/components/Icons'
 
 export default defineComponent({
   name: 'Navbar',

@@ -9,7 +9,7 @@
 import { defineComponent, inject, Ref } from 'vue'
 import { useHeadColors } from './colorHelpers'
 
-import IconFile from '@/components/Icons/IconFile.vue'
+import { IconFile } from '@/components/Icons'
 
 export default defineComponent({
   name: 'FileCardHead',

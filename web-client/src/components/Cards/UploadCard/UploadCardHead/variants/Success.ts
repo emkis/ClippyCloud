@@ -2,7 +2,7 @@ import { defineComponent, h } from 'vue'
 
 import type { ICardHeadVariant } from '../../types'
 import { EThemeConcepts } from '@/services/theme'
-import IconCheckMark from '@/components/Icons/IconCheckMark.vue'
+import { IconCheckMark } from '@/components/Icons'
 
 const successColor = EThemeConcepts.successColor
 

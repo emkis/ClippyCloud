@@ -1,9 +1,8 @@
+import { nextTick } from 'vue'
 import { useAppScroll } from './index'
 
 describe('useAppScroll()', () => {
-  beforeEach(jest.clearAllMocks)
-
-  it.skip('should return expected properties', () => {
+  it('should return expected properties', () => {
     expect(useAppScroll()).toEqual({
       toggleScroll: expect.any(Function),
       enableAppScroll: expect.any(Function),
@@ -12,36 +11,52 @@ describe('useAppScroll()', () => {
   })
 
   describe('toggleScroll()', () => {
-    it.skip('should add overflow to prevent scroll when called', async () => {
+    it('should toggle overflow style when called', async () => {
       const { toggleScroll } = useAppScroll()
 
-      const beforeCallDocumentStyles = document.body.style.overflow
+      const initialStyle = document.body.style.overflow
       toggleScroll()
-      const afterCallDocumentStyles = document.body.style.overflow
+      await nextTick()
+      const afterFirstCallStyle = document.body.style.overflow
+      toggleScroll()
+      await nextTick()
+      const lastCallStyle = document.body.style.overflow
 
-      expect(beforeCallDocumentStyles).toBe('')
-      expect(afterCallDocumentStyles).toBe('hidden')
+      expect(initialStyle).toBe('')
+      expect(afterFirstCallStyle).toBe('hidden')
+      expect(lastCallStyle).toBe('')
     })
+  })
 
-    it.skip('should remove overflow style if exists', () => {
-      const { toggleScroll } = useAppScroll()
+  describe('enableAppScroll()', () => {
+    it('should remove overflow styles when called', async () => {
+      document.body.style.overflow = 'hidden'
 
-      toggleScroll()
+      const initialStyle = document.body.style.overflow
+      const { enableAppScroll } = useAppScroll()
 
-      const pageStyles = document.body.style
-      expect(pageStyles.overflow).toBe('')
+      enableAppScroll()
+      await nextTick()
+
+      const finalStyle = document.body.style.overflow
+
+      expect(initialStyle).toBe('hidden')
+      expect(finalStyle).toBe('')
     })
+  })
 
-    it.skip('should toggle overflow style when called twice', () => {
-      const { toggleScroll } = useAppScroll()
+  describe('disableAppScroll()', () => {
+    it('should add overflow styles when called', async () => {
+      const initialStyle = document.body.style.overflow
+      const { disableAppScroll } = useAppScroll()
 
-      const beforeCallDocumentStyles = document.body.style.overflow
-      toggleScroll()
-      toggleScroll()
-      const afterCallDocumentStyles = document.body.style.overflow
+      disableAppScroll()
+      await nextTick()
 
-      expect(beforeCallDocumentStyles).toBe('')
-      expect(afterCallDocumentStyles).toBe('hidden')
+      const finalStyle = document.body.style.overflow
+
+      expect(finalStyle).toBe('hidden')
+      expect(initialStyle).toBe('')
     })
   })
 })

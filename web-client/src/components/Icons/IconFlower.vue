@@ -5,9 +5,8 @@
     :height="size"
     :width="size"
     xmlns="http://www.w3.org/2000/svg"
-    role="presentation"
+    aria-hidden="true"
   >
-    <title>Icon representing a flower</title>
     <path
       opacity="0.3"
       fill-rule="evenodd"

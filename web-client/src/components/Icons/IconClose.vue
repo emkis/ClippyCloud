@@ -1,6 +1,5 @@
 <template>
-  <svg viewBox="0 0 54 54" :fill="color" :height="size" :width="size" role="presentation">
-    <title>Icon representing an X</title>
+  <svg viewBox="0 0 54 54" :fill="color" :height="size" :width="size" aria-hidden="true">
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"

@@ -5,9 +5,8 @@
     :height="size"
     :width="size"
     xmlns="http://www.w3.org/2000/svg"
-    role="presentation"
+    aria-hidden="true"
   >
-    <title>Icon representing a stopwatch</title>
     <path
       fill-rule="evenodd"
       clip-rule="evenodd"

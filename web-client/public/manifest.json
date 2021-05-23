@@ -1,9 +1,12 @@
 {
   "name": "Clippy Cloud",
   "short_name": "Clippy Cloud",
-  "start_url": ".",
-  "lang": "en-US",
   "description": "Easy way to upload and share files quickly for free and no login required.",
+  "lang": "en-US",
+  "start_url": ".",
+  "background_color": "#181a20",
+  "theme_color": "#181a20",
+  "display": "standalone",
   "icons": [
     {
       "src": "/static/favicon-192x192.png",
@@ -15,8 +18,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "background_color": "#181a20",
-  "theme_color": "#181a20",
-  "display": "standalone"
+  ]
 }

@@ -31,5 +31,15 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Upload Files",
+      "url": "/upload?utm_source=PWA&utm_medium=shortcut"
+    },
+    {
+      "name": "My Uploads",
+      "url": "/my-uploads?utm_source=PWA&utm_medium=shortcut"
+    }
   ]
 }

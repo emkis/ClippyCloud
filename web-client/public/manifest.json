@@ -3,7 +3,7 @@
   "short_name": "Clippy Cloud",
   "description": "Easy way to upload and share files quickly for free and no login required.",
   "lang": "en",
-  "start_url": "/?launcher=pwa",
+  "start_url": "/?utm_source=PWA&utm_medium=launcher",
   "background_color": "#181a20",
   "theme_color": "#181a20",
   "display": "standalone",
@@ -16,6 +16,18 @@
     },
     {
       "src": "/static/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "src": "/static/favicon-maskable-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "src": "/static/favicon-maskable-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

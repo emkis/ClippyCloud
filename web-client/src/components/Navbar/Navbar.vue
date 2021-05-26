@@ -1,20 +1,19 @@
 <template>
   <nav class="Navbar">
     <div class="Navbar__container">
-      <a class="Navbar__back" data-testid="back-link" @click="handleBackNavigation">
+      <RouterLink :to="{ name: 'Home' }" class="Navbar__back" data-testid="back-link">
         <IconArrowLeft size="44" />
-      </a>
+      </RouterLink>
 
-      <a class="Navbar__link" data-testid="external-link" @click="handleExternalNavigation">
+      <RouterLink :to="{ name: routeName }" class="Navbar__link" data-testid="external-link">
         {{ linkName }}
-      </a>
+      </RouterLink>
     </div>
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useRouter } from 'vue-router'
 
 import { IconArrowLeft } from '@/components/Icons'
 
@@ -24,15 +23,6 @@ export default defineComponent({
   props: {
     linkName: { type: String, required: true },
     routeName: { type: String, required: true },
-  },
-  setup(props) {
-    const { back, push } = useRouter()
-    const targetRouteName = { name: props.routeName }
-
-    const handleBackNavigation = back
-    const handleExternalNavigation = () => push(targetRouteName)
-
-    return { handleExternalNavigation, handleBackNavigation }
   },
 })
 </script>

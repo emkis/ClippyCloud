@@ -7,7 +7,7 @@
   >
     {{ name }}
 
-    <span class="Tab__badge" v-if="hasTotal">{{ total }}</span>
+    <span class="Tab__badge" data-testid="badge" v-if="hasTotal">{{ total }}</span>
   </button>
 </template>
 

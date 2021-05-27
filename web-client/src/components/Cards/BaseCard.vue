@@ -1,21 +1,21 @@
 <template>
   <div class="BaseCard">
-    <div class="BaseCard__head">
+    <div class="BaseCard__head" data-testid="head">
       <slot name="top" />
     </div>
 
     <div class="BaseCard__content">
       <div class="BaseCard__file-info">
-        <h4 class="BaseCard__filename" :title="fileName">
+        <h4 class="BaseCard__filename" :title="fileName" data-testid="name">
           {{ truncatedFileName }}
         </h4>
 
-        <div class="BaseCard__file-details">
+        <div class="BaseCard__file-details" data-testid="details">
           <slot name="details" />
         </div>
       </div>
 
-      <slot name="bottom" />
+      <slot name="bottom" data-testid="bottom" />
     </div>
   </div>
 </template>

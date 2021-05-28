@@ -1,3 +1,5 @@
+import type { Component } from 'vue'
+
 export const enum ECardVariants {
   Error = 'error',
   Canceled = 'canceled',
@@ -7,7 +9,6 @@ export const enum ECardVariants {
 }
 
 export interface ICardHeadVariant {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  component: any
+  component: Component
   color?: string | ECardVariants
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="FileCardHead" :style="backgroundColor">
-    <IconFile :color="iconColor" size="124" />
+    <IconFile :color="iconColor" size="124" data-testid="icon" />
     <h5>{{ fileExtension }}</h5>
   </div>
 </template>

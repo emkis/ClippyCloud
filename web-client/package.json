@@ -11,7 +11,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "copy-to-clipboard": "^3.3.1",
-    "core-js": "^3.12.1",
+    "core-js": "^3.13.0",
     "date-fns": "^2.21.3",
     "filesize": "^6.3.0",
     "nanoid": "^3.1.23",
@@ -26,8 +26,8 @@
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/vue": "^6.4.2",
     "@types/jest": "^26.0.23",
-    "@typescript-eslint/eslint-plugin": "^4.24.0",
-    "@typescript-eslint/parser": "^4.24.0",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
     "@vue/cli-plugin-babel": "~4.5.13",
     "@vue/cli-plugin-eslint": "~4.5.13",
     "@vue/cli-plugin-router": "~4.5.13",
@@ -44,7 +44,7 @@
     "node-sass": "^5.0.0",
     "prettier": "^2.3.0",
     "sass-loader": "^10.1.1",
-    "typescript": "^4.2.4",
+    "typescript": "^4.3.2",
     "vue-jest": "^5.0.0-0"
   }
 }

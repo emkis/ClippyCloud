@@ -1,6 +1,6 @@
 import type { Component } from 'vue'
 
-export const enum ECardVariants {
+export enum ECardVariants {
   Error = 'error',
   Canceled = 'canceled',
   Initial = 'initial',

@@ -1,4 +1,4 @@
-export const enum EThemes {
+export enum EThemes {
   Default = 'default',
   Primary = 'primary',
   Outlined = 'outlined',

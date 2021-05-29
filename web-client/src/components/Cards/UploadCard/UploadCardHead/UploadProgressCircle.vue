@@ -4,6 +4,7 @@
     :progress="progress"
     :progressColor="progressColor"
     :foregroundColor="foregroundColor"
+    data-testid="upload-card-progress"
   />
 </template>
 

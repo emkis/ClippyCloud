@@ -1,12 +1,9 @@
-import { provide } from 'vue'
+import * as vue from 'vue'
 import { render } from '@testing-library/vue'
 
 import { TabContext } from './index'
 
-jest.mock('vue', () => ({
-  ...jest.requireActual('vue'),
-  provide: jest.fn(),
-}))
+jest.spyOn(vue, 'provide')
 
 describe('<TabContext />', () => {
   it('should provide "activeTab" ref', async () => {
@@ -16,8 +13,8 @@ describe('<TabContext />', () => {
       },
     })
 
-    expect(provide).toHaveBeenCalledTimes(1)
-    expect(provide).toHaveBeenCalledWith('activeTab', expect.any(Object))
+    expect(vue.provide).toHaveBeenCalledTimes(1)
+    expect(vue.provide).toHaveBeenCalledWith('activeTab', expect.any(Object))
   })
 
   it('should not render any children', async () => {

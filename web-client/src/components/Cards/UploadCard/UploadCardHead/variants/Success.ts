@@ -10,7 +10,12 @@ const Component = defineComponent({
   name: 'Success',
   components: { IconCheckMark },
   setup() {
-    return () => h(IconCheckMark, { size: '54', color: successColor })
+    return () =>
+      h(IconCheckMark, {
+        size: '54',
+        color: successColor,
+        'data-testid': 'icon-success',
+      })
   },
 })
 

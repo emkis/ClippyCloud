@@ -10,7 +10,12 @@ const Component = defineComponent({
   name: 'InvalidFileSize',
   components: { IconClose },
   setup() {
-    return () => h(IconClose, { size: '54', color: errorColor })
+    return () =>
+      h(IconClose, {
+        size: '54',
+        color: errorColor,
+        'data-testid': 'icon-invalid-size',
+      })
   },
 })
 

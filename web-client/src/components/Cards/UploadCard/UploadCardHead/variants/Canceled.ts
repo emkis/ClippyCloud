@@ -10,7 +10,12 @@ const Component = defineComponent({
   name: 'Canceled',
   components: { IconRefresh },
   setup() {
-    return () => h(IconRefresh, { size: '54', color: errorColor })
+    return () =>
+      h(IconRefresh, {
+        size: '54',
+        color: errorColor,
+        'data-testid': 'icon-canceled',
+      })
   },
 })
 

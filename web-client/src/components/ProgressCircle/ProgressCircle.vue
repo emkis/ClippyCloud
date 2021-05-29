@@ -1,5 +1,5 @@
 <template>
-  <div class="ProgressCircle" :style="`--size: ${size}px`">
+  <div class="ProgressCircle" :style="`--size: ${size}px`" aria-hidden="true">
     <svg shape-rendering="geometricPrecision" viewBox="0 0 100 100">
       <circle
         :stroke="foregroundColor"

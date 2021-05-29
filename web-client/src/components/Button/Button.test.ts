@@ -1,11 +1,5 @@
 import { render } from '@testing-library/vue'
-
 import { Button } from '@/components/Button'
-import { EThemes } from '@/components/Button/types'
-
-jest.mock('./types', () => ({
-  EThemes: { Default: EThemes.Default },
-}))
 
 describe('<Button />', () => {
   it('emit an event when clicked', async () => {

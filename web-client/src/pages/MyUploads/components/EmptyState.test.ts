@@ -1,13 +1,7 @@
 import { fireEvent, render } from '@testing-library/vue'
-
-import { EThemes } from '@/components/Button'
 import EmptyState from './EmptyState.vue'
 
 const mockRoutePush = jest.fn()
-
-jest.mock('@/components/Button/types', () => ({
-  EThemes: { Default: EThemes.Default },
-}))
 
 jest.mock('vue-router', () => ({
   useRouter: () => ({ push: mockRoutePush }),

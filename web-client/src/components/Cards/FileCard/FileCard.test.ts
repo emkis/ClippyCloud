@@ -1,7 +1,6 @@
 import * as vue from 'vue'
 import { render, fireEvent } from '@testing-library/vue'
 
-import { EThemes } from '@/components/Button'
 import { copyToClipboard as mockCopy } from '@/utilities/strings'
 import { getCurrentISODate } from '@/modules/file'
 
@@ -12,10 +11,6 @@ jest.spyOn(vue, 'provide')
 jest.mock('@/utilities/strings', () => ({
   ...jest.requireActual('@/utilities/strings'),
   copyToClipboard: jest.fn(),
-}))
-
-jest.mock('@/components/Button/types', () => ({
-  EThemes: { Default: EThemes.Default },
 }))
 
 function renderFileCard({ isExpired = false } = {}) {

@@ -3,10 +3,6 @@ import { copyToClipboard as mockCopy } from '@/utilities/strings'
 
 import { ButtonCopy } from './index'
 
-jest.mock('@/components/Button/types', () => ({
-  EThemes: { Default: 'default' },
-}))
-
 jest.mock('@/utilities/strings', () => ({
   copyToClipboard: jest.fn(),
 }))

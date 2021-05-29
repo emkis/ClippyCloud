@@ -7,14 +7,6 @@ jest.mock('vue-router', () => ({
   useRouter: () => mockUseRouter,
 }))
 
-jest.mock('@/components/Text/types', () => ({
-  ETextTypes: { P: 'p', SPAN: 'span', STRONG: 'strong' },
-}))
-
-jest.mock('@/components/Button/types', () => ({
-  EThemes: { Default: 'default' },
-}))
-
 describe('<Home />', () => {
   beforeEach(jest.clearAllMocks)
 

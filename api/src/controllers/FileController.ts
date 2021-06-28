@@ -14,8 +14,8 @@ export const FileController = {
     }
 
     const file = await File.create({
-      path: request.file.filename,
-      title: request.file.originalname,
+      path: request!.file!.filename,
+      title: request!.file!.originalname,
     })
 
     user!.files.push(file)

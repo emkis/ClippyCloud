@@ -1,6 +1,6 @@
 name: (web-client) Linting
 
-on: [ push, pull_request ]
+on: [ push ]
 
 defaults:
   run:

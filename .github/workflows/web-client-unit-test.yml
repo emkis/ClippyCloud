@@ -1,6 +1,6 @@
 name: (web-client) Unit Testing
 
-on: [ push, pull_request ]
+on: [ push ]
 
 defaults:
   run:

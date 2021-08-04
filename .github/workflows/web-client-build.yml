@@ -1,6 +1,6 @@
 name: (web-client) Building
 
-on: [ push, pull_request ]
+on: [ push ]
 
 defaults:
   run:

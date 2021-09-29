@@ -4,7 +4,7 @@
     <img
       width="333"
       alt="Clippy Cloud"
-      src="https://raw.githubusercontent.com/emkis/ClippyCloud/main/.github/clippy-cloud-logo.png"
+      src="/.github/clippy-cloud-logo.png"
     >
     <br>
   </a>
@@ -25,6 +25,13 @@ You can access the live app [on this link](https://clippycloud.netlify.app).
 The user interface of this project was built by me [on Figma](https://www.figma.com/file/J181HwJn1RFvYDrAyFkPXd/Clippy-Cloud?node-id=1%3A2).
 
 ![](/.github/clippy-cloud-preview.jpg)
+
+## Build with
+- [Vue.js 3](https://v3.vuejs.org)
+- [TypeScript](https://www.typescriptlang.org)
+- [SCSS](https://sass-lang.com)
+- [Jest](https://jestjs.io)
+- [Testing Library](https://testing-library.com/)
 
 <br>
 

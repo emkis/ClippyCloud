@@ -23,11 +23,11 @@
             <Tab :name="TabNames.Expired" :total="totalExpired" :disabled="totalExpired === 0" />
           </TabList>
 
-          <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Available">
+          <TabLayout class="MyUploads__tabs-grid" :for="TabNames.Available">
             <FileCard v-for="file in availableFiles" :key="file.id" :file="file" />
           </TabLayout>
 
-          <TabLayout class="MyUploads__tabs-grid" :name="TabNames.Expired">
+          <TabLayout class="MyUploads__tabs-grid" :for="TabNames.Expired">
             <FileCard v-for="file in expiredFiles" :key="file.id" :file="file" isExpired />
           </TabLayout>
         </TabContext>

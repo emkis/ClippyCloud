@@ -5,22 +5,22 @@ describe('Tab Hook', () => {
     const hookPayload = useTabs()
 
     expect(hookPayload).toEqual({
-      activeTab: expect.any(Object),
+      activeTabName: expect.any(Object),
       setActiveTab: expect.any(Function),
     })
   })
 
   it('should return expected initial tab name', () => {
-    const { activeTab } = useTabs('MOCK_INITIAL_TAB_NAME')
+    const { activeTabName } = useTabs('MOCK_INITIAL_TAB_NAME')
 
-    expect(activeTab.value).toBe('MOCK_INITIAL_TAB_NAME')
+    expect(activeTabName.value).toBe('MOCK_INITIAL_TAB_NAME')
   })
 
   it('should set new active tab name', () => {
-    const { activeTab, setActiveTab } = useTabs('FIRST_TAB_NAME')
+    const { activeTabName, setActiveTab } = useTabs('FIRST_TAB_NAME')
 
-    expect(activeTab.value).toBe('FIRST_TAB_NAME')
+    expect(activeTabName.value).toBe('FIRST_TAB_NAME')
     setActiveTab('SECOND_TAB_NAME')
-    expect(activeTab.value).toBe('SECOND_TAB_NAME')
+    expect(activeTabName.value).toBe('SECOND_TAB_NAME')
   })
 })

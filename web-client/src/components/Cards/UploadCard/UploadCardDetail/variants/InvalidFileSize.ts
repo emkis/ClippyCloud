@@ -13,6 +13,6 @@ export default defineComponent({
       text: `File bigger than ${FILE_MAX_SIZE_FORMATTED}`,
     }
 
-    return () => h(ErrorDetail, props)
+    return () => h(ErrorDetail as never, props)
   },
 })

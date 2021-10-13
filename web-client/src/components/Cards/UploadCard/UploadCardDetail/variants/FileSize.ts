@@ -13,6 +13,6 @@ export default defineComponent({
     const fileSize = computed(() => getReadableSize(Number(originalFileSize)))
     const props: DefaultDetailProps = { text: fileSize.value }
 
-    return () => h(DefaultDetail, props)
+    return () => h(DefaultDetail as never, props)
   },
 })

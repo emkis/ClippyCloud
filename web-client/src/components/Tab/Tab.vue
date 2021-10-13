@@ -55,7 +55,7 @@ export default defineComponent({
   cursor: pointer;
   $this: &;
 
-  &:not(&--disabled):hover {
+  &:not(:disabled):hover {
     opacity: 0.8;
   }
 

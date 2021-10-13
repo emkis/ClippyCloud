@@ -69,7 +69,7 @@ describe('<UploadCard />', () => {
 
       const uploadProgress = await findByText('43%')
       const fileName = await findByText('my-mock-file-name.link')
-      const fileSize = await findByText('91 KB')
+      const fileSize = await findByText('93 KB', { exact: false })
       const progressElement = await findByTestId('upload-card-progress')
       const button = await findByRole('button')
 

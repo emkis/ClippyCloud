@@ -48,7 +48,7 @@ import { Container } from '@/components/Container'
 import { Navbar } from '@/components/Navbar'
 import { Heading } from '@/components/Heading'
 import { Text } from '@/components/Text'
-import { TabContext, TabLayout, TabList, Tab, useTabs } from '@/components/Tab'
+import { TabContext, TabLayout, TabList, Tab, useTabs } from '@/components/Tabs'
 import { FileCard } from '@/components/Cards/FileCard'
 
 export default defineComponent({

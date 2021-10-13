@@ -1,14 +1,11 @@
 import { readonly, ref } from 'vue'
 
-export function useTabs(activeTabName = '') {
-  const activeTab = ref(activeTabName)
+export function useTabs(initialTabName = '') {
+  const activeTabName = ref(initialTabName)
+  const setActiveTab = (targetName: string) => (activeTabName.value = targetName)
 
   return {
-    activeTab: readonly(activeTab),
+    activeTabName: readonly(activeTabName),
     setActiveTab,
-  }
-
-  function setActiveTab(targetTabName: string) {
-    activeTab.value = targetTabName
   }
 }

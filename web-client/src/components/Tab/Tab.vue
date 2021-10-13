@@ -40,6 +40,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .Tab {
   width: 100%;
+  min-height: 60px;
   display: flex;
   gap: 8px;
   flex-direction: row;

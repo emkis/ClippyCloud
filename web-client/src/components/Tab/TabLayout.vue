@@ -10,11 +10,11 @@ import { defineComponent, computed, inject, Ref } from 'vue'
 export default defineComponent({
   name: 'TabLayout',
   props: {
-    name: { type: String, required: true },
+    for: { type: String, required: true },
   },
   setup(props) {
     const activeTab = inject('activeTab') as Ref<string>
-    const isTabActive = computed(() => props.name === activeTab.value)
+    const isTabActive = computed(() => props.for === activeTab.value)
 
     return { isTabActive }
   },

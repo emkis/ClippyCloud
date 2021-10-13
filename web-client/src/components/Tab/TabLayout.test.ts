@@ -4,7 +4,7 @@ import { TabLayout } from './index'
 function renderTabLayout({ tabName = 'fake-tab', targetTabName = '' } = {}) {
   return render(TabLayout, {
     props: {
-      name: tabName,
+      for: tabName,
     },
     slots: {
       default: '<h1>Tab Content</h1>',

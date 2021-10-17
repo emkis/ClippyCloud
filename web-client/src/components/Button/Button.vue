@@ -36,7 +36,7 @@ export default defineComponent({
   transition: background-color 200ms, color 200ms, opacity 200ms;
   cursor: pointer;
 
-  &:not(&:disabled):hover {
+  &:not(:disabled):hover {
     opacity: 0.8;
   }
 

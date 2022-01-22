@@ -14,7 +14,7 @@
     "core-js": "^3.18.3",
     "date-fns": "^2.25.0",
     "filesize": "^8.0.3",
-    "nanoid": "^3.1.29",
+    "nanoid": "^3.1.31",
     "normalize.css": "^8.0.1",
     "sass-rem": "^2.0.1",
     "superstruct": "^0.15.3",

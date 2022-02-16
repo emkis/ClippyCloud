@@ -16,12 +16,4 @@ describe('<TabContext />', () => {
     expect(vue.provide).toHaveBeenCalledTimes(1)
     expect(vue.provide).toHaveBeenCalledWith('activeTab', expect.any(Object))
   })
-
-  it('should not render any children', async () => {
-    const wrapper = render(TabContext, {
-      props: { activeTab: '' },
-    })
-
-    expect(wrapper.html()).toBe('<div></div>')
-  })
 })

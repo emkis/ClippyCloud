@@ -9,17 +9,17 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.23.0",
+    "axios": "^0.26.0",
     "copy-to-clipboard": "^3.3.1",
-    "core-js": "^3.18.3",
-    "date-fns": "^2.25.0",
-    "filesize": "^8.0.3",
-    "nanoid": "^3.1.31",
+    "core-js": "^3.21.0",
+    "date-fns": "^2.28.0",
+    "filesize": "^8.0.7",
+    "nanoid": "^3.3.0",
     "normalize.css": "^8.0.1",
     "sass-rem": "^3.0.0",
     "superstruct": "^0.15.3",
-    "vue": "^3.2.2",
-    "vue-router": "^4.0.11",
+    "vue": "^3.2.31",
+    "vue-router": "^4.0.12",
     "vue3-dropzone": "^0.0.7"
   },
   "devDependencies": {

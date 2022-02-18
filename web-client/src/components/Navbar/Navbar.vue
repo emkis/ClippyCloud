@@ -34,7 +34,7 @@ export default defineComponent({
   left: 0;
   padding: rem(0 24px);
   background: var(--concept-over-background);
-  z-index: $layer_navbar;
+  z-index: $layer-navbar;
 
   &__container {
     margin: 0 auto;
